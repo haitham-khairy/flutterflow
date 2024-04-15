@@ -27,7 +27,7 @@ addDatas(List<RfidData> datas) async {
 }
 
 Future<int> readtagcount() async {
-  ZebraRfidSdkPlugin.disconnect();
+  // ZebraRfidSdkPlugin.disconnect();
   return rfidDatas.length;
   // Add your function code here!
 }
