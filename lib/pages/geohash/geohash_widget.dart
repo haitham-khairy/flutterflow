@@ -162,7 +162,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    await actions.rFIDconnectionvalue();
+                    await actions.rFIDisconnect();
                   },
                   text: 'DisConnect',
                   options: FFButtonOptions(

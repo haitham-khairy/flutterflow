@@ -6,9 +6,9 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Custom Action - rFIDconnectionvalue] action in Button widget.
+  // Stores action output result for [Custom Action - rFIDconnectionvalue] action in ConnectButton widget.
   int? status;
-  // Stores action output result for [Custom Action - readtagcount] action in Button widget.
+  // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   int? tagcount;
 
   @override
