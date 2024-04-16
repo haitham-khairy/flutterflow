@@ -9,13 +9,13 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for Username widget.
   FocusNode? usernameFocusNode;
-  TextEditingController? usernameController;
-  String? Function(BuildContext, String?)? usernameControllerValidator;
+  TextEditingController? usernameTextController;
+  String? Function(BuildContext, String?)? usernameTextControllerValidator;
   // State field(s) for Password widget.
   FocusNode? passwordFocusNode;
-  TextEditingController? passwordController;
+  TextEditingController? passwordTextController;
   late bool passwordVisibility;
-  String? Function(BuildContext, String?)? passwordControllerValidator;
+  String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // Stores action output result for [Backend Call - API (Userlogin)] action in Button widget.
   ApiCallResponse? apiResulth6b;
 
@@ -28,9 +28,9 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   void dispose() {
     unfocusNode.dispose();
     usernameFocusNode?.dispose();
-    usernameController?.dispose();
+    usernameTextController?.dispose();
 
     passwordFocusNode?.dispose();
-    passwordController?.dispose();
+    passwordTextController?.dispose();
   }
 }

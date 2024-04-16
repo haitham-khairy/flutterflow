@@ -24,10 +24,10 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
-    _model.usernameController ??= TextEditingController();
+    _model.usernameTextController ??= TextEditingController();
     _model.usernameFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
   }
 
@@ -125,7 +125,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 40.0, 0.0, 40.0, 0.0),
                             child: TextFormField(
-                              controller: _model.usernameController,
+                              controller: _model.usernameTextController,
                               focusNode: _model.usernameFocusNode,
                               autofocus: true,
                               obscureText: false,
@@ -183,7 +183,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     fontFamily: 'Readex Pro',
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.usernameControllerValidator
+                              validator: _model.usernameTextControllerValidator
                                   .asValidator(context),
                             ),
                           ),
@@ -193,7 +193,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   40.0, 0.0, 40.0, 0.0),
                               child: TextFormField(
-                                controller: _model.passwordController,
+                                controller: _model.passwordTextController,
                                 focusNode: _model.passwordFocusNode,
                                 autofocus: true,
                                 obscureText: !_model.passwordVisibility,
@@ -265,7 +265,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
                                     ),
-                                validator: _model.passwordControllerValidator
+                                validator: _model
+                                    .passwordTextControllerValidator
                                     .asValidator(context),
                               ),
                             ),
@@ -273,11 +274,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
-                              if ((_model.usernameController.text != '') &&
-                                  (_model.passwordController.text != '')) {
+                              if ((_model.usernameTextController.text !=
+                                          '') &&
+                                  (_model.passwordTextController.text !=
+                                          '')) {
                                 _model.apiResulth6b = await UserloginCall.call(
-                                  username: _model.usernameController.text,
-                                  password: _model.passwordController.text,
+                                  username: _model.usernameTextController.text,
+                                  password: _model.passwordTextController.text,
                                 );
                                 shouldSetState = true;
                                 if ((_model.apiResulth6b?.succeeded ?? true) !=
