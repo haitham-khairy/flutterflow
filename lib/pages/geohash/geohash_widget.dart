@@ -30,8 +30,14 @@ class _GeohashWidgetState extends State<GeohashWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.rfidstatusOnpageload = await actions.getRFIDReaderStatus();
-      if (_model.rfidstatusOnpageload != 'connection complete') {
+      setState(() {
+        _model.rfidstatus = _model.rfidstatusOnpageload!;
+      });
+      if (_model.rfidstatus != 'connection complete') {
         _model.rfidreaderfeedback = await actions.getRFIDReaderStatus();
+        setState(() {
+          _model.rfidstatus = _model.rfidreaderfeedback!;
+        });
       }
     });
   }
@@ -169,7 +175,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                     _model.instantTimer2 = InstantTimer.periodic(
                       duration: const Duration(milliseconds: 1000),
                       callback: (timer) async {
-                        _model.rfidstatus = await actions.getRFIDReaderStatus();
+                        _model.test = await actions.getRFIDReaderStatus();
                       },
                       startImmediately: true,
                     );
@@ -352,7 +358,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 Text(
                   valueOrDefault<String>(
-                    _model.rfidstatus,
+                    _model.test,
                     'N/A',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -367,7 +373,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                         letterSpacing: 0.0,
                       ),
                 ),
-              ],
+              ].divide(const SizedBox(height: 5.0)),
             ),
           ),
         ),

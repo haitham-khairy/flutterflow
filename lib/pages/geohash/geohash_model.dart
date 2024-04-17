@@ -6,6 +6,10 @@ import 'geohash_widget.dart' show GeohashWidget;
 import 'package:flutter/material.dart';
 
 class GeohashModel extends FlutterFlowModel<GeohashWidget> {
+  ///  Local state fields for this page.
+
+  String rfidstatus = 'na';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -15,7 +19,7 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   String? rfidreaderfeedback;
   InstantTimer? instantTimer2;
   // Stores action output result for [Custom Action - getRFIDReaderStatus] action in ConnectButton widget.
-  String? rfidstatus;
+  String? test;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
   // Stores action output result for [Backend Call - API (Userlogin)] action in Container widget.
