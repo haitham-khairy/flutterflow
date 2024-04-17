@@ -102,7 +102,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                           const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          _model.status.toString(),
+                          _model.rfidstatus.toString(),
                           'N/A',
                         ),
                         style: FlutterFlowTheme.of(context)
@@ -135,7 +135,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.status = await actions.rFIDconnectionvalue();
+                    _model.rfidstatus = await actions.rFIDconnectionvalue();
 
                     setState(() {});
                   },
@@ -235,7 +235,10 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                rfidtaglistItem.tagID,
+                                valueOrDefault<String>(
+                                  rfidtaglistItem.tagID,
+                                  'tag id',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -249,6 +252,16 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                       },
                     );
                   },
+                ),
+                Text(
+                  valueOrDefault<String>(
+                    _model.rfidstatus?.toString(),
+                    'N/A',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ].divide(const SizedBox(height: 25.0)),
             ),

@@ -18,7 +18,10 @@ Future<List<RFIDTagsdataStruct>> readtagcount() async {
 
   addDatas(List<RFIDTagsdataStruct> datas) async {
     for (var item in datas) {
-      var data = rfidDatas[item.tagID];
+      var data = await rfidDatas[item.tagID];
+      datas.Add(RFIDTagsdataStruct(
+        tagID: item.tagID,
+      ));
       if (data != null) {
         if (data.count == null) data.count = 0;
         data.count = data.count + 1;
