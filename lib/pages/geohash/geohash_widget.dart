@@ -357,6 +357,13 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                         letterSpacing: 0.0,
                       ),
                 ),
+                Text(
+                  dateTimeFormat('M/d h:mm a', getCurrentTimestamp),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ],
             ),
           ),
