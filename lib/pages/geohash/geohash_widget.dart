@@ -33,12 +33,18 @@ class _GeohashWidgetState extends State<GeohashWidget> {
       setState(() {
         _model.rfidstatus = _model.rfidstatusOnpageload!;
       });
-      if (_model.rfidstatus != 'connection complete') {
-        _model.rfidreaderfeedback = await actions.getRFIDReaderStatus();
-        setState(() {
-          _model.rfidstatus = _model.rfidreaderfeedback!;
-        });
-      }
+      _model.instantTimer = InstantTimer.periodic(
+        duration: const Duration(milliseconds: 3000),
+        callback: (timer) async {
+          if (_model.rfidstatus != 'connection complete') {
+            _model.rfidreaderfeedback = await actions.getRFIDReaderStatus();
+            setState(() {
+              _model.rfidstatus = _model.rfidreaderfeedback!;
+            });
+          }
+        },
+        startImmediately: true,
+      );
     });
   }
 
