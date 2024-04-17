@@ -9,6 +9,8 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - getRFIDReaderStatus] action in geohash widget.
+  String? rfidstatus2;
   InstantTimer? instantTimer2;
   // Stores action output result for [Custom Action - getRFIDReaderStatus] action in ConnectButton widget.
   String? rfidstatus;
