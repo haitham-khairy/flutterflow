@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 
 import 'index.dart'; // Imports other custom actions
 
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:ffi';
 
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
@@ -29,7 +31,7 @@ addDatas(List<RfidData> datas) async {
   }
 }
 
-Future<int> rFIDconnectionvalue() async {
+Future<String> rFIDconnectionvalue() async {
   ZebraRfidSdkPlugin.setEventHandler(ZebraEngineEventHandler(
     readRfidCallback: (datas) async {
       addDatas(datas);
@@ -41,11 +43,8 @@ Future<int> rFIDconnectionvalue() async {
       //   connectionStatus = status;
     },
   ));
-  ZebraRfidSdkPlugin.connect();
   await Future.delayed(Duration(milliseconds: 100));
 
-  final state = await connectionStatus.index;
-
-  return Datas;
+  return rfidDatas.values.first.tagID;
   // Add your function code here!
 }

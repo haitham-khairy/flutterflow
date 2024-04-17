@@ -255,7 +255,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 Text(
                   valueOrDefault<String>(
-                    _model.rfidstatus?.toString(),
+                    _model.rfidstatus,
                     'N/A',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(

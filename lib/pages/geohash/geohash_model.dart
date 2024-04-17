@@ -8,7 +8,7 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - rFIDconnectionvalue] action in ConnectButton widget.
-  int? rfidstatus;
+  String? rfidstatus;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
 
