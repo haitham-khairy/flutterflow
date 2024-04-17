@@ -27,6 +27,9 @@ addDatas(List<RfidData> datas) async {
 }
 
 Future<List<RFIDTagsdataStruct>> readtagcount() async {
+  ZebraRfidSdkPlugin.connect();
+  await Future.delayed(Duration(milliseconds: 100));
+
   // Add your function code here!
   ZebraRfidSdkPlugin.setEventHandler(ZebraEngineEventHandler(
     readRfidCallback: (datas) async {
@@ -39,10 +42,11 @@ Future<List<RFIDTagsdataStruct>> readtagcount() async {
       //   connectionStatus = status;
     },
   ));
-  ZebraRfidSdkPlugin.connect();
-  await Future.delayed(Duration(milliseconds: 100));
 
-  final state = await connectionStatus.index;
+  List<RFIDTagsdataStruct> ffrfiddata = [];
+  for (int i = 0; i < rfidDatas.length; i++) {
+    ffrfiddata.addAll(RFIDTagsdataStruct(relativeDistance: RFIDTagsdataStruct));
+  }
 
-  return datas;
+  return ffrfiddata;
 }
