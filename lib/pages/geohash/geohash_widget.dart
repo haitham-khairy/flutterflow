@@ -154,10 +154,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               50.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            valueOrDefault<String>(
-                              _model.rfidreaderfeedback,
-                              'na',
-                            ),
+                            _model.rfidstatus,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -357,10 +354,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                   },
                 ),
                 Text(
-                  valueOrDefault<String>(
-                    _model.test,
-                    'N/A',
-                  ),
+                  _model.rfidstatus,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,
