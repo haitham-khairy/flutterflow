@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'geohash_model.dart';
 export 'geohash_model.dart';
 
@@ -26,17 +25,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => GeohashModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.instantTimer = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 1000),
-        callback: (timer) async {
-          _model.rfidreaderstatus = await actions.getRFIDReaderStatus();
-        },
-        startImmediately: true,
-      );
-    });
   }
 
   @override
@@ -152,7 +140,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                               50.0, 0.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
-                              _model.rfidreaderstatus,
+                              _model.rfidstatus,
                               'Waiting',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -169,7 +157,13 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.rfidstatus = await actions.getRFIDReaderStatus();
+                    _model.instantTimer2 = InstantTimer.periodic(
+                      duration: const Duration(milliseconds: 1000),
+                      callback: (timer) async {
+                        _model.rfidstatus = await actions.getRFIDReaderStatus();
+                      },
+                      startImmediately: true,
+                    );
 
                     setState(() {});
                   },
