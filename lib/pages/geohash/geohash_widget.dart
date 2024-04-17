@@ -235,7 +235,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                '',
+                                rfidtaglistItem.tagID,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
