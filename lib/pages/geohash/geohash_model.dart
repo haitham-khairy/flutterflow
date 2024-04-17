@@ -10,7 +10,7 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   // Stores action output result for [Custom Action - rFIDconnectionvalue] action in ConnectButton widget.
   int? status;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
-  List<RfidDataStruct>? rfidtagdata;
+  List<RFIDTagsdataStruct>? rfidtagdata;
 
   @override
   void initState(BuildContext context) {}

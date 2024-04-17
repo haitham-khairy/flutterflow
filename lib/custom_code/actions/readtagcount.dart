@@ -11,11 +11,11 @@ import 'package:flutter/services.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
-Future<List<RfidDataStruct>> readtagcount() async {
+Future<List<RFIDTagsdataStruct>> readtagcount() async {
   // Add your function code here!
   Map<String?, RfidData> rfidDatas = {};
-
-  addDatas(List<RfidDataStruct> datas) async {
+  List<RfidData> datas = [];
+  addDatas(List<RfidData> datas) async {
     for (var item in datas) {
       var data = rfidDatas[item.tagID];
       if (data != null) {
@@ -25,8 +25,8 @@ Future<List<RfidDataStruct>> readtagcount() async {
         data.relativeDistance = item.relativeDistance;
       } else
         rfidDatas.addAll({item.tagID: item});
-      return item.tagID;
     }
-    return datas;
   }
+
+  return datas;
 }
