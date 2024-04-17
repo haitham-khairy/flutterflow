@@ -51,7 +51,6 @@ Future<List<RFIDTagsdataStruct>> readtagcount() async {
   for (int i = 0; i < rfidDatas.length; i++) {
     frfid.add(RFIDTagsdataStruct(
       tagID: rfidDatas.values.elementAt(i).tagID,
-      peakRSSI: rfidDatas.values.elementAt(i).peakRSSI,
     ));
   }
 

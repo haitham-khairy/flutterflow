@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'geohash_model.dart';
 export 'geohash_model.dart';
 
@@ -25,6 +26,13 @@ class _GeohashWidgetState extends State<GeohashWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => GeohashModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (_model.rfidstatus != 'connection complete') {
+        await actions.getRFIDReaderStatus();
+      }
+    });
   }
 
   @override
