@@ -36,7 +36,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
       _model.instantTimer = InstantTimer.periodic(
         duration: const Duration(milliseconds: 3000),
         callback: (timer) async {
-          if (_model.rfidstatus == 'connection complete') {
+          if (_model.rfidstatus != 'connection complete') {
             _model.rfidreaderfeedback = await actions.getRFIDReaderStatus();
             setState(() {
               _model.rfidstatus = _model.rfidreaderfeedback!;
@@ -175,15 +175,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.instantTimer2 = InstantTimer.periodic(
-                      duration: const Duration(milliseconds: 1000),
-                      callback: (timer) async {
-                        _model.test = await actions.getRFIDReaderStatus();
-                      },
-                      startImmediately: true,
-                    );
-
-                    setState(() {});
+                    await actions.getRFIDReaderStatus();
                   },
                   text: 'Connect',
                   options: FFButtonOptions(
