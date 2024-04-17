@@ -11,26 +11,38 @@ import 'package:flutter/services.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
+Map<String?, RfidData> rfidDatas = {};
+ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
+addDatas(List<RfidData> datas) async {
+  for (var item in datas) {
+    var data = rfidDatas[item.tagID];
+    if (data != null) {
+      if (data.count == null) data.count = 0;
+      data.count = data.count + 1;
+      data.peakRSSI = item.peakRSSI;
+      data.relativeDistance = item.relativeDistance;
+    } else
+      rfidDatas.addAll({item.tagID: item});
+  }
+}
+
 Future<List<RFIDTagsdataStruct>> readtagcount() async {
   // Add your function code here!
-  Map<String?, RFIDTagsdataStruct> rfidDatas = {};
-  List<RFIDTagsdataStruct> datas = [];
+  ZebraRfidSdkPlugin.setEventHandler(ZebraEngineEventHandler(
+    readRfidCallback: (datas) async {
+      addDatas(datas);
+    },
+    errorCallback: (err) {
+      ZebraRfidSdkPlugin.toast(err.errorMessage);
+    },
+    connectionStatusCallback: (status) {
+      //   connectionStatus = status;
+    },
+  ));
+  ZebraRfidSdkPlugin.connect();
+  await Future.delayed(Duration(milliseconds: 100));
 
-  addDatas(List<RFIDTagsdataStruct> datas) async {
-    for (var item in datas) {
-      var data = await rfidDatas[item.tagID];
-      datas.Add(RFIDTagsdataStruct(
-        tagID: item.tagID,
-      ));
-      if (data != null) {
-        if (data.count == null) data.count = 0;
-        data.count = data.count + 1;
-        data.peakRSSI = item.peakRSSI;
-        data.relativeDistance = item.relativeDistance;
-      } else
-        rfidDatas.addAll({item.tagID: item});
-    }
-  }
+  final state = await connectionStatus.index;
 
   return datas;
 }
