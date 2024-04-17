@@ -152,8 +152,8 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                               50.0, 0.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
-                              _model.rfidstatus,
-                              'Not Coneected',
+                              _model.rfidreaderstatus,
+                              'Waiting',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
