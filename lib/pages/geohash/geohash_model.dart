@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'geohash_widget.dart' show GeohashWidget;
@@ -11,6 +12,8 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   String? rfidstatus;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
+  // Stores action output result for [Backend Call - API (Userlogin)] action in Container widget.
+  ApiCallResponse? apiResult8g9;
 
   @override
   void initState(BuildContext context) {}
