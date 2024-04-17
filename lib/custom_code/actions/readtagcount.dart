@@ -13,9 +13,10 @@ import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
 Future<List<RFIDTagsdataStruct>> readtagcount() async {
   // Add your function code here!
-  Map<String?, RfidData> rfidDatas = {};
-  List<RfidData> datas = [];
-  addDatas(List<RfidData> datas) async {
+  Map<String?, RFIDTagsdataStruct> rfidDatas = {};
+  List<RFIDTagsdataStruct> datas = [];
+
+  addDatas(List<RFIDTagsdataStruct> datas) async {
     for (var item in datas) {
       var data = rfidDatas[item.tagID];
       if (data != null) {
