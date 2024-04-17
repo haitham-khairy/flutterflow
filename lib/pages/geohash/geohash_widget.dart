@@ -97,24 +97,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        valueOrDefault<String>(
-                          _model.rfidstatus.toString(),
-                          'N/A',
-                        ),
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Outfit',
-                              color: Colors.white,
-                              fontSize: 22.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -246,6 +228,15 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
+                              Text(
+                                rfidtaglistItem.peakRSSI.toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
                             ],
                           ),
                         );
@@ -263,7 +254,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                         letterSpacing: 0.0,
                       ),
                 ),
-              ].divide(const SizedBox(height: 25.0)),
+              ],
             ),
           ),
         ),

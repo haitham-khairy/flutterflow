@@ -11,13 +11,14 @@ import 'index.dart'; // Imports other custom actions
 
 import 'index.dart'; // Imports other custom actions
 
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:ffi';
 
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
 Map<String?, RfidData> rfidDatas = {};
-ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 addDatas(List<RfidData> datas) async {
   for (var item in datas) {
     var data = rfidDatas[item.tagID];
