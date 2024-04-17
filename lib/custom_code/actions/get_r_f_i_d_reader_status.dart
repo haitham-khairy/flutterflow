@@ -7,36 +7,16 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
-
-import 'index.dart'; // Imports other custom actions
-
-import 'index.dart'; // Imports other custom actions
-
 import 'dart:ffi';
 
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
-Map<String?, RfidData> rfidDatas = {};
-addDatas(List<RfidData> datas) async {
-  for (var item in datas) {
-    var data = rfidDatas[item.tagID];
-    if (data != null) {
-      if (data.count == null) data.count = 0;
-      data.count = data.count + 1;
-      data.peakRSSI = item.peakRSSI;
-      data.relativeDistance = item.relativeDistance;
-    } else
-      rfidDatas.addAll({item.tagID: item});
-  }
-}
+ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 
-Future<String> rFIDconnectionvalue() async {
+Future<String> getRFIDReaderStatus() async {
   ZebraRfidSdkPlugin.setEventHandler(ZebraEngineEventHandler(
-    readRfidCallback: (datas) async {
-      addDatas(datas);
-    },
+    readRfidCallback: (datas) async {},
     errorCallback: (err) {
       ZebraRfidSdkPlugin.toast(err.errorMessage);
     },
@@ -46,6 +26,6 @@ Future<String> rFIDconnectionvalue() async {
   ));
   await Future.delayed(Duration(milliseconds: 100));
 
-  return rfidDatas.values.first.tagID;
+  return connectionStatus.index.toString();
   // Add your function code here!
 }

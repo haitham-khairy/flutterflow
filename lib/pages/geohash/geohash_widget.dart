@@ -113,12 +113,70 @@ class _GeohashWidgetState extends State<GeohashWidget> {
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Align(
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        child: Text(
+                          'RFID Reader Status',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              50.0, 0.0, 0.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              while (true) {
+                                _model.rFIDReaderStatus =
+                                    await actions.getRFIDReaderStatus();
+                                await Future.delayed(
+                                    const Duration(milliseconds: 1000));
+                                context.safePop();
+                                if (_model.rFIDReaderStatus != '1') {
+                                  await actions.rFIDConnectAction();
+                                }
+                              }
+
+                              setState(() {});
+                            },
+                            child: Text(
+                              valueOrDefault<String>(
+                                _model.rfidstatus,
+                                'Not Coneected',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.rfidstatus = await actions.rFIDconnectionvalue();
+                    _model.rfidstatus = await actions.getRFIDReaderStatus();
 
                     setState(() {});
                   },
@@ -145,7 +203,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    await actions.rFIDisconnect();
+                    await actions.rFIDConnectAction();
                   },
                   text: 'DisConnect',
                   options: FFButtonOptions(
