@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'geohash_model.dart';
 export 'geohash_model.dart';
@@ -188,7 +187,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.tagcount = await actions.readtagcount();
+                    _model.rfidtagdata = await actions.readtagcount();
 
                     setState(() {});
                   },
@@ -213,41 +212,39 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-                Text(
-                  valueOrDefault<String>(
-                    _model.tagcount.toString(),
-                    'N/A',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
                 Builder(
                   builder: (context) {
-                    final test35 = List.generate(
-                        random_data.randomInteger(0, 0),
-                        (index) => random_data.randomString(
-                              0,
-                              0,
-                              true,
-                              false,
-                              false,
-                            )).toList().take(25).toList();
+                    final rfidtaglist = _model.rfidtagdata!.toList();
                     return ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
-                      itemCount: test35.length,
-                      itemBuilder: (context, test35Index) {
-                        final test35Item = test35[test35Index];
-                        return Text(
-                          'Hello World',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
+                      itemCount: rfidtaglist.length,
+                      itemBuilder: (context, rfidtaglistIndex) {
+                        final rfidtaglistItem = rfidtaglist[rfidtaglistIndex];
+                        return Container(
+                          width: double.infinity,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).accent2,
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).secondary,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                '',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     );
