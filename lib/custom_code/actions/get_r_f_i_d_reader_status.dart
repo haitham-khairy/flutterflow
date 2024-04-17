@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:ffi';
 
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
@@ -21,11 +23,21 @@ Future<String> getRFIDReaderStatus() async {
       ZebraRfidSdkPlugin.toast(err.errorMessage);
     },
     connectionStatusCallback: (status) {
-      //   connectionStatus = status;
+      connectionStatus = status;
     },
   ));
   await Future.delayed(Duration(milliseconds: 100));
+  String connectionStatusvalue = "not connected";
+  if (connectionStatus.index == 0) {
+    connectionStatusvalue = "not connected";
+  } else if (connectionStatus.index == 1) {
+    connectionStatusvalue = "connection complete";
+  } else if (connectionStatus.index == 2) {
+    connectionStatusvalue = "connection error";
+  }
+  ;
 
-  return connectionStatus.index.toString();
+  //return connectionStatus.index.toString();
   // Add your function code here!
+  return connectionStatusvalue;
 }
