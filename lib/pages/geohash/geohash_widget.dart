@@ -185,6 +185,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                                 await actions.getRFIDReaderStatus();
                           }(),
                         );
+                        setState(() {});
                       },
                       startImmediately: true,
                     );
@@ -269,6 +270,13 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                     _model.rfidreaderstatusconnect,
                     'n/a',
                   ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
+                ),
+                Text(
+                  _model.rfidstatus,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,
