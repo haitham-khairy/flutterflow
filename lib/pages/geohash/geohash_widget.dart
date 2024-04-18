@@ -227,111 +227,97 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                     ],
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Builder(
-                        builder: (context) {
-                          final rfidtaglist =
-                              FFAppState().RFIDTagsList.toList();
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: rfidtaglist.length,
-                            itemBuilder: (context, rfidtaglistIndex) {
-                              final rfidtaglistItem =
-                                  rfidtaglist[rfidtaglistIndex];
-                              return InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.apiResult8g9 =
-                                      await UserloginCall.call();
-                                  if ((_model.apiResult8g9?.succeeded ??
-                                      true)) {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          content: Text(
-                                              (_model.apiResult8g9?.jsonBody ??
-                                                      '')
-                                                  .toString()),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: const Text('Ok'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          content: Text((_model.apiResult8g9
-                                                      ?.statusCode ??
-                                                  200)
-                                              .toString()),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: const Text('Ok'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  }
-
-                                  setState(() {});
+                Builder(
+                  builder: (context) {
+                    final rfidtaglist = FFAppState().RFIDTagsList.toList();
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: rfidtaglist.length,
+                      itemBuilder: (context, rfidtaglistIndex) {
+                        final rfidtaglistItem = rfidtaglist[rfidtaglistIndex];
+                        return InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            _model.apiResult8g9 = await UserloginCall.call();
+                            if ((_model.apiResult8g9?.succeeded ?? true)) {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        (_model.apiResult8g9?.jsonBody ?? '')
+                                            .toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: const Text('Ok'),
+                                      ),
+                                    ],
+                                  );
                                 },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 25.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                    ),
-                                  ),
-                                  child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          valueOrDefault<String>(
-                                            rfidtaglistItem.tagID,
-                                            'tag id',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
                               );
-                            },
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        (_model.apiResult8g9?.statusCode ?? 200)
+                                            .toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: const Text('Ok'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+
+                            setState(() {});
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 25.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).accent2,
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).secondary,
+                              ),
+                            ),
+                            child: Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    valueOrDefault<String>(
+                                      rfidtaglistItem.tagID,
+                                      'tag id',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ].divide(const SizedBox(height: 5.0)),
             ),
