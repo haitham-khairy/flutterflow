@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,7 @@ import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'geohash_model.dart';
 export 'geohash_model.dart';
 
@@ -46,6 +48,8 @@ class _GeohashWidgetState extends State<GeohashWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -247,13 +251,14 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       _model.instantTimer2 = InstantTimer.periodic(
-                        duration: const Duration(milliseconds: 1000),
+                        duration: const Duration(milliseconds: 5000),
                         callback: (timer) async {
-                          unawaited(
-                            () async {
-                              _model.rfidtagdata = await actions.readtagcount();
-                            }(),
-                          );
+                          _model.rfidtagdata = await actions.readtagcount();
+                          setState(() {
+                            FFAppState().RFIDTagsList = _model.rfidtagdata!
+                                .toList()
+                                .cast<RFIDTagsdataStruct>();
+                          });
                         },
                         startImmediately: true,
                       );
@@ -283,8 +288,13 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('GetTagCountButton pressed ...');
+                    onPressed: () async {
+                      _model.clearrfidoutput = await actions.clearReadList();
+                      setState(() {
+                        FFAppState().RFIDTagsList = [];
+                      });
+
+                      setState(() {});
                     },
                     text: 'Clear',
                     options: FFButtonOptions(
@@ -320,8 +330,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                   ),
                   Builder(
                     builder: (context) {
-                      final rfidtaglist =
-                          _model.rfidtagdata!.toList().take(10).toList();
+                      final rfidtaglist = FFAppState().RFIDTagsList.toList();
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
