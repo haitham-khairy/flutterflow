@@ -253,7 +253,9 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                       _model.instantTimer2 = InstantTimer.periodic(
                         duration: const Duration(milliseconds: 5000),
                         callback: (timer) async {
-                          _model.rfidtagdata = await actions.readtagcount();
+                          _model.rfidtagdata = await actions.readtagcount(
+                            false,
+                          );
                           setState(() {
                             FFAppState().RFIDTagsList = _model.rfidtagdata!
                                 .toList()
@@ -289,9 +291,13 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      _model.clearrfidoutput = await actions.clearReadList();
+                      _model.clearrfidoutput = await actions.readtagcount(
+                        true,
+                      );
                       setState(() {
-                        FFAppState().RFIDTagsList = [];
+                        FFAppState().RFIDTagsList = _model.clearrfidoutput!
+                            .toList()
+                            .cast<RFIDTagsdataStruct>();
                       });
 
                       setState(() {});

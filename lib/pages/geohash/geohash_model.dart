@@ -21,7 +21,7 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   InstantTimer? instantTimer2;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
-  // Stores action output result for [Custom Action - clearReadList] action in GetTagCountButton widget.
+  // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? clearrfidoutput;
   // Stores action output result for [Backend Call - API (Userlogin)] action in Container widget.
   ApiCallResponse? apiResult8g9;

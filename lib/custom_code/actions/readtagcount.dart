@@ -16,11 +16,11 @@ import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 Map<String?, RfidData> rfidDatas = {};
 ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 
-Future<List<RFIDTagsdataStruct>> readtagcount() async {
+Future<List<RFIDTagsdataStruct>> readtagcount(bool? clear) async {
   List<RFIDTagsdataStruct> frfid = [];
 
-  ZebraRfidSdkPlugin.connect();
   await Future.delayed(Duration(milliseconds: 100));
+  if (clear == true) rfidDatas = {};
 
   addDatas(List<RfidData> datas) async {
     for (var item in datas) {
