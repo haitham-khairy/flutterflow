@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'geohash_model.dart';
 export 'geohash_model.dart';
 
@@ -45,8 +44,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -146,18 +143,30 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                       ),
                       Align(
                         alignment: const AlignmentDirectional(1.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              50.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            FFAppState().RFIDReaderStatus.toString(),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
+                        child: Text(
+                          valueOrDefault<String>(
+                            _model.rfidstatusOnpageload,
+                            'n/a',
                           ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(1.0, 0.0),
+                        child: Text(
+                          valueOrDefault<String>(
+                            _model.rfidreaderstatusconnect,
+                            'n/a',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ],
@@ -165,7 +174,10 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    await actions.getRFIDReaderStatus();
+                    _model.rfidreaderstatusconnect =
+                        await actions.getRFIDReaderStatus();
+
+                    setState(() {});
                   },
                   text: 'Connect',
                   options: FFButtonOptions(
