@@ -3,10 +3,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'geohash_model.dart';
 export 'geohash_model.dart';
 
@@ -33,18 +33,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
       setState(() {
         _model.rfidstatus = _model.rfidstatusOnpageload!;
       });
-      _model.instantTimer = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 3000),
-        callback: (timer) async {
-          if (_model.rfidstatus != 'connection complete') {
-            _model.rfidreaderfeedback = await actions.getRFIDReaderStatus();
-            setState(() {
-              _model.rfidstatus = _model.rfidreaderfeedback!;
-            });
-          }
-        },
-        startImmediately: true,
-      );
     });
   }
 
@@ -57,6 +45,8 @@ class _GeohashWidgetState extends State<GeohashWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -160,7 +150,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               50.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            _model.rfidstatus,
+                            FFAppState().RFIDReaderStatus.toString(),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -352,7 +342,10 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                   },
                 ),
                 Text(
-                  _model.rfidstatus,
+                  valueOrDefault<String>(
+                    _model.rfidstatusOnpageload,
+                    'N/A',
+                  ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,
