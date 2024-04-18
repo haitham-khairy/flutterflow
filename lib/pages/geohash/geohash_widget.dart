@@ -264,6 +264,16 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
+                Text(
+                  valueOrDefault<String>(
+                    _model.rfidreaderstatusconnect,
+                    'n/a',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
+                ),
                 Builder(
                   builder: (context) {
                     final rfidtaglist = _model.rfidtagdata!.toList();
@@ -364,16 +374,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                       },
                     );
                   },
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    _model.rfidstatusOnpageload,
-                    'N/A',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
                 ),
                 Text(
                   dateTimeFormat('M/d h:mm a', getCurrentTimestamp),
