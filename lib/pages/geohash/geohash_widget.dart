@@ -174,8 +174,11 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.rfidreaderstatusconnect =
-                        await actions.getRFIDReaderStatus();
+                    while (_model.rfidstatus != '45') {
+                      _model.rfidreaderstatusconnect =
+                          await actions.getRFIDReaderStatus();
+                      await Future.delayed(const Duration(milliseconds: 1000));
+                    }
 
                     setState(() {});
                   },
