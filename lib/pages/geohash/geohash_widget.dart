@@ -240,11 +240,46 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.rfidtagdata = await actions.readtagcount();
+                    _model.instantTimer2 = InstantTimer.periodic(
+                      duration: const Duration(milliseconds: 1000),
+                      callback: (timer) async {
+                        unawaited(
+                          () async {
+                            _model.rfidtagdata = await actions.readtagcount();
+                          }(),
+                        );
+                      },
+                      startImmediately: true,
+                    );
 
                     setState(() {});
                   },
                   text: 'Get Tag Count',
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                FFButtonWidget(
+                  onPressed: () {
+                    print('GetTagCountButton pressed ...');
+                  },
+                  text: 'Clear',
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
@@ -284,7 +319,8 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 Builder(
                   builder: (context) {
-                    final rfidtaglist = _model.rfidtagdata!.toList();
+                    final rfidtaglist =
+                        _model.rfidtagdata!.toList().take(10).toList();
                     return ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
@@ -341,7 +377,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                           },
                           child: Container(
                             width: double.infinity,
-                            height: 50.0,
+                            height: 25.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).accent2,
                               border: Border.all(
@@ -358,15 +394,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                                       rfidtaglistItem.tagID,
                                       'tag id',
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Text(
-                                    rfidtaglistItem.peakRSSI.toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
