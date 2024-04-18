@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -174,8 +175,14 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.rfidreaderstatusconnect =
-                        await actions.getRFIDReaderStatus();
+                    _model.instantTimer = InstantTimer.periodic(
+                      duration: const Duration(milliseconds: 5000),
+                      callback: (timer) async {
+                        _model.rfidreaderstatusconnect =
+                            await actions.getRFIDReaderStatus();
+                      },
+                      startImmediately: true,
+                    );
 
                     setState(() {});
                   },
