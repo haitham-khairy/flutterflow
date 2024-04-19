@@ -31,28 +31,24 @@ class _GeohashWidgetState extends State<GeohashWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.rfidloadstatus = await actions.getRFIDReaderStatus();
-      setState(() {
-        _model.rfidstatus = _model.rfidloadstatus!;
-      });
-      if (_model.rfidloadstatus == 'connection complete') {
-        _model.rfidtagdata = await actions.readtagcount(
-          false,
-        );
-        setState(() {
-          FFAppState().RFIDTagsList =
-              _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
-        });
-      } else {
-        await actions.rFIDConnectAction();
-      }
-
-      _model.instantTimer = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 1000),
+      _model.instantTimer2 = InstantTimer.periodic(
+        duration: const Duration(milliseconds: 5000),
         callback: (timer) async {
+          _model.rfidloadstatus = await actions.getRFIDReaderStatus();
           setState(() {
             _model.rfidstatus = _model.rfidloadstatus!;
           });
+          if (_model.rfidloadstatus == 'connection complete') {
+            _model.rfidtagdata = await actions.readtagcount(
+              false,
+            );
+            setState(() {
+              FFAppState().RFIDTagsList =
+                  _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
+            });
+          } else {
+            await actions.rFIDConnectAction();
+          }
         },
         startImmediately: true,
       );
