@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -34,24 +35,19 @@ class _GeohashWidgetState extends State<GeohashWidget> {
       _model.instantTimer2 = InstantTimer.periodic(
         duration: const Duration(milliseconds: 3000),
         callback: (timer) async {
-          _model.rfidloadstatus = await actions.getRFIDReaderStatus();
-          setState(() {
-            _model.rfidstatus = _model.rfidloadstatus!;
-          });
+          unawaited(
+            () async {
+              _model.rfidloadstatus = await actions.getRFIDReaderStatus();
+            }(),
+          );
           if (_model.rfidloadstatus == 'connection complete') {
-            _model.instantTimer3 = InstantTimer.periodic(
-              duration: const Duration(milliseconds: 100),
-              callback: (timer) async {
-                _model.rfidtagdata = await actions.readtagcount(
-                  false,
-                );
-                setState(() {
-                  FFAppState().RFIDTagsList =
-                      _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
-                });
-              },
-              startImmediately: true,
+            _model.rfidtagdata = await actions.readtagcount(
+              false,
             );
+            setState(() {
+              FFAppState().RFIDTagsList =
+                  _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
+            });
           }
         },
         startImmediately: true,
@@ -178,7 +174,10 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   25.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                _model.rfidstatus,
+                                valueOrDefault<String>(
+                                  _model.rfidloadstatus,
+                                  'Waiting',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
