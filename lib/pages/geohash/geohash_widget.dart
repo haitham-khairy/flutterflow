@@ -35,6 +35,9 @@ class _GeohashWidgetState extends State<GeohashWidget> {
         duration: const Duration(milliseconds: 250),
         callback: (timer) async {
           _model.rfidloadstatus = await actions.getRFIDReaderStatus();
+          setState(() {
+            _model.rfidstatus = _model.rfidloadstatus!;
+          });
           if (_model.rfidloadstatus == 'connection complete') {
             _model.rfidtagdata = await actions.readtagcount(
               false,
@@ -42,10 +45,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
             setState(() {
               FFAppState().RFIDTagsList =
                   _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
-            });
-          } else {
-            setState(() {
-              _model.rfidstatus = _model.rfidloadstatus!;
             });
           }
         },
