@@ -9,25 +9,25 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'geohash_model.dart';
-export 'geohash_model.dart';
+import 'rfidreading_model.dart';
+export 'rfidreading_model.dart';
 
-class GeohashWidget extends StatefulWidget {
-  const GeohashWidget({super.key});
+class RfidreadingWidget extends StatefulWidget {
+  const RfidreadingWidget({super.key});
 
   @override
-  State<GeohashWidget> createState() => _GeohashWidgetState();
+  State<RfidreadingWidget> createState() => _RfidreadingWidgetState();
 }
 
-class _GeohashWidgetState extends State<GeohashWidget> {
-  late GeohashModel _model;
+class _RfidreadingWidgetState extends State<RfidreadingWidget> {
+  late RfidreadingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => GeohashModel());
+    _model = createModel(context, () => RfidreadingModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -232,98 +232,106 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                   ),
                 ),
                 Expanded(
-                  child: Builder(
-                    builder: (context) {
-                      final rfidtaglist = FFAppState().RFIDTagsList.toList();
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: rfidtaglist.length,
-                        itemBuilder: (context, rfidtaglistIndex) {
-                          final rfidtaglistItem = rfidtaglist[rfidtaglistIndex];
-                          return InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              _model.apiResult8g9 = await UserloginCall.call();
-                              if ((_model.apiResult8g9?.succeeded ?? true)) {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      content: Text(
-                                          (_model.apiResult8g9?.jsonBody ?? '')
-                                              .toString()),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      content: Text(
-                                          (_model.apiResult8g9?.statusCode ??
-                                                  200)
-                                              .toString()),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-
-                              setState(() {});
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 25.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).accent2,
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                ),
-                              ),
-                              child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      valueOrDefault<String>(
-                                        rfidtaglistItem.tagID,
-                                        'tag id',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                    child: Builder(
+                      builder: (context) {
+                        final rfidtaglist = FFAppState().RFIDTagsList.toList();
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: rfidtaglist.length,
+                          itemBuilder: (context, rfidtaglistIndex) {
+                            final rfidtaglistItem =
+                                rfidtaglist[rfidtaglistIndex];
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                _model.apiResult8g9 =
+                                    await UserloginCall.call();
+                                if ((_model.apiResult8g9?.succeeded ?? true)) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        content: Text(
+                                            (_model.apiResult8g9?.jsonBody ??
+                                                    '')
+                                                .toString()),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
                                           ),
-                                    ),
-                                  ],
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        content: Text(
+                                            (_model.apiResult8g9?.statusCode ??
+                                                    200)
+                                                .toString()),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+
+                                setState(() {});
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 25.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).accent2,
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                ),
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        valueOrDefault<String>(
+                                          rfidtaglistItem.tagID,
+                                          'tag id',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                      );
-                    },
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ].divide(const SizedBox(height: 5.0)),

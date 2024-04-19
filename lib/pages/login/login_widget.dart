@@ -308,7 +308,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   (_model.apiResulth6b?.jsonBody ?? ''),
                                   r'''$.status''',
                                 )) {
-                                  context.pushNamed('geohash');
+                                  context.pushNamed('rfidreading');
                                 } else {
                                   await showDialog(
                                     context: context,

@@ -44,7 +44,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const GeohashWidget(),
+          : const RfidreadingWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,7 +62,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const GeohashWidget(),
+              : const RfidreadingWidget(),
         ),
         FFRoute(
           name: 'Login',
@@ -75,9 +75,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const HomePageWidget(),
         ),
         FFRoute(
-          name: 'geohash',
-          path: '/geohash',
-          builder: (context, params) => const GeohashWidget(),
+          name: 'rfidreading',
+          path: '/rfidreading',
+          builder: (context, params) => const RfidreadingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
