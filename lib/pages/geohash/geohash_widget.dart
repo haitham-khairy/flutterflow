@@ -48,7 +48,6 @@ class _GeohashWidgetState extends State<GeohashWidget> {
             });
           } else {
             await actions.rFIDConnectAction();
-            await Future.delayed(const Duration(milliseconds: 5000));
           }
         },
         startImmediately: true,
