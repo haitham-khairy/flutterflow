@@ -19,8 +19,6 @@ import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 
 Future<String> getRFIDReaderStatus() async {
-  await ReaderConnectionStatus;
-
   ZebraRfidSdkPlugin.setEventHandler(ZebraEngineEventHandler(
     readRfidCallback: (datas) async {},
     errorCallback: (err) {

@@ -19,7 +19,6 @@ ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 Future<List<RFIDTagsdataStruct>> readtagcount(bool? clear) async {
   List<RFIDTagsdataStruct> frfid = [];
 
-  await Future.delayed(Duration(milliseconds: 100));
   if (clear == true) rfidDatas = {};
 
   addDatas(List<RfidData> datas) async {
@@ -54,14 +53,5 @@ Future<List<RFIDTagsdataStruct>> readtagcount(bool? clear) async {
     ));
   }
 
-/*
-  frfid.add(RFIDTagsdataStruct(
-    tagID: rfidDatas.values.first.tagID,
-    peakRSSI: rfidDatas.values.first.peakRSSI,
-  ));
-  frfid.add(RFIDTagsdataStruct(
-    tagID: "test25",
-    peakRSSI: rfidDatas.values.first.peakRSSI,
-  ));  */
   return frfid;
 }
