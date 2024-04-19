@@ -33,7 +33,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.instantTimer2 = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 3000),
+        duration: const Duration(milliseconds: 300),
         callback: (timer) async {
           unawaited(
             () async {
