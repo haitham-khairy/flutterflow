@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
         scrollbarTheme: ScrollbarThemeData(
           thumbVisibility: MaterialStateProperty.all(true),
           trackVisibility: MaterialStateProperty.all(true),
-          interactive: true,
+          interactive: false,
           thickness: MaterialStateProperty.all(2.0),
           thumbColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.dragged)) {
@@ -91,7 +91,7 @@ class _MyAppState extends State<MyApp> {
         scrollbarTheme: ScrollbarThemeData(
           thumbVisibility: MaterialStateProperty.all(true),
           trackVisibility: MaterialStateProperty.all(true),
-          interactive: true,
+          interactive: false,
           thickness: MaterialStateProperty.all(2.0),
           thumbColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.dragged)) {
