@@ -32,7 +32,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.instantTimer2 = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 1000),
         callback: (timer) async {
           _model.rfidloadstatus = await actions.getRFIDReaderStatus();
           setState(() {
@@ -142,24 +142,38 @@ class _GeohashWidgetState extends State<GeohashWidget> {
           top: true,
           child: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(25.0, 15.0, 0.0, 15.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Align(
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(25.0, 15.0, 0.0, 15.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          child: Text(
+                            'RFID Reader Status',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(1.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                25.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'RFID Reader Status',
+                              _model.rfidstatus,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -168,74 +182,57 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                                   ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  25.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                _model.rfidstatus,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        FFButtonWidget(
-                          onPressed: () async {
-                            _model.clearrfidoutput = await actions.readtagcount(
-                              true,
-                            );
-                            setState(() {
-                              FFAppState().RFIDTagsList = _model
-                                  .clearrfidoutput!
-                                  .toList()
-                                  .cast<RFIDTagsdataStruct>();
-                            });
-
-                            setState(() {});
-                          },
-                          text: 'Clear',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
                         ),
                       ],
                     ),
                   ),
-                  Builder(
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FFButtonWidget(
+                        onPressed: () async {
+                          _model.clearrfidoutput = await actions.readtagcount(
+                            true,
+                          );
+                          setState(() {
+                            FFAppState().RFIDTagsList = _model.clearrfidoutput!
+                                .toList()
+                                .cast<RFIDTagsdataStruct>();
+                          });
+
+                          setState(() {});
+                        },
+                        text: 'Clear',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Builder(
                     builder: (context) {
                       final rfidtaglist = FFAppState().RFIDTagsList.toList();
                       return ListView.builder(
@@ -328,8 +325,8 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                       );
                     },
                   ),
-                ].divide(const SizedBox(height: 5.0)),
-              ),
+                ),
+              ].divide(const SizedBox(height: 5.0)),
             ),
           ),
         ),
