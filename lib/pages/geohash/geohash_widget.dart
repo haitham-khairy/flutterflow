@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
-import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -33,13 +32,9 @@ class _GeohashWidgetState extends State<GeohashWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.instantTimer2 = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 250),
         callback: (timer) async {
-          unawaited(
-            () async {
-              _model.rfidloadstatus = await actions.getRFIDReaderStatus();
-            }(),
-          );
+          _model.rfidloadstatus = await actions.getRFIDReaderStatus();
           if (_model.rfidloadstatus == 'connection complete') {
             _model.rfidtagdata = await actions.readtagcount(
               false,
@@ -47,6 +42,10 @@ class _GeohashWidgetState extends State<GeohashWidget> {
             setState(() {
               FFAppState().RFIDTagsList =
                   _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
+            });
+          } else {
+            setState(() {
+              _model.rfidstatus = _model.rfidloadstatus!;
             });
           }
         },
