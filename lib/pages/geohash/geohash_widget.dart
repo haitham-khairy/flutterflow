@@ -173,10 +173,7 @@ class _GeohashWidgetState extends State<GeohashWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   25.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                valueOrDefault<String>(
-                                  _model.rfidloadstatus,
-                                  'Waiting',
-                                ),
+                                _model.rfidstatus,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
