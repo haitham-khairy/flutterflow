@@ -13,11 +13,11 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  InstantTimer? instantTimer2;
   // Stores action output result for [Custom Action - getRFIDReaderStatus] action in geohash widget.
   String? rfidloadstatus;
   // Stores action output result for [Custom Action - readtagcount] action in geohash widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
+  InstantTimer? instantTimer;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? clearrfidoutput;
   // Stores action output result for [Backend Call - API (Userlogin)] action in Container widget.
@@ -29,6 +29,6 @@ class GeohashModel extends FlutterFlowModel<GeohashWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    instantTimer2?.cancel();
+    instantTimer?.cancel();
   }
 }

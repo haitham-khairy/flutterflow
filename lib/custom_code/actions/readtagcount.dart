@@ -41,12 +41,8 @@ Future<List<RFIDTagsdataStruct>> readtagcount(bool? clear) async {
     errorCallback: (err) {
       ZebraRfidSdkPlugin.toast(err.errorMessage);
     },
-    connectionStatusCallback: (status) {
-      //   connectionStatus = status;
-    },
   ));
 
-  await Future.delayed(Duration(milliseconds: 100));
   for (int i = 0; i < rfidDatas.length; i++) {
     frfid.add(RFIDTagsdataStruct(
       tagID: rfidDatas.values.elementAt(i).tagID,

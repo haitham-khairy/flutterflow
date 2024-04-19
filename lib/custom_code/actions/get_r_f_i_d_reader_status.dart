@@ -34,12 +34,10 @@ Future<String> getRFIDReaderStatus() async {
   String connectionStatusvalue = "not connected";
   if (connectionStatus.index == 0) {
     connectionStatusvalue = "not connected";
-    ZebraRfidSdkPlugin.connect();
   } else if (connectionStatus.index == 1) {
     connectionStatusvalue = "connection complete";
   } else if (connectionStatus.index == 2) {
     connectionStatusvalue = "connection error";
-    ZebraRfidSdkPlugin.connect();
   }
   ;
 
