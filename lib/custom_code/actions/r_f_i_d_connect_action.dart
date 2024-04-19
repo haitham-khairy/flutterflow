@@ -12,9 +12,8 @@ import 'dart:ffi';
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
-ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
-Future<int> rFIDConnectAction() async {
+Future rFIDConnectAction() async {
   ZebraRfidSdkPlugin.connect();
-  return connectionStatus.index;
+  // return connectionStatus.index;
   // Add your function code here!
 }

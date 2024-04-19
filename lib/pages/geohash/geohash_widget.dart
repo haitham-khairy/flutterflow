@@ -46,6 +46,9 @@ class _GeohashWidgetState extends State<GeohashWidget> {
               FFAppState().RFIDTagsList =
                   _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
             });
+          } else {
+            await actions.rFIDConnectAction();
+            await Future.delayed(const Duration(milliseconds: 5000));
           }
         },
         startImmediately: true,
