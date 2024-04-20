@@ -371,76 +371,117 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                          height: 200.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2.0,
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 50.0, 0.0),
+                          child: Container(
+                            width: 300.0,
+                            height: 200.0,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 2.0,
+                              ),
                             ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 0.0, 15.0, 0.0),
-                            child: Builder(
-                              builder: (context) {
-                                final taglifetimelist =
-                                    QuerytaglistCall.taglifetime(
-                                          (_model.querytaglistapiresponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList() ??
-                                        [];
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  primary: false,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: taglifetimelist.length,
-                                  separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 6.0),
-                                  itemBuilder: (context, taglifetimelistIndex) {
-                                    final taglifetimelistItem =
-                                        taglifetimelist[taglifetimelistIndex];
-                                    return Container(
-                                      width: double.infinity,
-                                      height: 25.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        border: Border.all(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 0.0),
+                              child: Builder(
+                                builder: (context) {
+                                  final taglifetimelist =
+                                      QuerytaglistCall.taglifetime(
+                                            (_model.querytaglistapiresponse
+                                                    ?.jsonBody ??
+                                                ''),
+                                          )?.toList() ??
+                                          [];
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: taglifetimelist.length,
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(height: 6.0),
+                                    itemBuilder:
+                                        (context, taglifetimelistIndex) {
+                                      final taglifetimelistItem =
+                                          taglifetimelist[taglifetimelistIndex];
+                                      return Container(
+                                        width: double.infinity,
+                                        height: 25.0,
+                                        decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .accent2,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
                                         ),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              taglifetimelistItem,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                taglifetimelistItem,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
                       ].divide(const SizedBox(height: 0.0)),
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                  child: Builder(
+                    builder: (context) {
+                      final taglifetime2 = QuerytaglistCall.taglifetime(
+                            (_model.querytaglistapiresponse?.jsonBody ?? ''),
+                          )?.toList() ??
+                          [];
+                      return SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: List.generate(taglifetime2.length,
+                              (taglifetime2Index) {
+                            final taglifetime2Item =
+                                taglifetime2[taglifetime2Index];
+                            return Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  taglifetime2Item,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ],
+                            );
+                          }).divide(const SizedBox(height: 5.0)),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ].divide(const SizedBox(height: 5.0)),
