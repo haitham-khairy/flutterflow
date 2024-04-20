@@ -375,7 +375,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                               ),
                               1.0,
                             ),
-                            width: 390.0,
+                            width: 380.0,
                             lineHeight: 40.0,
                             animation: true,
                             animateFromLastPercent: true,
@@ -445,8 +445,16 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                         width: double.infinity,
                                         height: 25.0,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
+                                          color: valueOrDefault<Color>(
+                                            taglifetimelistIndex.toString() ==
+                                                    '45'
+                                                ? FlutterFlowTheme.of(context)
+                                                    .secondary
+                                                : FlutterFlowTheme.of(context)
+                                                    .error,
+                                            FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
                                           border: Border.all(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondary,
