@@ -68,11 +68,15 @@ $taglist''';
     );
   }
 
-  static List? taglifetime(dynamic response) => getJsonField(
+  static List<String>? taglifetime(dynamic response) => (getJsonField(
         response,
-        r'''$.taglifetime''',
+        r'''$[:].taglifetime''',
         true,
-      ) as List?;
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ApiPagingParams {
