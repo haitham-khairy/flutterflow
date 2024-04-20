@@ -102,8 +102,8 @@ class QueryTagDataCall {
     );
   }
 
-  static String? tagdayscount(dynamic response) =>
-      castToType<String>(getJsonField(
+  static double? tagdayscount(dynamic response) =>
+      castToType<double>(getJsonField(
         response,
         r'''$.tagdayscount''',
       ));

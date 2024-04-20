@@ -332,10 +332,9 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                         ),
                         CircularPercentIndicator(
                           percent: valueOrDefault<double>(
-                            Tagdayscount2Struct.maybeFromMap(getJsonField(
+                            QueryTagDataCall.tagdayscount(
                               (_model.tagdata?.jsonBody ?? ''),
-                              r'''$.tagdayscount''',
-                            ))?.tagdayscount3,
+                            ),
                             1.0,
                           ),
                           radius: 60.0,
