@@ -445,8 +445,16 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                         width: double.infinity,
                                         height: 25.0,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                          color: (QuerytaglistCall.taglife(
+                                                    (_model.querytaglistapiresponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )?[taglifetimelistIndex]) ==
+                                                  45
+                                              ? FlutterFlowTheme.of(context)
+                                                  .error
+                                              : FlutterFlowTheme.of(context)
+                                                  .secondary,
                                           border: Border.all(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondary,
