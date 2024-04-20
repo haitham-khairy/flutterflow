@@ -54,7 +54,8 @@ class QuerytaglistCall {
 $taglist''';
     return ApiManager.instance.makeApiCall(
       callName: 'querytaglist',
-      apiUrl: 'http://127.0.0.1:8002/flutterflow/QueryTagList',
+      apiUrl:
+          'https://591a-196-132-52-14.ngrok-free.app/flutterflow/QueryTagList',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
