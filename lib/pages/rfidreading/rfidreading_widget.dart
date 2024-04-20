@@ -449,7 +449,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                                     (_model.querytaglistapiresponse
                                                             ?.jsonBody ??
                                                         ''),
-                                                  )![taglifetimelistIndex]) >
+                                                  )?[taglifetimelistIndex]) ==
                                                   11
                                               ? FlutterFlowTheme.of(context)
                                                   .error
