@@ -470,11 +470,17 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                                         ),
                                               ),
                                               Text(
-                                                QuerytaglistCall.taglife(
-                                                  (_model.querytaglistapiresponse
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                ).toString(),
+                                                valueOrDefault<String>(
+                                                  QuerytaglistCall.taglife(
+                                                    (_model.querytaglistapiresponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )
+                                                      ?.contains(
+                                                          taglifetimelistIndex)
+                                                      .toString(),
+                                                  'n',
+                                                ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium

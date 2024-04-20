@@ -78,10 +78,15 @@ $taglist''';
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
-  static int? taglife(dynamic response) => castToType<int>(getJsonField(
+  static List<int>? taglife(dynamic response) => (getJsonField(
         response,
         r'''$[:].taglife''',
-      ));
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
 }
 
 class QueryTagDataCall {
