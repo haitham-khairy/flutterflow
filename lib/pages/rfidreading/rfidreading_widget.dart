@@ -479,14 +479,12 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  QuerytaglistCall.taglife(
+                                                  (QuerytaglistCall.taglife(
                                                     (_model.querytaglistapiresponse
                                                             ?.jsonBody ??
                                                         ''),
-                                                  )
-                                                      ?.contains(
-                                                          taglifetimelistIndex)
-                                                      .toString(),
+                                                  )?[taglifetimelistIndex])
+                                                      ?.toString(),
                                                   'n',
                                                 ),
                                                 style:
