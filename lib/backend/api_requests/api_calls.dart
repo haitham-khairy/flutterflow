@@ -107,6 +107,11 @@ class QueryTagDataCall {
         response,
         r'''$.tagdayscount''',
       ));
+  static String? tagdaycountstring(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.tagdaycountstring''',
+      ));
 }
 
 class ApiPagingParams {

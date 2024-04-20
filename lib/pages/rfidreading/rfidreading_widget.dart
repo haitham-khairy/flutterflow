@@ -330,29 +330,75 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                             ),
                           ],
                         ),
-                        CircularPercentIndicator(
-                          percent: valueOrDefault<double>(
-                            QueryTagDataCall.tagdayscount(
-                              (_model.tagdata?.jsonBody ?? ''),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: CircularPercentIndicator(
+                            percent: valueOrDefault<double>(
+                              QueryTagDataCall.tagdayscount(
+                                (_model.tagdata?.jsonBody ?? ''),
+                              ),
+                              1.0,
                             ),
-                            1.0,
-                          ),
-                          radius: 60.0,
-                          lineWidth: 12.0,
-                          animation: true,
-                          animateFromLastPercent: true,
-                          progressColor: FlutterFlowTheme.of(context).primary,
-                          backgroundColor: FlutterFlowTheme.of(context).accent4,
-                          center: Text(
-                            '50%',
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  letterSpacing: 0.0,
+                            radius: 100.0,
+                            lineWidth: 12.0,
+                            animation: true,
+                            animateFromLastPercent: true,
+                            progressColor:
+                                FlutterFlowTheme.of(context).tertiary,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).accent4,
+                            center: Text(
+                              valueOrDefault<String>(
+                                QueryTagDataCall.tagdaycountstring(
+                                  (_model.tagdata?.jsonBody ?? ''),
                                 ),
+                                'days',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            startAngle: 0.0,
                           ),
-                          startAngle: 0.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              5.0, 20.0, 5.0, 20.0),
+                          child: LinearPercentIndicator(
+                            percent: valueOrDefault<double>(
+                              QueryTagDataCall.tagdayscount(
+                                (_model.tagdata?.jsonBody ?? ''),
+                              ),
+                              1.0,
+                            ),
+                            width: 390.0,
+                            lineHeight: 40.0,
+                            animation: true,
+                            animateFromLastPercent: true,
+                            progressColor:
+                                FlutterFlowTheme.of(context).tertiary,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).accent4,
+                            center: Text(
+                              valueOrDefault<String>(
+                                QueryTagDataCall.tagdaycountstring(
+                                  (_model.tagdata?.jsonBody ?? ''),
+                                ),
+                                'days',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            padding: EdgeInsets.zero,
+                          ),
                         ),
                       ].divide(const SizedBox(height: 0.0)),
                     ),
