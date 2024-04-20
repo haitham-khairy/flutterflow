@@ -1,9 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -51,6 +53,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
             _model.querytaglistapiresponse = await QuerytaglistCall.call(
               taglist:
                   functions.taglisttostring(FFAppState().RFIDTagsList.toList()),
+              line: _model.linedropmenuValue,
             );
           } else {
             await actions.rFIDConnectAction();
@@ -399,6 +402,38 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                             ),
                             padding: EdgeInsets.zero,
                           ),
+                        ),
+                        FlutterFlowDropDown<String>(
+                          controller: _model.linedropmenuValueController ??=
+                              FormFieldController<String>(null),
+                          options: const ['ML2', 'Fluttes', 'Jewels'],
+                          onChanged: (val) =>
+                              setState(() => _model.linedropmenuValue = val),
+                          width: 300.0,
+                          height: 56.0,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText: 'Select Line',
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          elevation: 2.0,
+                          borderColor: FlutterFlowTheme.of(context).alternate,
+                          borderWidth: 2.0,
+                          borderRadius: 8.0,
+                          margin: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 4.0, 16.0, 4.0),
+                          hidesUnderline: true,
+                          isOverButton: true,
+                          isSearchable: false,
+                          isMultiSelect: false,
                         ),
                       ].divide(const SizedBox(height: 0.0)),
                     ),

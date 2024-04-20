@@ -49,9 +49,13 @@ class UserloginCall {
 class QuerytaglistCall {
   static Future<ApiCallResponse> call({
     String? taglist = '',
+    String? line = '',
   }) async {
     final ffApiRequestBody = '''
-$taglist''';
+{
+  "taglist": "$taglist",
+  "line": "$line"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'querytaglist',
       apiUrl:
