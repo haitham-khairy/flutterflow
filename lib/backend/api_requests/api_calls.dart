@@ -54,7 +54,8 @@ class QuerytaglistCall {
 $taglist''';
     return ApiManager.instance.makeApiCall(
       callName: 'querytaglist',
-      apiUrl: 'http://192.168.75.19:8002/flutterflow/QueryTagList',
+      apiUrl:
+          'https://692b-196-132-52-14.ngrok-free.app/flutterflow/QueryTagList',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -77,6 +78,10 @@ $taglist''';
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
+  static int? taglife(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].taglife''',
+      ));
 }
 
 class QueryTagDataCall {

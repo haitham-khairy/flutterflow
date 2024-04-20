@@ -445,16 +445,8 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                         width: double.infinity,
                                         height: 25.0,
                                         decoration: BoxDecoration(
-                                          color: valueOrDefault<Color>(
-                                            taglifetimelistIndex.toString() ==
-                                                    '45'
-                                                ? FlutterFlowTheme.of(context)
-                                                    .secondary
-                                                : FlutterFlowTheme.of(context)
-                                                    .error,
-                                            FlutterFlowTheme.of(context)
-                                                .alternate,
-                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
                                           border: Border.all(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondary,
@@ -468,6 +460,21 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                             children: [
                                               Text(
                                                 taglifetimelistItem,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                              Text(
+                                                QuerytaglistCall.taglife(
+                                                  (_model.querytaglistapiresponse
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
