@@ -87,7 +87,8 @@ class QueryTagDataCall {
 {"tagdata":"$tagdata"}''';
     return ApiManager.instance.makeApiCall(
       callName: 'QueryTagData',
-      apiUrl: 'http://192.168.75.19:8002/flutterflow/QueryTagData',
+      apiUrl:
+          'https://692b-196-132-52-14.ngrok-free.app/flutterflow/QueryTagData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -101,10 +102,11 @@ class QueryTagDataCall {
     );
   }
 
-  static dynamic tagdayscount(dynamic response) => getJsonField(
+  static String? tagdayscount(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.tagdayscount''',
-      );
+      ));
 }
 
 class ApiPagingParams {
