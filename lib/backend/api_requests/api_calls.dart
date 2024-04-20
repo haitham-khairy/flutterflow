@@ -54,8 +54,7 @@ class QuerytaglistCall {
 $taglist''';
     return ApiManager.instance.makeApiCall(
       callName: 'querytaglist',
-      apiUrl:
-          'https://591a-196-132-52-14.ngrok-free.app/flutterflow/QueryTagList',
+      apiUrl: 'http://192.168.75.19:8002/flutterflow/QueryTagList',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -68,6 +67,11 @@ $taglist''';
       alwaysAllowBody: false,
     );
   }
+
+  static dynamic taglifetime(dynamic response) => getJsonField(
+        response,
+        r'''$.taglifetime''',
+      );
 }
 
 class ApiPagingParams {

@@ -369,10 +369,13 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            await QuerytaglistCall.call(
+                            _model.querytaglistapiresponse =
+                                await QuerytaglistCall.call(
                               taglist: functions.taglisttostring(
                                   FFAppState().RFIDTagsList.toList()),
                             );
+
+                            setState(() {});
                           },
                           text: 'query',
                           options: FFButtonOptions(
@@ -428,7 +431,11 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                     child: Builder(
                                       builder: (context) {
                                         final test =
-                                            FFAppState().RFIDTagsList.toList();
+                                            QuerytaglistCall.taglifetime(
+                                          (_model.querytaglistapiresponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        ).toList();
                                         return Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: List.generate(test.length,
