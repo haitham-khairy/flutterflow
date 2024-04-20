@@ -16,7 +16,7 @@ String taglisttostring(List<RFIDTagsdataStruct> taglist) {
   }
   final buffer = StringBuffer('[');
   for (int i = 0; i < taglist.length; i++) {
-    buffer.write('"${taglist[i].tagID}"');
+    buffer.write('{"tagid":"${taglist[i].tagID}"}');
     if (i < taglist.length - 1) {
       buffer.write(',');
     }
