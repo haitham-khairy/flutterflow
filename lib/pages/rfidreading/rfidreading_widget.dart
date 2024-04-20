@@ -47,6 +47,10 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
               FFAppState().RFIDTagsList =
                   _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
             });
+            _model.querytaglistapiresponse = await QuerytaglistCall.call(
+              taglist:
+                  functions.taglisttostring(FFAppState().RFIDTagsList.toList()),
+            );
           } else {
             await actions.rFIDConnectAction();
           }
@@ -367,57 +371,6 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        FFButtonWidget(
-                          onPressed: () async {
-                            _model.querytaglistapiresponse =
-                                await QuerytaglistCall.call(
-                              taglist: functions.taglisttostring(
-                                  FFAppState().RFIDTagsList.toList()),
-                            );
-                            await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  content: Text((_model.querytaglistapiresponse
-                                              ?.jsonBody ??
-                                          '')
-                                      .toString()),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: const Text('Ok'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-
-                            setState(() {});
-                          },
-                          text: 'query',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
                         Container(
                           height: 200.0,
                           decoration: BoxDecoration(
