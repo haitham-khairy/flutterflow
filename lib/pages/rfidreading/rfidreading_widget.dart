@@ -147,38 +147,25 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
           top: true,
           child: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(25.0, 15.0, 0.0, 15.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
-                          child: Text(
-                            'RFID Reader Status',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                25.0, 0.0, 0.0, 0.0),
+            child: SingleChildScrollView(
+              primary: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(25.0, 15.0, 0.0, 15.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Text(
-                              _model.rfidstatus,
+                              'RFID Reader Status',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -187,190 +174,78 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                   ),
                             ),
                           ),
+                          Align(
+                            alignment: const AlignmentDirectional(1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  25.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                _model.rfidstatus,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            _model.clearrfidoutput = await actions.readtagcount(
+                              true,
+                            );
+                            setState(() {
+                              FFAppState().RFIDTagsList = _model
+                                  .clearrfidoutput!
+                                  .toList()
+                                  .cast<RFIDTagsdataStruct>();
+                            });
+
+                            setState(() {});
+                          },
+                          text: 'Clear',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      FFButtonWidget(
-                        onPressed: () async {
-                          _model.clearrfidoutput = await actions.readtagcount(
-                            true,
-                          );
-                          setState(() {
-                            FFAppState().RFIDTagsList = _model.clearrfidoutput!
-                                .toList()
-                                .cast<RFIDTagsdataStruct>();
-                          });
-
-                          setState(() {});
-                        },
-                        text: 'Clear',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2.0,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              15.0, 0.0, 15.0, 0.0),
-                          child: Builder(
-                            builder: (context) {
-                              final rfidtaglist =
-                                  FFAppState().RFIDTagsList.toList();
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                primary: false,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: rfidtaglist.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 6.0),
-                                itemBuilder: (context, rfidtaglistIndex) {
-                                  final rfidtaglistItem =
-                                      rfidtaglist[rfidtaglistIndex];
-                                  return InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      _model.apiResult8g9 =
-                                          await UserloginCall.call();
-                                      if ((_model.apiResult8g9?.succeeded ??
-                                          true)) {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              content: Text((_model.apiResult8g9
-                                                          ?.jsonBody ??
-                                                      '')
-                                                  .toString()),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      } else {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              content: Text((_model.apiResult8g9
-                                                          ?.statusCode ??
-                                                      200)
-                                                  .toString()),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      }
-
-                                      setState(() {});
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 25.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
-                                        ),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              valueOrDefault<String>(
-                                                rfidtaglistItem.tagID,
-                                                'tag id',
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ].divide(const SizedBox(height: 0.0)),
-                  ),
-                ),
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                        child: Container(
-                          width: 300.0,
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
                           height: 200.0,
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -382,53 +257,107 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                 15.0, 0.0, 15.0, 0.0),
                             child: Builder(
                               builder: (context) {
-                                final taglifetimelist =
-                                    QuerytaglistCall.taglifetime(
-                                          (_model.querytaglistapiresponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList() ??
-                                        [];
+                                final rfidtaglist =
+                                    FFAppState().RFIDTagsList.toList();
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
-                                  itemCount: taglifetimelist.length,
+                                  itemCount: rfidtaglist.length,
                                   separatorBuilder: (_, __) =>
                                       const SizedBox(height: 6.0),
-                                  itemBuilder: (context, taglifetimelistIndex) {
-                                    final taglifetimelistItem =
-                                        taglifetimelist[taglifetimelistIndex];
-                                    return Container(
-                                      width: double.infinity,
-                                      height: 25.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        border: Border.all(
+                                  itemBuilder: (context, rfidtaglistIndex) {
+                                    final rfidtaglistItem =
+                                        rfidtaglist[rfidtaglistIndex];
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        _model.apiResult8g9 =
+                                            await UserloginCall.call();
+                                        if ((_model.apiResult8g9?.succeeded ??
+                                            true)) {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                content: Text((_model
+                                                            .apiResult8g9
+                                                            ?.jsonBody ??
+                                                        '')
+                                                    .toString()),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                content: Text((_model
+                                                            .apiResult8g9
+                                                            ?.statusCode ??
+                                                        200)
+                                                    .toString()),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+
+                                        setState(() {});
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 25.0,
+                                        decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .accent2,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
                                         ),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              taglifetimelistItem,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  rfidtaglistItem.tagID,
+                                                  'tag id',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     );
@@ -438,46 +367,128 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                             ),
                           ),
                         ),
-                      ),
-                    ].divide(const SizedBox(height: 0.0)),
+                      ].divide(const SizedBox(height: 0.0)),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
-                  child: Builder(
-                    builder: (context) {
-                      final taglifetime2 = QuerytaglistCall.taglifetime(
-                            (_model.querytaglistapiresponse?.jsonBody ?? ''),
-                          )?.toList() ??
-                          [];
-                      return SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(taglifetime2.length,
-                              (taglifetime2Index) {
-                            final taglifetime2Item =
-                                taglifetime2[taglifetime2Index];
-                            return Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  taglifetime2Item,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ],
-                            );
-                          }).divide(const SizedBox(height: 5.0)),
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 5.0, 0.0),
+                          child: Container(
+                            height: 200.0,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 0.0),
+                              child: Builder(
+                                builder: (context) {
+                                  final taglifetimelist =
+                                      QuerytaglistCall.taglifetime(
+                                            (_model.querytaglistapiresponse
+                                                    ?.jsonBody ??
+                                                ''),
+                                          )?.toList() ??
+                                          [];
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: taglifetimelist.length,
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(height: 6.0),
+                                    itemBuilder:
+                                        (context, taglifetimelistIndex) {
+                                      final taglifetimelistItem =
+                                          taglifetimelist[taglifetimelistIndex];
+                                      return Container(
+                                        width: double.infinity,
+                                        height: 25.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent2,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                taglifetimelistItem,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
                         ),
-                      );
-                    },
+                      ].divide(const SizedBox(height: 0.0)),
+                    ),
                   ),
-                ),
-              ].divide(const SizedBox(height: 5.0)),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                    child: Builder(
+                      builder: (context) {
+                        final taglifetime2 = QuerytaglistCall.taglifetime(
+                              (_model.querytaglistapiresponse?.jsonBody ?? ''),
+                            )?.toList() ??
+                            [];
+                        return SingleChildScrollView(
+                          primary: false,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: List.generate(taglifetime2.length,
+                                (taglifetime2Index) {
+                              final taglifetime2Item =
+                                  taglifetime2[taglifetime2Index];
+                              return Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    taglifetime2Item,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              );
+                            }).divide(const SizedBox(height: 5.0)),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ].divide(const SizedBox(height: 5.0)),
+              ),
             ),
           ),
         ),
