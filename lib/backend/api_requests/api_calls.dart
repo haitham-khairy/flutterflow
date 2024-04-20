@@ -46,6 +46,29 @@ class UserloginCall {
       ));
 }
 
+class QuerytaglistCall {
+  static Future<ApiCallResponse> call({
+    String? taglist = '',
+  }) async {
+    final ffApiRequestBody = '''
+$taglist''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'querytaglist',
+      apiUrl: 'http://127.0.0.1:8002/flutterflow/QueryTagList',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
