@@ -79,6 +79,34 @@ $taglist''';
           .toList();
 }
 
+class QueryTagDataCall {
+  static Future<ApiCallResponse> call({
+    String? tagdata = '',
+  }) async {
+    final ffApiRequestBody = '''
+{"tagdata":"$tagdata"}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'QueryTagData',
+      apiUrl: 'http://192.168.75.19:8002/flutterflow/QueryTagData',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static dynamic tagdayscount(dynamic response) => getJsonField(
+        response,
+        r'''$.tagdayscount''',
+      );
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

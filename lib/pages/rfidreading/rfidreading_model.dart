@@ -22,8 +22,8 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
   ApiCallResponse? querytaglistapiresponse;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? clearrfidoutput;
-  // Stores action output result for [Backend Call - API (Userlogin)] action in Container widget.
-  ApiCallResponse? apiResult8g9;
+  // Stores action output result for [Backend Call - API (QueryTagData)] action in Container widget.
+  ApiCallResponse? tagdata;
 
   @override
   void initState(BuildContext context) {}

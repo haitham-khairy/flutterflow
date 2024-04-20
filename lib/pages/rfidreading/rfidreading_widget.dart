@@ -9,6 +9,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'rfidreading_model.dart';
 export 'rfidreading_model.dart';
@@ -278,53 +279,8 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            _model.apiResult8g9 =
-                                                await UserloginCall.call();
-                                            if ((_model
-                                                    .apiResult8g9?.succeeded ??
-                                                true)) {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    content: Text((_model
-                                                                .apiResult8g9
-                                                                ?.jsonBody ??
-                                                            '')
-                                                        .toString()),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: const Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            } else {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    content: Text((_model
-                                                                .apiResult8g9
-                                                                ?.statusCode ??
-                                                            200)
-                                                        .toString()),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: const Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            }
+                                            _model.tagdata =
+                                                await QueryTagDataCall.call();
 
                                             setState(() {});
                                           },
@@ -373,6 +329,26 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                               ),
                             ),
                           ],
+                        ),
+                        CircularPercentIndicator(
+                          percent: QueryTagDataCall.tagdayscount(
+                            (_model.tagdata?.jsonBody ?? ''),
+                          ),
+                          radius: 60.0,
+                          lineWidth: 12.0,
+                          animation: true,
+                          animateFromLastPercent: true,
+                          progressColor: FlutterFlowTheme.of(context).primary,
+                          backgroundColor: FlutterFlowTheme.of(context).accent4,
+                          center: Text(
+                            '50%',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
                         ),
                       ].divide(const SizedBox(height: 0.0)),
                     ),
