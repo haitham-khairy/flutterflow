@@ -383,12 +383,12 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                       children: [
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 5.0, 0.0),
+                              5.0, 0.0, 5.0, 0.0),
                           child: Container(
                             height: 200.0,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                width: 2.0,
+                                width: 1.0,
                               ),
                             ),
                             child: Padding(
@@ -455,43 +455,6 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                           ),
                         ),
                       ].divide(const SizedBox(height: 0.0)),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
-                    child: Builder(
-                      builder: (context) {
-                        final taglifetime2 = QuerytaglistCall.taglifetime(
-                              (_model.querytaglistapiresponse?.jsonBody ?? ''),
-                            )?.toList() ??
-                            [];
-                        return SingleChildScrollView(
-                          primary: false,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(taglifetime2.length,
-                                (taglifetime2Index) {
-                              final taglifetime2Item =
-                                  taglifetime2[taglifetime2Index];
-                              return Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    taglifetime2Item,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ],
-                              );
-                            }).divide(const SizedBox(height: 5.0)),
-                          ),
-                        );
-                      },
                     ),
                   ),
                 ].divide(const SizedBox(height: 5.0)),
