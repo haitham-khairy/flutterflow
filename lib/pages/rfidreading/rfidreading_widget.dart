@@ -374,6 +374,24 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                               taglist: functions.taglisttostring(
                                   FFAppState().RFIDTagsList.toList()),
                             );
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  content: Text((_model.querytaglistapiresponse
+                                              ?.jsonBody ??
+                                          '')
+                                      .toString()),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
 
                             setState(() {});
                           },
@@ -432,10 +450,11 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                       builder: (context) {
                                         final test =
                                             QuerytaglistCall.taglifetime(
-                                          (_model.querytaglistapiresponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        ).toList();
+                                                  (_model.querytaglistapiresponse
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                )?.toList() ??
+                                                [];
                                         return Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: List.generate(test.length,

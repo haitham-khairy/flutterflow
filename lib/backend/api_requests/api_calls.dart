@@ -68,10 +68,11 @@ $taglist''';
     );
   }
 
-  static dynamic taglifetime(dynamic response) => getJsonField(
+  static List? taglifetime(dynamic response) => getJsonField(
         response,
         r'''$.taglifetime''',
-      );
+        true,
+      ) as List?;
 }
 
 class ApiPagingParams {
