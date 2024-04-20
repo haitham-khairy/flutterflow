@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,7 +10,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'rfidreading_model.dart';
 export 'rfidreading_model.dart';
@@ -330,19 +330,22 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                             ),
                           ],
                         ),
-                        CircularPercentIndicator(
-                          percent: QueryTagDataCall.tagdayscount(
-                            (_model.tagdata?.jsonBody ?? ''),
-                          ),
-                          radius: 60.0,
-                          lineWidth: 12.0,
-                          animation: true,
-                          animateFromLastPercent: true,
-                          progressColor: FlutterFlowTheme.of(context).primary,
-                          backgroundColor: FlutterFlowTheme.of(context).accent4,
-                          center: Text(
-                            '50%',
-                            style: FlutterFlowTheme.of(context)
+                        SizedBox(
+                          width: 370.0,
+                          height: 230.0,
+                          child: FlutterFlowPieChart(
+                            data: FFPieChartData(
+                              values: [
+                                QueryTagDataCall.tagdayscount(
+                                  (_model.tagdata?.jsonBody ?? ''),
+                                )
+                              ],
+                              colors: [FlutterFlowTheme.of(context).primary],
+                              radius: [100.0],
+                            ),
+                            donutHoleRadius: 0.0,
+                            donutHoleColor: Colors.transparent,
+                            sectionLabelStyle: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
                                   fontFamily: 'Outfit',
