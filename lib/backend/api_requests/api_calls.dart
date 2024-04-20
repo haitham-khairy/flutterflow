@@ -53,7 +53,7 @@ class QuerytaglistCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "taglist": "$taglist",
+  "taglist": $taglist,
   "line": "$line"
 }''';
     return ApiManager.instance.makeApiCall(
@@ -64,7 +64,7 @@ class QuerytaglistCall {
       headers: {},
       params: {},
       body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
+      bodyType: BodyType.TEXT,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
