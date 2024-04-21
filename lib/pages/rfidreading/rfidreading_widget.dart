@@ -284,9 +284,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                           onTap: () async {
                                             _model.tagdata =
                                                 await QueryTagDataCall.call(
-                                              tagdata: rfidtaglistItem
-                                                  .hasTagID()
-                                                  .toString(),
+                                              tagdata: rfidtaglistItem.tagID,
                                             );
 
                                             setState(() {});
