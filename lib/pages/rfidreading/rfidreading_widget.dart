@@ -283,7 +283,10 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.tagdata =
-                                                await QueryTagDataCall.call();
+                                                await QueryTagDataCall.call(
+                                              tagdata:
+                                                  rfidtaglistIndex.toString(),
+                                            );
 
                                             setState(() {});
                                           },
