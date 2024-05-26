@@ -249,91 +249,88 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Stack(
-                          children: [
-                            Container(
-                              height: 200.0,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 2.0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 0.0),
-                                child: Builder(
-                                  builder: (context) {
-                                    final rfidtaglist =
-                                        FFAppState().RFIDTagsList.toList();
-                                    return ListView.separated(
-                                      padding: EdgeInsets.zero,
-                                      primary: false,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: rfidtaglist.length,
-                                      separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 6.0),
-                                      itemBuilder: (context, rfidtaglistIndex) {
-                                        final rfidtaglistItem =
-                                            rfidtaglist[rfidtaglistIndex];
-                                        return InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            _model.tagdata =
-                                                await QueryTagDataCall.call(
-                                              tagdata: rfidtaglistItem.tagID,
-                                            );
+                        const Stack(
+                          children: [],
+                        ),
+                        Container(
+                          height: 200.0,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2.0,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15.0, 0.0, 15.0, 0.0),
+                            child: Builder(
+                              builder: (context) {
+                                final rfidtaglist =
+                                    FFAppState().RFIDTagsList.toList();
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: rfidtaglist.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 6.0),
+                                  itemBuilder: (context, rfidtaglistIndex) {
+                                    final rfidtaglistItem =
+                                        rfidtaglist[rfidtaglistIndex];
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        _model.tagdata =
+                                            await QueryTagDataCall.call(
+                                          tagdata: rfidtaglistItem.tagID,
+                                        );
 
-                                            setState(() {});
-                                          },
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 25.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent2,
-                                              border: Border.all(
-                                                color:
+                                        setState(() {});
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 25.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent2,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  rfidtaglistItem.tagID,
+                                                  'tag id',
+                                                ),
+                                                style:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                              ),
-                                            ),
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    valueOrDefault<String>(
-                                                      rfidtaglistItem.tagID,
-                                                      'tag id',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                  ),
-                                                ],
                                               ),
-                                            ),
+                                            ],
                                           ),
-                                        );
-                                      },
+                                        ),
+                                      ),
                                     );
                                   },
-                                ),
-                              ),
+                                );
+                              },
                             ),
-                          ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
