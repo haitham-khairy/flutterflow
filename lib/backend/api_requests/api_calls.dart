@@ -22,7 +22,7 @@ class UserloginCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Userlogin',
       apiUrl:
-          'https://bd42-197-53-172-3.ngrok-free.app/flutterflow/userlogin?username=$username &password=$password',
+          'https://47fa-197-53-150-180.ngrok-free.app/flutterflow/userlogin?username=$username &password=$password',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -61,7 +61,7 @@ class QuerytaglistCall {
     return ApiManager.instance.makeApiCall(
       callName: 'querytaglist',
       apiUrl:
-          'https://bd42-197-53-172-3.ngrok-free.app/flutterflow/QueryTagList',
+          'https://47fa-197-53-150-180.ngrok-free.app/flutterflow/QueryTagList',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -104,7 +104,7 @@ class QueryTagDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'QueryTagData',
       apiUrl:
-          'https://6175-41-34-12-157.ngrok-free.app/flutterflow/QueryTagData',
+          'https://47fa-197-53-150-180.ngrok-free.app/flutterflow/QueryTagData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

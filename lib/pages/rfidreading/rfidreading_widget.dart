@@ -367,42 +367,39 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                             startAngle: 0.0,
                           ),
                         ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 20.0, 5.0, 20.0),
-                            child: LinearPercentIndicator(
-                              percent: valueOrDefault<double>(
-                                QueryTagDataCall.tagdayscount(
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              5.0, 20.0, 5.0, 20.0),
+                          child: LinearPercentIndicator(
+                            percent: valueOrDefault<double>(
+                              QueryTagDataCall.tagdayscount(
+                                (_model.tagdata?.jsonBody ?? ''),
+                              ),
+                              1.0,
+                            ),
+                            width: 380.0,
+                            lineHeight: 40.0,
+                            animation: true,
+                            animateFromLastPercent: true,
+                            progressColor:
+                                FlutterFlowTheme.of(context).tertiary,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).accent4,
+                            center: Text(
+                              valueOrDefault<String>(
+                                QueryTagDataCall.tagdaycountstring(
                                   (_model.tagdata?.jsonBody ?? ''),
                                 ),
-                                1.0,
+                                'days',
                               ),
-                              width: 380.0,
-                              lineHeight: 40.0,
-                              animation: true,
-                              animateFromLastPercent: true,
-                              progressColor:
-                                  FlutterFlowTheme.of(context).tertiary,
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).accent4,
-                              center: Text(
-                                valueOrDefault<String>(
-                                  QueryTagDataCall.tagdaycountstring(
-                                    (_model.tagdata?.jsonBody ?? ''),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
                                   ),
-                                  'days',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                              padding: EdgeInsets.zero,
                             ),
+                            padding: EdgeInsets.zero,
                           ),
                         ),
                         FlutterFlowDropDown<String>(
