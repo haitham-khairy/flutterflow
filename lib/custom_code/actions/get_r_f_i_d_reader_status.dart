@@ -36,7 +36,7 @@ Future<String> getRFIDReaderStatus() async {
   if (connectionStatus.index == 0) {
     connectionStatusvalue = "not connected";
   } else if (connectionStatus.index == 1) {
-    connectionStatusvalue = "connection complete";
+    connectionStatusvalue = "connected";
   } else if (connectionStatus.index == 2) {
     connectionStatusvalue = "connection error";
   }
