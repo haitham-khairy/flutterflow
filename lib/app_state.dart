@@ -55,4 +55,10 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInRFIDTagsList(int index, RFIDTagsdataStruct value) {
     _RFIDTagsList.insert(index, value);
   }
+
+  String _ConnectionStatus = '';
+  String get ConnectionStatus => _ConnectionStatus;
+  set ConnectionStatus(String value) {
+    _ConnectionStatus = value;
+  }
 }

@@ -15,8 +15,8 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
 
   final unfocusNode = FocusNode();
   InstantTimer? instantTimer2;
-  // Stores action output result for [Custom Action - getRFIDReaderStatus] action in rfidreading widget.
-  String? rfidloadstatus;
+  // Stores action output result for [Custom Action - getstatus] action in rfidreading widget.
+  String? getStatusResponse;
   // Stores action output result for [Custom Action - readtagcount] action in rfidreading widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
   // Stores action output result for [Backend Call - API (querytaglist)] action in rfidreading widget.

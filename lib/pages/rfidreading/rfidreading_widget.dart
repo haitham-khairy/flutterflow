@@ -38,11 +38,11 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
       _model.instantTimer2 = InstantTimer.periodic(
         duration: const Duration(milliseconds: 1000),
         callback: (timer) async {
-          _model.rfidloadstatus = await actions.getRFIDReaderStatus();
+          _model.getStatusResponse = await actions.getstatus();
           setState(() {
-            _model.rfidstatus = _model.rfidloadstatus!;
+            _model.rfidstatus = _model.getStatusResponse!;
           });
-          if (_model.rfidloadstatus == 'connection complete') {
+          if (_model.getStatusResponse == 'Connected') {
             _model.rfidtagdata = await actions.readtagcount(
               false,
             );
@@ -116,7 +116,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                 size: 30.0,
                               ),
                               onPressed: () async {
-                                context.pop();
+                                context.pushNamed('blank');
                               },
                             ),
                           ),

@@ -8,29 +8,27 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
-
-import 'package:flutter/services.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
 import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
-Map<String?, RfidData> rfidDatas = {};
-ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
-
-Future<List<RFIDTagsdataStruct>> clearReadList() async {
-  List<RFIDTagsdataStruct> frfid = [];
-
-  ZebraRfidSdkPlugin.connect();
-
+ReaderConnectionStatus status = ReaderConnectionStatus.UnConnection;
+Future<String> getstatus() async {
+  // Add your function code here!
   ZebraRfidSdkPlugin.setEventHandler(ZebraEngineEventHandler(
-    readRfidCallback: (datas) async {},
-    errorCallback: (err) {
-      ZebraRfidSdkPlugin.toast(err.errorMessage);
+    connectionStatusCallback: (result) {
+      status = result;
     },
-    connectionStatusCallback: (status) {},
+    readRfidCallback: (datas) async {},
+    errorCallback: (err) {},
   ));
 
-  frfid.clear();
-
-  return frfid;
+  switch (status.index) {
+    case 0:
+      return 'Not Connected';
+    case 1:
+      return 'Connected';
+    case 2:
+      return 'Connection error';
+  }
+  return 'Not Connected';
 }
