@@ -251,37 +251,6 @@ class _BlankWidgetState extends State<BlankWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Builder(
-                        builder: (context) {
-                          final listItems = FFAppState().RFIDTagsList.toList();
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: listItems.length,
-                            itemBuilder: (context, listItemsIndex) {
-                              final listItemsItem = listItems[listItemsIndex];
-                              return Text(
-                                listItemsItem.peakRSSI.toString(),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
                 FFButtonWidget(
                   onPressed: () async {
                     await actions.onReadAction(
