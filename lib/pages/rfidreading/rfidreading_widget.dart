@@ -243,22 +243,44 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                       ],
                     ),
                   ),
-                  SliderTheme(
-                    data: const SliderThemeData(
-                      showValueIndicator: ShowValueIndicator.always,
-                    ),
-                    child: Slider(
-                      activeColor: FlutterFlowTheme.of(context).primary,
-                      inactiveColor: FlutterFlowTheme.of(context).alternate,
-                      min: 0.0,
-                      max: 75.0,
-                      value: _model.sliderValue ??= 1.0,
-                      label: _model.sliderValue?.toStringAsFixed(0),
-                      onChanged: (newValue) {
-                        newValue = double.parse(newValue.toStringAsFixed(0));
-                        setState(() => _model.sliderValue = newValue);
-                      },
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Filter Tags:',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SliderTheme(
+                          data: const SliderThemeData(
+                            showValueIndicator: ShowValueIndicator.always,
+                          ),
+                          child: Slider(
+                            activeColor: FlutterFlowTheme.of(context).primary,
+                            inactiveColor:
+                                FlutterFlowTheme.of(context).alternate,
+                            min: 0.0,
+                            max: 75.0,
+                            value: _model.sliderValue ??= 1.0,
+                            label: _model.sliderValue?.toStringAsFixed(0),
+                            onChanged: (newValue) {
+                              newValue =
+                                  double.parse(newValue.toStringAsFixed(0));
+                              setState(() => _model.sliderValue = newValue);
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SingleChildScrollView(
                     child: Column(
