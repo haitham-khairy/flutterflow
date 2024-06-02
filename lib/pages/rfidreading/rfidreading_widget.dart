@@ -60,6 +60,8 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
         startImmediately: true,
       );
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -241,6 +243,22 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                       ],
                     ),
                   ),
+                  Slider(
+                    activeColor: FlutterFlowTheme.of(context).primary,
+                    inactiveColor: FlutterFlowTheme.of(context).alternate,
+                    min: 0.0,
+                    max: 75.0,
+                    value: _model.sliderValue ??= 1.0,
+                    onChanged: (newValue) async {
+                      newValue = double.parse(newValue.toStringAsFixed(2));
+                      setState(() => _model.sliderValue = newValue);
+                      _model.rssifilter = valueOrDefault<String>(
+                        functions.toString(_model.sliderValue),
+                        '0',
+                      );
+                      setState(() {});
+                    },
+                  ),
                   SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -260,8 +278,15 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                 15.0, 0.0, 15.0, 0.0),
                             child: Builder(
                               builder: (context) {
-                                final rfidtaglist =
-                                    FFAppState().RFIDTagsList.toList();
+                                final rfidtaglist = FFAppState()
+                                    .RFIDTagsList
+                                    .where((e) => functions.isNull(
+                                            _model.sliderValue?.toString())
+                                        ? true
+                                        : functions.greaterOrEqual(
+                                            _model.sliderValue!,
+                                            e.peakRSSI.toString()))
+                                    .toList();
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,

@@ -24,3 +24,31 @@ String taglisttostring(List<RFIDTagsdataStruct> taglist) {
   buffer.write(']');
   return buffer.toString();
 }
+
+bool isNull(String? dropDown) {
+  if (dropDown == null || dropDown.isEmpty) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+String? toString(double? input) {
+  if (input == null) {
+    return 0.toString();
+  } else {
+    String result = input.toString();
+    return result;
+  }
+}
+
+bool greaterOrEqual(
+  double sliderInput,
+  String rSSIvalue,
+) {
+  if ((sliderInput * -1) >= double.parse(rSSIvalue)) {
+    return true;
+  } else {
+    return false;
+  }
+}

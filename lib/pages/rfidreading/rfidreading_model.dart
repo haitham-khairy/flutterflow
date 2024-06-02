@@ -11,6 +11,8 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
 
   String rfidstatus = 'na';
 
+  String rssifilter = '0';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -23,6 +25,8 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
   ApiCallResponse? querytaglistapiresponse;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? clearrfidoutput;
+  // State field(s) for Slider widget.
+  double? sliderValue;
   // Stores action output result for [Backend Call - API (QueryTagData)] action in Container widget.
   ApiCallResponse? tagdata;
   // State field(s) for linedropmenu widget.
