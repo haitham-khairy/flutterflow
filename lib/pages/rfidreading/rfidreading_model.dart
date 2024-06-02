@@ -11,8 +11,6 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
 
   String rfidstatus = 'na';
 
-  String rssifilter = '0';
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
