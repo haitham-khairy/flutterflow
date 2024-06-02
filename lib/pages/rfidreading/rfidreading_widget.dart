@@ -243,21 +243,27 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                       ],
                     ),
                   ),
-                  Slider(
-                    activeColor: FlutterFlowTheme.of(context).primary,
-                    inactiveColor: FlutterFlowTheme.of(context).alternate,
-                    min: 0.0,
-                    max: 75.0,
-                    value: _model.sliderValue ??= 1.0,
-                    onChanged: (newValue) async {
-                      newValue = double.parse(newValue.toStringAsFixed(2));
-                      setState(() => _model.sliderValue = newValue);
-                      _model.rssifilter = valueOrDefault<String>(
-                        functions.toString(_model.sliderValue),
-                        '0',
-                      );
-                      setState(() {});
-                    },
+                  SliderTheme(
+                    data: const SliderThemeData(
+                      showValueIndicator: ShowValueIndicator.always,
+                    ),
+                    child: Slider(
+                      activeColor: FlutterFlowTheme.of(context).primary,
+                      inactiveColor: FlutterFlowTheme.of(context).alternate,
+                      min: 0.0,
+                      max: 75.0,
+                      value: _model.sliderValue ??= 1.0,
+                      label: _model.sliderValue?.toStringAsFixed(2),
+                      onChanged: (newValue) async {
+                        newValue = double.parse(newValue.toStringAsFixed(2));
+                        setState(() => _model.sliderValue = newValue);
+                        _model.rssifilter = valueOrDefault<String>(
+                          functions.toString(_model.sliderValue),
+                          '0',
+                        );
+                        setState(() {});
+                      },
+                    ),
                   ),
                   SingleChildScrollView(
                     child: Column(
