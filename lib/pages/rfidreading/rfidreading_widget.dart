@@ -39,17 +39,15 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
         duration: const Duration(milliseconds: 1000),
         callback: (timer) async {
           _model.getStatusResponse = await actions.getstatus();
-          setState(() {
-            _model.rfidstatus = _model.getStatusResponse!;
-          });
+          _model.rfidstatus = _model.getStatusResponse!;
+          setState(() {});
           if (_model.getStatusResponse == 'Connected') {
             _model.rfidtagdata = await actions.readtagcount(
               false,
             );
-            setState(() {
-              FFAppState().RFIDTagsList =
-                  _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
-            });
+            FFAppState().RFIDTagsList =
+                _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
+            setState(() {});
             _model.querytaglistapiresponse = await QuerytaglistCall.call(
               taglist:
                   functions.taglisttostring(FFAppState().RFIDTagsList.toList()),
@@ -115,8 +113,8 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                 color: Colors.white,
                                 size: 30.0,
                               ),
-                              onPressed: () async {
-                                context.pushNamed('blank');
+                              onPressed: () {
+                                print('IconButton pressed ...');
                               },
                             ),
                           ),
@@ -210,12 +208,10 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                             _model.clearrfidoutput = await actions.readtagcount(
                               true,
                             );
-                            setState(() {
-                              FFAppState().RFIDTagsList = _model
-                                  .clearrfidoutput!
-                                  .toList()
-                                  .cast<RFIDTagsdataStruct>();
-                            });
+                            FFAppState().RFIDTagsList = _model.clearrfidoutput!
+                                .toList()
+                                .cast<RFIDTagsdataStruct>();
+                            setState(() {});
 
                             setState(() {});
                           },
