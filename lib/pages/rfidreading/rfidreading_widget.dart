@@ -253,9 +253,9 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                       min: 0.0,
                       max: 75.0,
                       value: _model.sliderValue ??= 1.0,
-                      label: _model.sliderValue?.toStringAsFixed(2),
+                      label: _model.sliderValue?.toStringAsFixed(0),
                       onChanged: (newValue) async {
-                        newValue = double.parse(newValue.toStringAsFixed(2));
+                        newValue = double.parse(newValue.toStringAsFixed(0));
                         setState(() => _model.sliderValue = newValue);
                         _model.rssifilter = valueOrDefault<String>(
                           functions.toString(_model.sliderValue),
