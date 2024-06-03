@@ -52,3 +52,11 @@ bool greaterOrEqual(
     return false;
   }
 }
+
+List<dynamic> tgagsListToList(List<RFIDTagsdataStruct> data) {
+  List result = [];
+  for (var item in data) {
+    result.add(item.tagID);
+  }
+  return result;
+}

@@ -61,7 +61,7 @@ class QuerytaglistCall {
     return ApiManager.instance.makeApiCall(
       callName: 'querytaglist',
       apiUrl:
-          'https://47fa-197-53-150-180.ngrok-free.app/flutterflow/QueryTagList',
+          'https://e6fe-197-53-147-17.ngrok-free.app/flutterflow/QueryTagList',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -104,7 +104,7 @@ class QueryTagDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'QueryTagData',
       apiUrl:
-          'https://47fa-197-53-150-180.ngrok-free.app/flutterflow/QueryTagData',
+          'https://e6fe-197-53-147-17.ngrok-free.app/flutterflow/QueryTagData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -135,7 +135,7 @@ class LogInRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
       apiUrl:
-          'https://985d-41-46-211-153.ngrok-free.app/v1/LoginAction/LogInRequest',
+          'https://e6fe-197-53-147-17.ngrok-free.app/v1/LoginAction/LogInRequest',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -163,13 +163,40 @@ class LoginDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
       apiUrl:
-          'https://985d-41-46-211-153.ngrok-free.app/v1/loginData/UserDataFromApp',
+          'https://e6fe-197-53-147-17.ngrok-free.app/v1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
         'password': password,
         'username': username,
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetTagsDataCall {
+  static Future<ApiCallResponse> call({
+    dynamic tagsListJson,
+  }) async {
+    final tagsList = _serializeJson(tagsListJson, true);
+    final ffApiRequestBody = '''
+{
+$tagsList
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetTagsData',
+      apiUrl:
+          'https://e6fe-197-53-147-17.ngrok-free.app/v1/GetTagsData/GetTagsData',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.TEXT,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

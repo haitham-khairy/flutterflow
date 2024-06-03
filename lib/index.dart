@@ -1,4 +1,4 @@
 // Export pages
-export '/pages/login/login_widget.dart' show LoginWidget;
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
-export '/pages/rfidreading/rfidreading_widget.dart' show RfidreadingWidget;
+export '/login/login_widget.dart' show LoginWidget;
+export '/home_page/home_page_widget.dart' show HomePageWidget;
+export '/rfidreading/rfidreading_widget.dart' show RfidreadingWidget;

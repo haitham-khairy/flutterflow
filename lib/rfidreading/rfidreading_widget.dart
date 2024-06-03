@@ -53,6 +53,14 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                   functions.taglisttostring(FFAppState().RFIDTagsList.toList()),
               line: _model.linedropmenuValue,
             );
+            _model.tagsid = functions
+                .tgagsListToList(FFAppState().RFIDTagsList.toList())
+                .toList()
+                .cast<dynamic>();
+            setState(() {});
+            _model.apiResultnj9 = await GetTagsDataCall.call(
+              tagsListJson: _model.tagsid,
+            );
           } else {
             await actions.rFIDConnectAction();
           }
