@@ -282,8 +282,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   username: _model.usernameTextController.text,
                                   password: _model.passwordTextController.text,
                                 );
-                                await Future.delayed(
-                                    const Duration(milliseconds: 500));
                                 _model.logInRequestresponse =
                                     await LogInRequestCall.call();
                                 shouldSetState = true;
@@ -299,10 +297,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: Text((_model.logInRequestresponse
-                                                    ?.statusCode ??
-                                                200)
-                                            .toString()),
+                                        title: const Text('Faild to login'),
+                                        content: const Text(
+                                            'Invalid username or Password'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
