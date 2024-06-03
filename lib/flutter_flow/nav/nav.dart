@@ -44,7 +44,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const RfidreadingWidget(),
+          : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,7 +62,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const RfidreadingWidget(),
+              : const LoginWidget(),
         ),
         FFRoute(
           name: 'Login',

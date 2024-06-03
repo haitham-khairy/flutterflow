@@ -278,46 +278,31 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           '') &&
                                   (_model.passwordTextController.text !=
                                           '')) {
-                                _model.apiResulth6b = await UserloginCall.call(
+                                await LoginDataCall.call(
                                   username: _model.usernameTextController.text,
                                   password: _model.passwordTextController.text,
                                 );
+                                await Future.delayed(
+                                    const Duration(milliseconds: 500));
+                                _model.logInRequestresponse =
+                                    await LogInRequestCall.call();
                                 shouldSetState = true;
-                                if ((_model.apiResulth6b?.succeeded ?? true) !=
-                                    true) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text(
-                                            (_model.apiResulth6b?.statusCode ??
-                                                    200)
-                                                .toString()),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                }
-                                if (getJsonField(
-                                  (_model.apiResulth6b?.jsonBody ?? ''),
-                                  r'''$.status''',
-                                )) {
+                                _model.loginstatus =
+                                    LogInRequestCall.logInStatus(
+                                  (_model.logInRequestresponse?.jsonBody ?? ''),
+                                ).toString();
+                                setState(() {});
+                                if (_model.loginstatus == 'true') {
                                   context.pushNamed('rfidreading');
                                 } else {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        content:
-                                            Text(UserloginCall.userLoginMSG(
-                                          (_model.apiResulth6b?.jsonBody ?? ''),
-                                        )!),
+                                        title: Text((_model.logInRequestresponse
+                                                    ?.statusCode ??
+                                                200)
+                                            .toString()),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(

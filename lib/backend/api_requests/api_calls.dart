@@ -130,6 +130,55 @@ class QueryTagDataCall {
       ));
 }
 
+class LogInRequestCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'LogInRequest',
+      apiUrl:
+          'https://985d-41-46-211-153.ngrok-free.app/v1/LoginAction/LogInRequest',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'LogIn': 1,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static dynamic logInStatus(dynamic response) => getJsonField(
+        response,
+        r'''$.status''',
+      );
+}
+
+class LoginDataCall {
+  static Future<ApiCallResponse> call({
+    String? password = 'non',
+    String? username = 'non',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'LoginData',
+      apiUrl:
+          'https://985d-41-46-211-153.ngrok-free.app/v1/loginData/UserDataFromApp',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'password': password,
+        'username': username,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

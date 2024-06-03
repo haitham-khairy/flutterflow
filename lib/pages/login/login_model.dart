@@ -4,6 +4,10 @@ import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
 
 class LoginModel extends FlutterFlowModel<LoginWidget> {
+  ///  Local state fields for this page.
+
+  String loginstatus = 'false';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -16,8 +20,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
-  // Stores action output result for [Backend Call - API (Userlogin)] action in Button widget.
-  ApiCallResponse? apiResulth6b;
+  // Stores action output result for [Backend Call - API (LogInRequest)] action in Button widget.
+  ApiCallResponse? logInRequestresponse;
 
   @override
   void initState(BuildContext context) {

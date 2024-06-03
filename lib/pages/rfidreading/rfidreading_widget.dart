@@ -419,7 +419,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                               QueryTagDataCall.tagdayscount(
                                 (_model.tagdata?.jsonBody ?? ''),
                               ),
-                              1.0,
+                              0.0,
                             ),
                             width: 380.0,
                             lineHeight: 40.0,
