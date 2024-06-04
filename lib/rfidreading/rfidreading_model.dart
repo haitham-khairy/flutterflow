@@ -33,8 +33,6 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
   double? sliderValue;
   // Stores action output result for [Backend Call - API (QueryTagData)] action in Container widget.
   ApiCallResponse? tagdata;
-  // Stores action output result for [Backend Call - API (GetTagsData)] action in Button widget.
-  ApiCallResponse? apiResulttt9;
 
   @override
   void initState(BuildContext context) {}

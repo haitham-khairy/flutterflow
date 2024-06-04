@@ -373,16 +373,10 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      _model.apiResulttt9 = await GetTagsDataCall.call(
-                        tagsListList: functions.tgagsListToList(
-                            FFAppState().RFIDTagsList.toList()),
-                      );
                       _model.tagsid = functions
                           .tgagsListToList(FFAppState().RFIDTagsList.toList())
                           .toList()
                           .cast<String>();
-                      setState(() {});
-
                       setState(() {});
                     },
                     text: 'Show Tags',
