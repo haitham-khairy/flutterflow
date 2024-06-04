@@ -11,7 +11,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'rfidreading_model.dart';
 export 'rfidreading_model.dart';
@@ -55,12 +54,19 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
             );
             _model.tagsid = functions
                 .tgagsListToList(FFAppState().RFIDTagsList.toList())
+                .map((e) => e.toString())
                 .toList()
-                .cast<dynamic>();
+                .toList()
+                .cast<String>();
             setState(() {});
-            _model.apiResultnj9 = await GetTagsDataCall.call(
-              tagsListJson: _model.tagsid,
+            _model.getTagsDataResponse = await GetTagsDataCall.call(
+              tagsListJson:
+                  functions.tgagsListToList(FFAppState().RFIDTagsList.toList()),
             );
+            _model.tagsid = (_model.getTagsDataResponse?.jsonBody ?? '')
+                .toList()
+                .cast<String>();
+            setState(() {});
           } else {
             await actions.rFIDConnectAction();
           }
@@ -259,7 +265,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Text(
-                          'Filter Tags:',
+                          'Filter by distance:',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -382,76 +388,6 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                 );
                               },
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 0.0),
-                          child: CircularPercentIndicator(
-                            percent: valueOrDefault<double>(
-                              QueryTagDataCall.tagdayscount(
-                                (_model.tagdata?.jsonBody ?? ''),
-                              ),
-                              1.0,
-                            ),
-                            radius: 100.0,
-                            lineWidth: 12.0,
-                            animation: true,
-                            animateFromLastPercent: true,
-                            progressColor:
-                                FlutterFlowTheme.of(context).tertiary,
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).accent4,
-                            center: Text(
-                              valueOrDefault<String>(
-                                QueryTagDataCall.tagdaycountstring(
-                                  (_model.tagdata?.jsonBody ?? ''),
-                                ),
-                                'days',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineSmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            startAngle: 0.0,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              5.0, 20.0, 5.0, 20.0),
-                          child: LinearPercentIndicator(
-                            percent: valueOrDefault<double>(
-                              QueryTagDataCall.tagdayscount(
-                                (_model.tagdata?.jsonBody ?? ''),
-                              ),
-                              0.0,
-                            ),
-                            width: 380.0,
-                            lineHeight: 40.0,
-                            animation: true,
-                            animateFromLastPercent: true,
-                            progressColor:
-                                FlutterFlowTheme.of(context).tertiary,
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).accent4,
-                            center: Text(
-                              valueOrDefault<String>(
-                                QueryTagDataCall.tagdaycountstring(
-                                  (_model.tagdata?.jsonBody ?? ''),
-                                ),
-                                'days',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineSmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            padding: EdgeInsets.zero,
                           ),
                         ),
                         FlutterFlowDropDown<String>(
@@ -595,6 +531,43 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                         ),
                       ].divide(const SizedBox(height: 0.0)),
                     ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: 100.0,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Builder(
+                            builder: (context) {
+                              final tags = _model.tagsid.toList();
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                scrollDirection: Axis.vertical,
+                                itemCount: tags.length,
+                                itemBuilder: (context, tagsIndex) {
+                                  final tagsItem = tags[tagsIndex];
+                                  return Text(
+                                    tagsItem,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ].divide(const SizedBox(height: 5.0)),
               ),

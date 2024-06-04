@@ -186,7 +186,7 @@ class GetTagsDataCall {
     final tagsList = _serializeJson(tagsListJson, true);
     final ffApiRequestBody = '''
 {
-$tagsList
+  "TagList": $tagsList
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
@@ -196,7 +196,7 @@ $tagsList
       headers: {},
       params: {},
       body: ffApiRequestBody,
-      bodyType: BodyType.TEXT,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

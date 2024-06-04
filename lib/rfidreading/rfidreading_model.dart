@@ -11,13 +11,13 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
 
   String rfidstatus = 'na';
 
-  List<dynamic> tagsid = [];
-  void addToTagsid(dynamic item) => tagsid.add(item);
-  void removeFromTagsid(dynamic item) => tagsid.remove(item);
+  List<String> tagsid = [];
+  void addToTagsid(String item) => tagsid.add(item);
+  void removeFromTagsid(String item) => tagsid.remove(item);
   void removeAtIndexFromTagsid(int index) => tagsid.removeAt(index);
-  void insertAtIndexInTagsid(int index, dynamic item) =>
+  void insertAtIndexInTagsid(int index, String item) =>
       tagsid.insert(index, item);
-  void updateTagsidAtIndex(int index, Function(dynamic) updateFn) =>
+  void updateTagsidAtIndex(int index, Function(String) updateFn) =>
       tagsid[index] = updateFn(tagsid[index]);
 
   ///  State fields for stateful widgets in this page.
@@ -31,7 +31,7 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
   // Stores action output result for [Backend Call - API (querytaglist)] action in rfidreading widget.
   ApiCallResponse? querytaglistapiresponse;
   // Stores action output result for [Backend Call - API (GetTagsData)] action in rfidreading widget.
-  ApiCallResponse? apiResultnj9;
+  ApiCallResponse? getTagsDataResponse;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? clearrfidoutput;
   // State field(s) for Slider widget.

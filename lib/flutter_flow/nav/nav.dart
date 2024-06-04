@@ -78,6 +78,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'rfidreading',
           path: '/rfidreading',
           builder: (context, params) => const RfidreadingWidget(),
+        ),
+        FFRoute(
+          name: 'NewReading',
+          path: '/newReading',
+          builder: (context, params) => const NewReadingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
