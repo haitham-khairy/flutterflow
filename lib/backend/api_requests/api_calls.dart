@@ -192,7 +192,7 @@ class GetTagsDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
       apiUrl:
-          'https://e6fe-197-53-147-17.ngrok-free.app/v1/GetTagsData/GetTagsData',
+          'https://3db3-41-34-149-236.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

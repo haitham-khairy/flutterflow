@@ -378,6 +378,11 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                           .toList()
                           .cast<String>();
                       setState(() {});
+                      _model.apiResultp0d = await GetTagsDataCall.call(
+                        tagsListList: _model.tagsid,
+                      );
+
+                      setState(() {});
                     },
                     text: 'Show Tags',
                     options: FFButtonOptions(
