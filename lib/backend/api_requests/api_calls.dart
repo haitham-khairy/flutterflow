@@ -181,9 +181,10 @@ class LoginDataCall {
 
 class GetTagsDataCall {
   static Future<ApiCallResponse> call({
-    dynamic tagsListJson,
+    List<String>? tagsListList,
   }) async {
-    final tagsList = _serializeJson(tagsListJson, true);
+    final tagsList = _serializeList(tagsListList);
+
     final ffApiRequestBody = '''
 {
   "TagList": $tagsList

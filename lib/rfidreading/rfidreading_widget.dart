@@ -1,11 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -47,20 +45,8 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
             FFAppState().RFIDTagsList =
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
             setState(() {});
-            _model.querytaglistapiresponse = await QuerytaglistCall.call(
-              taglist:
-                  functions.taglisttostring(FFAppState().RFIDTagsList.toList()),
-              line: _model.linedropmenuValue,
-            );
-            _model.tagsid = functions
-                .tgagsListToList(FFAppState().RFIDTagsList.toList())
-                .map((e) => e.toString())
-                .toList()
-                .toList()
-                .cast<String>();
-            setState(() {});
             _model.getTagsDataResponse = await GetTagsDataCall.call(
-              tagsListJson:
+              tagsListList:
                   functions.tgagsListToList(FFAppState().RFIDTagsList.toList()),
             );
             _model.tagsid = (_model.getTagsDataResponse?.jsonBody ?? '')
@@ -169,7 +155,7 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Align(
@@ -387,145 +373,6 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                                   },
                                 );
                               },
-                            ),
-                          ),
-                        ),
-                        FlutterFlowDropDown<String>(
-                          controller: _model.linedropmenuValueController ??=
-                              FormFieldController<String>(null),
-                          options: const ['ML2', 'Fluttes', 'Jewels'],
-                          onChanged: (val) =>
-                              setState(() => _model.linedropmenuValue = val),
-                          width: 300.0,
-                          height: 56.0,
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          hintText: 'Select Line',
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 2.0,
-                          borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 2.0,
-                          borderRadius: 8.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 4.0, 16.0, 4.0),
-                          hidesUnderline: true,
-                          isOverButton: true,
-                          isSearchable: false,
-                          isMultiSelect: false,
-                        ),
-                      ].divide(const SizedBox(height: 0.0)),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 5.0, 0.0),
-                          child: Container(
-                            height: 200.0,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 1.0,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 15.0, 0.0),
-                              child: Builder(
-                                builder: (context) {
-                                  final taglifetimelist =
-                                      QuerytaglistCall.taglifetime(
-                                            (_model.querytaglistapiresponse
-                                                    ?.jsonBody ??
-                                                ''),
-                                          )?.toList() ??
-                                          [];
-                                  return ListView.separated(
-                                    padding: EdgeInsets.zero,
-                                    primary: false,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: taglifetimelist.length,
-                                    separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 6.0),
-                                    itemBuilder:
-                                        (context, taglifetimelistIndex) {
-                                      final taglifetimelistItem =
-                                          taglifetimelist[taglifetimelistIndex];
-                                      return Container(
-                                        width: double.infinity,
-                                        height: 25.0,
-                                        decoration: BoxDecoration(
-                                          color: (QuerytaglistCall.taglife(
-                                                    (_model.querytaglistapiresponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )![taglifetimelistIndex]) >
-                                                  11
-                                              ? FlutterFlowTheme.of(context)
-                                                  .error
-                                              : FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondary,
-                                          ),
-                                        ),
-                                        child: Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                taglifetimelistItem,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  (QuerytaglistCall.taglife(
-                                                    (_model.querytaglistapiresponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )?[taglifetimelistIndex])
-                                                      ?.toString(),
-                                                  'n',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
                             ),
                           ),
                         ),
