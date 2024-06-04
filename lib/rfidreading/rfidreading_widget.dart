@@ -45,14 +45,6 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
             FFAppState().RFIDTagsList =
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
             setState(() {});
-            _model.getTagsDataResponse = await GetTagsDataCall.call(
-              tagsListList:
-                  functions.tgagsListToList(FFAppState().RFIDTagsList.toList()),
-            );
-            _model.tagsid = (_model.getTagsDataResponse?.jsonBody ?? '')
-                .toList()
-                .cast<String>();
-            setState(() {});
           } else {
             await actions.rFIDConnectAction();
           }
@@ -379,6 +371,42 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                       ].divide(const SizedBox(height: 0.0)),
                     ),
                   ),
+                  FFButtonWidget(
+                    onPressed: () async {
+                      _model.apiResulttt9 = await GetTagsDataCall.call(
+                        tagsListList: functions.tgagsListToList(
+                            FFAppState().RFIDTagsList.toList()),
+                      );
+                      _model.tagsid = functions
+                          .tgagsListToList(FFAppState().RFIDTagsList.toList())
+                          .toList()
+                          .cast<String>();
+                      setState(() {});
+
+                      setState(() {});
+                    },
+                    text: 'Show Tags',
+                    options: FFButtonOptions(
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -392,15 +420,15 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
                           ),
                           child: Builder(
                             builder: (context) {
-                              final tags = _model.tagsid.toList();
+                              final tagsList = _model.tagsid.toList();
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
                                 scrollDirection: Axis.vertical,
-                                itemCount: tags.length,
-                                itemBuilder: (context, tagsIndex) {
-                                  final tagsItem = tags[tagsIndex];
+                                itemCount: tagsList.length,
+                                itemBuilder: (context, tagsListIndex) {
+                                  final tagsListItem = tagsList[tagsListIndex];
                                   return Text(
-                                    tagsItem,
+                                    tagsListItem,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
