@@ -45,6 +45,22 @@ class _RfidreadingWidgetState extends State<RfidreadingWidget> {
             FFAppState().RFIDTagsList =
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
             setState(() {});
+            _model.tagslistactionresponse = await actions.tagsListToList(
+              FFAppState().RFIDTagsList.toList(),
+            );
+            _model.getTagsDataResponse = await GetTagsDataCall.call(
+              tagsListList: _model.tagslistactionresponse,
+            );
+            FFAppState().QueriedTagDataList =
+                ((_model.getTagsDataResponse?.jsonBody ?? '')
+                        .toList()
+                        .map<QueriedTagDataStruct?>(
+                            QueriedTagDataStruct.maybeFromMap)
+                        .toList() as Iterable<QueriedTagDataStruct?>)
+                    .withoutNulls
+                    .toList()
+                    .cast<QueriedTagDataStruct>();
+            setState(() {});
           } else {
             await actions.rFIDConnectAction();
           }

@@ -61,4 +61,34 @@ class FFAppState extends ChangeNotifier {
   set ConnectionStatus(String value) {
     _ConnectionStatus = value;
   }
+
+  List<QueriedTagDataStruct> _QueriedTagDataList = [];
+  List<QueriedTagDataStruct> get QueriedTagDataList => _QueriedTagDataList;
+  set QueriedTagDataList(List<QueriedTagDataStruct> value) {
+    _QueriedTagDataList = value;
+  }
+
+  void addToQueriedTagDataList(QueriedTagDataStruct value) {
+    _QueriedTagDataList.add(value);
+  }
+
+  void removeFromQueriedTagDataList(QueriedTagDataStruct value) {
+    _QueriedTagDataList.remove(value);
+  }
+
+  void removeAtIndexFromQueriedTagDataList(int index) {
+    _QueriedTagDataList.removeAt(index);
+  }
+
+  void updateQueriedTagDataListAtIndex(
+    int index,
+    QueriedTagDataStruct Function(QueriedTagDataStruct) updateFn,
+  ) {
+    _QueriedTagDataList[index] = updateFn(_QueriedTagDataList[index]);
+  }
+
+  void insertAtIndexInQueriedTagDataList(
+      int index, QueriedTagDataStruct value) {
+    _QueriedTagDataList.insert(index, value);
+  }
 }

@@ -27,6 +27,10 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
   String? getStatusResponse;
   // Stores action output result for [Custom Action - readtagcount] action in rfidreading widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
+  // Stores action output result for [Custom Action - tagsListToList] action in rfidreading widget.
+  List<String>? tagslistactionresponse;
+  // Stores action output result for [Backend Call - API (GetTagsData)] action in rfidreading widget.
+  ApiCallResponse? getTagsDataResponse;
   // Stores action output result for [Custom Action - readtagcount] action in GetTagCountButton widget.
   List<RFIDTagsdataStruct>? clearrfidoutput;
   // State field(s) for Slider widget.

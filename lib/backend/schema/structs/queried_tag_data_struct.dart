@@ -9,14 +9,16 @@ class QueriedTagDataStruct extends BaseStruct {
   QueriedTagDataStruct({
     String? tagID,
     String? line,
+    String? printDate,
+    String? washingCount,
+    String? lastTimeWashed,
     String? lifetime,
-    String? washCount,
-    String? alarm,
   })  : _tagID = tagID,
         _line = line,
-        _lifetime = lifetime,
-        _washCount = washCount,
-        _alarm = alarm;
+        _printDate = printDate,
+        _washingCount = washingCount,
+        _lastTimeWashed = lastTimeWashed,
+        _lifetime = lifetime;
 
   // "TagID" field.
   String? _tagID;
@@ -30,31 +32,38 @@ class QueriedTagDataStruct extends BaseStruct {
   set line(String? val) => _line = val;
   bool hasLine() => _line != null;
 
+  // "PrintDate" field.
+  String? _printDate;
+  String get printDate => _printDate ?? '';
+  set printDate(String? val) => _printDate = val;
+  bool hasPrintDate() => _printDate != null;
+
+  // "WashingCount" field.
+  String? _washingCount;
+  String get washingCount => _washingCount ?? '';
+  set washingCount(String? val) => _washingCount = val;
+  bool hasWashingCount() => _washingCount != null;
+
+  // "LastTimeWashed" field.
+  String? _lastTimeWashed;
+  String get lastTimeWashed => _lastTimeWashed ?? '';
+  set lastTimeWashed(String? val) => _lastTimeWashed = val;
+  bool hasLastTimeWashed() => _lastTimeWashed != null;
+
   // "Lifetime" field.
   String? _lifetime;
   String get lifetime => _lifetime ?? '';
   set lifetime(String? val) => _lifetime = val;
   bool hasLifetime() => _lifetime != null;
 
-  // "WashCount" field.
-  String? _washCount;
-  String get washCount => _washCount ?? '';
-  set washCount(String? val) => _washCount = val;
-  bool hasWashCount() => _washCount != null;
-
-  // "Alarm" field.
-  String? _alarm;
-  String get alarm => _alarm ?? '';
-  set alarm(String? val) => _alarm = val;
-  bool hasAlarm() => _alarm != null;
-
   static QueriedTagDataStruct fromMap(Map<String, dynamic> data) =>
       QueriedTagDataStruct(
         tagID: data['TagID'] as String?,
         line: data['Line'] as String?,
+        printDate: data['PrintDate'] as String?,
+        washingCount: data['WashingCount'] as String?,
+        lastTimeWashed: data['LastTimeWashed'] as String?,
         lifetime: data['Lifetime'] as String?,
-        washCount: data['WashCount'] as String?,
-        alarm: data['Alarm'] as String?,
       );
 
   static QueriedTagDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -64,9 +73,10 @@ class QueriedTagDataStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'TagID': _tagID,
         'Line': _line,
+        'PrintDate': _printDate,
+        'WashingCount': _washingCount,
+        'LastTimeWashed': _lastTimeWashed,
         'Lifetime': _lifetime,
-        'WashCount': _washCount,
-        'Alarm': _alarm,
       }.withoutNulls;
 
   @override
@@ -79,16 +89,20 @@ class QueriedTagDataStruct extends BaseStruct {
           _line,
           ParamType.String,
         ),
+        'PrintDate': serializeParam(
+          _printDate,
+          ParamType.String,
+        ),
+        'WashingCount': serializeParam(
+          _washingCount,
+          ParamType.String,
+        ),
+        'LastTimeWashed': serializeParam(
+          _lastTimeWashed,
+          ParamType.String,
+        ),
         'Lifetime': serializeParam(
           _lifetime,
-          ParamType.String,
-        ),
-        'WashCount': serializeParam(
-          _washCount,
-          ParamType.String,
-        ),
-        'Alarm': serializeParam(
-          _alarm,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -105,18 +119,23 @@ class QueriedTagDataStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        printDate: deserializeParam(
+          data['PrintDate'],
+          ParamType.String,
+          false,
+        ),
+        washingCount: deserializeParam(
+          data['WashingCount'],
+          ParamType.String,
+          false,
+        ),
+        lastTimeWashed: deserializeParam(
+          data['LastTimeWashed'],
+          ParamType.String,
+          false,
+        ),
         lifetime: deserializeParam(
           data['Lifetime'],
-          ParamType.String,
-          false,
-        ),
-        washCount: deserializeParam(
-          data['WashCount'],
-          ParamType.String,
-          false,
-        ),
-        alarm: deserializeParam(
-          data['Alarm'],
           ParamType.String,
           false,
         ),
@@ -130,27 +149,30 @@ class QueriedTagDataStruct extends BaseStruct {
     return other is QueriedTagDataStruct &&
         tagID == other.tagID &&
         line == other.line &&
-        lifetime == other.lifetime &&
-        washCount == other.washCount &&
-        alarm == other.alarm;
+        printDate == other.printDate &&
+        washingCount == other.washingCount &&
+        lastTimeWashed == other.lastTimeWashed &&
+        lifetime == other.lifetime;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([tagID, line, lifetime, washCount, alarm]);
+  int get hashCode => const ListEquality()
+      .hash([tagID, line, printDate, washingCount, lastTimeWashed, lifetime]);
 }
 
 QueriedTagDataStruct createQueriedTagDataStruct({
   String? tagID,
   String? line,
+  String? printDate,
+  String? washingCount,
+  String? lastTimeWashed,
   String? lifetime,
-  String? washCount,
-  String? alarm,
 }) =>
     QueriedTagDataStruct(
       tagID: tagID,
       line: line,
+      printDate: printDate,
+      washingCount: washingCount,
+      lastTimeWashed: lastTimeWashed,
       lifetime: lifetime,
-      washCount: washCount,
-      alarm: alarm,
     );

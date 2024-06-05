@@ -1,9 +1,15 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/tag_content_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'new_reading_model.dart';
 export 'new_reading_model.dart';
 
@@ -24,6 +30,45 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
     super.initState();
     _model = createModel(context, () => NewReadingModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.instantTimer2 = InstantTimer.periodic(
+        duration: const Duration(milliseconds: 1000),
+        callback: (timer) async {
+          _model.getStatusResponse = await actions.getstatus();
+          _model.rfidstatus = _model.getStatusResponse!;
+          setState(() {});
+          if (_model.rfidstatus == 'Connected') {
+            _model.rfidtagdata = await actions.readtagcount(
+              false,
+            );
+            FFAppState().RFIDTagsList =
+                _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
+            setState(() {});
+            _model.tagslistactionresponse = await actions.tagsListToList(
+              FFAppState().RFIDTagsList.toList(),
+            );
+            _model.getTagsDataResponse = await GetTagsDataCall.call(
+              tagsListList: _model.tagslistactionresponse,
+            );
+            FFAppState().QueriedTagDataList =
+                ((_model.getTagsDataResponse?.jsonBody ?? '')
+                        .toList()
+                        .map<QueriedTagDataStruct?>(
+                            QueriedTagDataStruct.maybeFromMap)
+                        .toList() as Iterable<QueriedTagDataStruct?>)
+                    .withoutNulls
+                    .toList()
+                    .cast<QueriedTagDataStruct>();
+            setState(() {});
+          } else {
+            await actions.rFIDConnectAction();
+          }
+        },
+        startImmediately: true,
+      );
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -36,6 +81,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -276,8 +323,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                               Expanded(
                                 child: Builder(
                                   builder: (context) {
-                                    final tagsList =
-                                        _model.queriedtagdatalist.toList();
+                                    final tagsList = FFAppState()
+                                        .QueriedTagDataList
+                                        .toList();
                                     return InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -349,7 +397,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  tagsListItem.washCount,
+                                                  tagsListItem.washingCount,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -360,7 +408,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  tagsListItem.lifetime,
+                                                  tagsListItem.printDate,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
