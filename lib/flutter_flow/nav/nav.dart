@@ -44,7 +44,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const NewReadingWidget(),
+          : const TestWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,7 +62,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const NewReadingWidget(),
+              : const TestWidget(),
         ),
         FFRoute(
           name: 'Login',
@@ -83,6 +83,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'NewReading',
           path: '/newReading',
           builder: (context, params) => const NewReadingWidget(),
+        ),
+        FFRoute(
+          name: 'test',
+          path: '/test',
+          builder: (context, params) => const TestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

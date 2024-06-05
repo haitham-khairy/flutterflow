@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<List<QueriedTagDataStruct>> buildQueriedTagsList(
+Future<List<QueriedTagDataStruct>?> buildQueriedTagsList(
   List<String> id,
   List<String> line,
   List<String> printdate,
@@ -16,17 +16,10 @@ Future<List<QueriedTagDataStruct>> buildQueriedTagsList(
   List<String> lasttimewashed,
   List<String> lifetime,
 ) async {
-  QueriedTagDataStruct element = QueriedTagDataStruct(
-    tagID: '',
-    line: '',
-    lifetime: '',
-    lastTimeWashed: '',
-    printDate: '',
-    washingCount: '',
-  );
-  List<QueriedTagDataStruct> result = [];
+  QueriedTagDataStruct? element;
+  List<QueriedTagDataStruct>? result = [];
   for (int i = 0; i < id.length; i++) {
-    element.tagID = id[i];
+    element!.tagID = id[i];
     element.line = line[i];
     element.printDate = printdate[i];
     element.washingCount = washingcount[i];

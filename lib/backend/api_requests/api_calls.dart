@@ -269,6 +269,30 @@ class DummyJSONCall {
   }
 }
 
+class TestCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'test',
+      apiUrl:
+          'https://3db3-41-34-149-236.ngrok-free.app/v1/GetTagsData/GetTagsData',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static dynamic allData(dynamic response) => getJsonField(
+        response,
+        r'''$''',
+      );
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
