@@ -22,37 +22,37 @@ class QueriedTagDataStruct extends BaseStruct {
 
   // "TagID" field.
   String? _tagID;
-  String get tagID => _tagID ?? '';
+  String get tagID => _tagID ?? '\"\"';
   set tagID(String? val) => _tagID = val;
   bool hasTagID() => _tagID != null;
 
   // "Line" field.
   String? _line;
-  String get line => _line ?? '';
+  String get line => _line ?? '\"\"';
   set line(String? val) => _line = val;
   bool hasLine() => _line != null;
 
   // "PrintDate" field.
   String? _printDate;
-  String get printDate => _printDate ?? '';
+  String get printDate => _printDate ?? '\"\"';
   set printDate(String? val) => _printDate = val;
   bool hasPrintDate() => _printDate != null;
 
   // "WashingCount" field.
   String? _washingCount;
-  String get washingCount => _washingCount ?? '';
+  String get washingCount => _washingCount ?? '\"\"';
   set washingCount(String? val) => _washingCount = val;
   bool hasWashingCount() => _washingCount != null;
 
   // "LastTimeWashed" field.
   String? _lastTimeWashed;
-  String get lastTimeWashed => _lastTimeWashed ?? '';
+  String get lastTimeWashed => _lastTimeWashed ?? '\"\"';
   set lastTimeWashed(String? val) => _lastTimeWashed = val;
   bool hasLastTimeWashed() => _lastTimeWashed != null;
 
   // "Lifetime" field.
   String? _lifetime;
-  String get lifetime => _lifetime ?? '';
+  String get lifetime => _lifetime ?? '\"\"';
   set lifetime(String? val) => _lifetime = val;
   bool hasLifetime() => _lifetime != null;
 
