@@ -219,6 +219,31 @@ class GetTagsDataCall {
       alwaysAllowBody: false,
     );
   }
+
+  static dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$.ID''',
+      );
+  static dynamic line(dynamic response) => getJsonField(
+        response,
+        r'''$.Line''',
+      );
+  static dynamic printDate(dynamic response) => getJsonField(
+        response,
+        r'''$.PrintDate''',
+      );
+  static dynamic washingCount(dynamic response) => getJsonField(
+        response,
+        r'''$.WashingCount''',
+      );
+  static dynamic lastTimeWashed(dynamic response) => getJsonField(
+        response,
+        r'''$.LastTimeWashed''',
+      );
+  static dynamic lifetime(dynamic response) => getJsonField(
+        response,
+        r'''$.Lifetime''',
+      );
 }
 
 class ApiPagingParams {

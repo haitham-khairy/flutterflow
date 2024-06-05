@@ -8,20 +8,6 @@ import 'package:flutter/material.dart';
 class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
   ///  Local state fields for this page.
 
-  List<QueriedTagDataStruct> queriedtagdatalist = [];
-  void addToQueriedtagdatalist(QueriedTagDataStruct item) =>
-      queriedtagdatalist.add(item);
-  void removeFromQueriedtagdatalist(QueriedTagDataStruct item) =>
-      queriedtagdatalist.remove(item);
-  void removeAtIndexFromQueriedtagdatalist(int index) =>
-      queriedtagdatalist.removeAt(index);
-  void insertAtIndexInQueriedtagdatalist(
-          int index, QueriedTagDataStruct item) =>
-      queriedtagdatalist.insert(index, item);
-  void updateQueriedtagdatalistAtIndex(
-          int index, Function(QueriedTagDataStruct) updateFn) =>
-      queriedtagdatalist[index] = updateFn(queriedtagdatalist[index]);
-
   String rfidstatus = 'na';
 
   List<String> tagid = [];
