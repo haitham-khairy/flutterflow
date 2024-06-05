@@ -213,8 +213,16 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        _model.cleartagresponse = await actions.readtagcount(
+                          true,
+                        );
+                        FFAppState().RFIDTagsList = _model.cleartagresponse!
+                            .toList()
+                            .cast<RFIDTagsdataStruct>();
+                        setState(() {});
+
+                        setState(() {});
                       },
                       text: 'Clear list',
                       options: FFButtonOptions(

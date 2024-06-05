@@ -33,6 +33,8 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
   ApiCallResponse? getTagsDataResponse;
   // State field(s) for Slider widget.
   double? sliderValue;
+  // Stores action output result for [Custom Action - readtagcount] action in Button widget.
+  List<RFIDTagsdataStruct>? cleartagresponse;
 
   @override
   void initState(BuildContext context) {}
