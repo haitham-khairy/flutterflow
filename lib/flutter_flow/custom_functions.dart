@@ -60,3 +60,31 @@ List<String> tgagsListToList(List<RFIDTagsdataStruct> data) {
   }
   return result;
 }
+
+List<QueriedTagDataStruct> buildTagsDataList(
+  List<String> id,
+  List<String> printDate,
+  List<String> washingCount,
+  List<String> lastTimeWashed,
+  List<String> line,
+  List<String> lifetime,
+) {
+  List<QueriedTagDataStruct> result = [];
+  QueriedTagDataStruct element = QueriedTagDataStruct(
+      lastTimeWashed: '',
+      tagID: '',
+      line: '',
+      washingCount: '',
+      lifetime: '',
+      printDate: '');
+  for (int i = 0; i < id.length; i++) {
+    element.tagID = id[i];
+    element.line = line[i];
+    element.printDate = printDate[i];
+    element.washingCount = washingCount[i];
+    element.lastTimeWashed = lastTimeWashed[i];
+    element.lifetime = lifetime[i];
+    result.add(element);
+  }
+  return result;
+}

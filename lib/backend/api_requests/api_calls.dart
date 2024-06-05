@@ -220,36 +220,64 @@ class GetTagsDataCall {
     );
   }
 
-  static List? id(dynamic response) => getJsonField(
+  static List<String>? id(dynamic response) => (getJsonField(
         response,
         r'''$[:].ID''',
         true,
-      ) as List?;
-  static List? line(dynamic response) => getJsonField(
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? line(dynamic response) => (getJsonField(
         response,
         r'''$[:].Line''',
         true,
-      ) as List?;
-  static List? printDate(dynamic response) => getJsonField(
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? printDate(dynamic response) => (getJsonField(
         response,
         r'''$[:].PrintDate''',
         true,
-      ) as List?;
-  static List? washingCount(dynamic response) => getJsonField(
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? washingCount(dynamic response) => (getJsonField(
         response,
         r'''$[:].WashingCount''',
         true,
-      ) as List?;
-  static List? lastTimeWashed(dynamic response) => getJsonField(
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? lastTimeWashed(dynamic response) => (getJsonField(
         response,
         r'''$[:].LastTimeWashed''',
         true,
-      ) as List?;
-  static List? lifetime(dynamic response) => getJsonField(
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? lifetime(dynamic response) => (getJsonField(
         response,
         r'''$[:].Lifetime''',
         true,
-      ) as List?;
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static dynamic all(dynamic response) => getJsonField(
+        response,
+        r'''$''',
+      );
 }
 
 class DummyJSONCall {

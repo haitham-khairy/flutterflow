@@ -80,12 +80,8 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
   String? getStatusResponse;
   // Stores action output result for [Custom Action - readtagcount] action in NewReading widget.
   List<RFIDTagsdataStruct>? rfidtagdata;
-  // Stores action output result for [Custom Action - tagsListToList] action in NewReading widget.
-  List<String>? tagslistactionresponse;
   // Stores action output result for [Backend Call - API (GetTagsData)] action in NewReading widget.
   ApiCallResponse? getTagsDataResponse;
-  // Stores action output result for [Custom Action - buildQueriedTagsList] action in NewReading widget.
-  List<QueriedTagDataStruct>? buildQueriedTagsListResponse;
   // State field(s) for Slider widget.
   double? sliderValue;
   // Stores action output result for [Custom Action - readtagcount] action in Button widget.

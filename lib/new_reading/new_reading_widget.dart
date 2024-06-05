@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -45,88 +46,40 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
             FFAppState().RFIDTagsList =
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
             setState(() {});
-            _model.tagslistactionresponse = await actions.tagsListToList(
-              FFAppState().RFIDTagsList.toList(),
-            );
-            _model.tagid =
-                _model.tagslistactionresponse!.toList().cast<String>();
+            _model.tagid = functions
+                .tgagsListToList(FFAppState().RFIDTagsList.toList())
+                .toList()
+                .cast<String>();
             setState(() {});
             _model.getTagsDataResponse = await GetTagsDataCall.call(
               tagsListList: _model.tagid,
             );
-            await Future.wait([
-              Future(() async {
-                _model.id = GetTagsDataCall.id(
-                  (_model.getTagsDataResponse?.jsonBody ?? ''),
-                )!
-                    .map((e) => e.toString())
-                    .toList()
-                    .toList()
-                    .cast<String>();
-                setState(() {});
-              }),
-              Future(() async {
-                _model.line = GetTagsDataCall.line(
-                  (_model.getTagsDataResponse?.jsonBody ?? ''),
-                )!
-                    .map((e) => e.toString())
-                    .toList()
-                    .toList()
-                    .cast<String>();
-                setState(() {});
-              }),
-              Future(() async {
-                _model.washingcount = GetTagsDataCall.washingCount(
-                  (_model.getTagsDataResponse?.jsonBody ?? ''),
-                )!
-                    .map((e) => e.toString())
-                    .toList()
-                    .toList()
-                    .cast<String>();
-                setState(() {});
-              }),
-              Future(() async {
-                _model.lasttimewashed = GetTagsDataCall.lastTimeWashed(
-                  (_model.getTagsDataResponse?.jsonBody ?? ''),
-                )!
-                    .map((e) => e.toString())
-                    .toList()
-                    .toList()
-                    .cast<String>();
-                setState(() {});
-              }),
-              Future(() async {
-                _model.printdate = GetTagsDataCall.printDate(
-                  (_model.getTagsDataResponse?.jsonBody ?? ''),
-                )!
-                    .map((e) => e.toString())
-                    .toList()
-                    .toList()
-                    .cast<String>();
-                setState(() {});
-              }),
-              Future(() async {
-                _model.lifetime = GetTagsDataCall.lifetime(
-                  (_model.getTagsDataResponse?.jsonBody ?? ''),
-                )!
-                    .map((e) => e.toString())
-                    .toList()
-                    .toList()
-                    .cast<String>();
-                setState(() {});
-              }),
-            ]);
-            _model.buildQueriedTagsListResponse =
-                await actions.buildQueriedTagsList(
-              _model.id.toList(),
-              _model.line.toList(),
-              _model.printdate.toList(),
-              _model.washingcount.toList(),
-              _model.lasttimewashed.toList(),
-              _model.lifetime.toList(),
-            );
-            FFAppState().QueriedTagDataList = _model
-                .buildQueriedTagsListResponse!
+            FFAppState().QueriedTagDataList = functions
+                .buildTagsDataList(
+                    GetTagsDataCall.id(
+                      (_model.getTagsDataResponse?.jsonBody ?? ''),
+                    )!
+                        .toList(),
+                    GetTagsDataCall.printDate(
+                      (_model.getTagsDataResponse?.jsonBody ?? ''),
+                    )!
+                        .toList(),
+                    GetTagsDataCall.washingCount(
+                      (_model.getTagsDataResponse?.jsonBody ?? ''),
+                    )!
+                        .toList(),
+                    GetTagsDataCall.lastTimeWashed(
+                      (_model.getTagsDataResponse?.jsonBody ?? ''),
+                    )!
+                        .toList(),
+                    GetTagsDataCall.line(
+                      (_model.getTagsDataResponse?.jsonBody ?? ''),
+                    )!
+                        .toList(),
+                    GetTagsDataCall.lifetime(
+                      (_model.getTagsDataResponse?.jsonBody ?? ''),
+                    )!
+                        .toList())
                 .toList()
                 .cast<QueriedTagDataStruct>();
             setState(() {});
