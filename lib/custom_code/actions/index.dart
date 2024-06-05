@@ -5,3 +5,4 @@ export 'getstatus.dart' show getstatus;
 export 'dissconnect.dart' show dissconnect;
 export 'on_read_action.dart' show onReadAction;
 export 'tags_list_to_list.dart' show tagsListToList;
+export 'build_queried_tags_list.dart' show buildQueriedTagsList;

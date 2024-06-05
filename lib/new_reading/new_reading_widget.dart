@@ -54,15 +54,81 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
             _model.getTagsDataResponse = await GetTagsDataCall.call(
               tagsListList: _model.tagid,
             );
-            FFAppState().QueriedTagDataList =
-                ((_model.getTagsDataResponse?.jsonBody ?? '')
-                        .toList()
-                        .map<QueriedTagDataStruct?>(
-                            QueriedTagDataStruct.maybeFromMap)
-                        .toList() as Iterable<QueriedTagDataStruct?>)
-                    .withoutNulls
+            await Future.wait([
+              Future(() async {
+                _model.id = GetTagsDataCall.id(
+                  (_model.getTagsDataResponse?.jsonBody ?? ''),
+                )!
+                    .map((e) => e.toString())
                     .toList()
-                    .cast<QueriedTagDataStruct>();
+                    .toList()
+                    .cast<String>();
+                setState(() {});
+              }),
+              Future(() async {
+                _model.line = GetTagsDataCall.line(
+                  (_model.getTagsDataResponse?.jsonBody ?? ''),
+                )!
+                    .map((e) => e.toString())
+                    .toList()
+                    .toList()
+                    .cast<String>();
+                setState(() {});
+              }),
+              Future(() async {
+                _model.washingcount = GetTagsDataCall.washingCount(
+                  (_model.getTagsDataResponse?.jsonBody ?? ''),
+                )!
+                    .map((e) => e.toString())
+                    .toList()
+                    .toList()
+                    .cast<String>();
+                setState(() {});
+              }),
+              Future(() async {
+                _model.lasttimewashed = GetTagsDataCall.lastTimeWashed(
+                  (_model.getTagsDataResponse?.jsonBody ?? ''),
+                )!
+                    .map((e) => e.toString())
+                    .toList()
+                    .toList()
+                    .cast<String>();
+                setState(() {});
+              }),
+              Future(() async {
+                _model.printdate = GetTagsDataCall.printDate(
+                  (_model.getTagsDataResponse?.jsonBody ?? ''),
+                )!
+                    .map((e) => e.toString())
+                    .toList()
+                    .toList()
+                    .cast<String>();
+                setState(() {});
+              }),
+              Future(() async {
+                _model.lifetime = GetTagsDataCall.lifetime(
+                  (_model.getTagsDataResponse?.jsonBody ?? ''),
+                )!
+                    .map((e) => e.toString())
+                    .toList()
+                    .toList()
+                    .cast<String>();
+                setState(() {});
+              }),
+            ]);
+            _model.buildQueriedTagsListResponse =
+                await actions.buildQueriedTagsList(
+              _model.id.toList(),
+              _model.line.toList(),
+              _model.printdate.toList(),
+              _model.washingcount.toList(),
+              _model.lasttimewashed.toList(),
+              _model.lifetime.toList(),
+            );
+            FFAppState().QueriedTagDataList = _model
+                .buildQueriedTagsListResponse!
+                .toList()
+                .cast<QueriedTagDataStruct>();
             setState(() {});
           } else {
             await actions.rFIDConnectAction();
@@ -334,7 +400,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                               Expanded(
                                 child: Builder(
                                   builder: (context) {
-                                    final tagsList = FFAppState()
+                                    final queriedTagsList = FFAppState()
                                         .QueriedTagDataList
                                         .toList();
                                     return InkWell(
@@ -374,10 +440,12 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                         padding: EdgeInsets.zero,
                                         shrinkWrap: true,
                                         scrollDirection: Axis.vertical,
-                                        itemCount: tagsList.length,
-                                        itemBuilder: (context, tagsListIndex) {
-                                          final tagsListItem =
-                                              tagsList[tagsListIndex];
+                                        itemCount: queriedTagsList.length,
+                                        itemBuilder:
+                                            (context, queriedTagsListIndex) {
+                                          final queriedTagsListItem =
+                                              queriedTagsList[
+                                                  queriedTagsListIndex];
                                           return SingleChildScrollView(
                                             scrollDirection: Axis.horizontal,
                                             child: Row(
@@ -386,7 +454,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                   MainAxisAlignment.spaceAround,
                                               children: [
                                                 Text(
-                                                  tagsListItem.tagID,
+                                                  queriedTagsListItem.tagID,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -397,7 +465,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  tagsListItem.line,
+                                                  queriedTagsListItem.line,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -408,7 +476,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  tagsListItem.washingCount,
+                                                  queriedTagsListItem
+                                                      .washingCount,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -419,7 +488,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  tagsListItem.printDate,
+                                                  queriedTagsListItem.printDate,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium

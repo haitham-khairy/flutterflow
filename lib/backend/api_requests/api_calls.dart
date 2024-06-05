@@ -220,30 +220,53 @@ class GetTagsDataCall {
     );
   }
 
-  static dynamic id(dynamic response) => getJsonField(
+  static List? id(dynamic response) => getJsonField(
         response,
-        r'''$.ID''',
-      );
-  static dynamic line(dynamic response) => getJsonField(
+        r'''$[:].ID''',
+        true,
+      ) as List?;
+  static List? line(dynamic response) => getJsonField(
         response,
-        r'''$.Line''',
-      );
-  static dynamic printDate(dynamic response) => getJsonField(
+        r'''$[:].Line''',
+        true,
+      ) as List?;
+  static List? printDate(dynamic response) => getJsonField(
         response,
-        r'''$.PrintDate''',
-      );
-  static dynamic washingCount(dynamic response) => getJsonField(
+        r'''$[:].PrintDate''',
+        true,
+      ) as List?;
+  static List? washingCount(dynamic response) => getJsonField(
         response,
-        r'''$.WashingCount''',
-      );
-  static dynamic lastTimeWashed(dynamic response) => getJsonField(
+        r'''$[:].WashingCount''',
+        true,
+      ) as List?;
+  static List? lastTimeWashed(dynamic response) => getJsonField(
         response,
-        r'''$.LastTimeWashed''',
-      );
-  static dynamic lifetime(dynamic response) => getJsonField(
+        r'''$[:].LastTimeWashed''',
+        true,
+      ) as List?;
+  static List? lifetime(dynamic response) => getJsonField(
         response,
-        r'''$.Lifetime''',
-      );
+        r'''$[:].Lifetime''',
+        true,
+      ) as List?;
+}
+
+class DummyJSONCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'dummyJSON',
+      apiUrl: 'https://dummyjson.com/products',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {
