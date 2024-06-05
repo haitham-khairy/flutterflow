@@ -270,7 +270,15 @@ class DummyJSONCall {
 }
 
 class TestCall {
-  static Future<ApiCallResponse> call() async {
+  static Future<ApiCallResponse> call({
+    List<String>? tagsListList,
+  }) async {
+    final tagsList = _serializeList(tagsListList);
+
+    final ffApiRequestBody = '''
+{
+  "TagList": $tagsList
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'test',
       apiUrl:
@@ -278,6 +286,7 @@ class TestCall {
       callType: ApiCallType.POST,
       headers: {},
       params: {},
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
