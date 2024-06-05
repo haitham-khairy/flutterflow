@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -50,8 +49,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
               FFAppState().RFIDTagsList.toList(),
             );
             _model.getTagsDataResponse = await GetTagsDataCall.call(
-              tagsListList:
-                  functions.tgagsListToList(FFAppState().RFIDTagsList.toList()),
+              tagsListList: _model.tagslistactionresponse,
             );
             FFAppState().QueriedTagDataList =
                 ((_model.getTagsDataResponse?.jsonBody ?? '')
