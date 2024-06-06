@@ -513,7 +513,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                     children: [
                                                       Text(
                                                         queriedTagsListItem
-                                                            .printDate,
+                                                            .lifetime,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
