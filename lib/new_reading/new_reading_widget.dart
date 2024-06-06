@@ -436,7 +436,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                30.0, 0.0),
+                                                                50.0, 0.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
