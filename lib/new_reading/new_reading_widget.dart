@@ -391,11 +391,13 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                           },
                                         ).then((value) => safeSetState(() {}));
                                       },
-                                      child: ListView.builder(
+                                      child: ListView.separated(
                                         padding: EdgeInsets.zero,
                                         shrinkWrap: true,
                                         scrollDirection: Axis.vertical,
                                         itemCount: queriedTagsList.length,
+                                        separatorBuilder: (_, __) =>
+                                            const SizedBox(height: 5.0),
                                         itemBuilder:
                                             (context, queriedTagsListIndex) {
                                           final queriedTagsListItem =
@@ -405,17 +407,27 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondary,
+                                                      .accent2,
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  blurRadius: 4.0,
+                                                  color: Color(0x7039D2C0),
+                                                  offset: Offset(
+                                                    0.0,
+                                                    2.0,
+                                                  ),
+                                                )
+                                              ],
                                               border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .success,
+                                                        .secondary,
                                               ),
                                             ),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
+                                                  MainAxisAlignment.spaceAround,
                                               children: [
                                                 Column(
                                                   mainAxisSize:
@@ -488,7 +500,6 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                   ],
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(width: 30.0))
                                                   .addToStart(
                                                       const SizedBox(width: 5.0))
                                                   .addToEnd(
