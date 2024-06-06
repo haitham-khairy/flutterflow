@@ -70,20 +70,15 @@ List<QueriedTagDataStruct> buildTagsDataList(
   List<String> lifetime,
 ) {
   List<QueriedTagDataStruct> result = [];
-  QueriedTagDataStruct element = QueriedTagDataStruct(
-      lastTimeWashed: '',
-      tagID: '',
-      line: '',
-      washingCount: '',
-      lifetime: '',
-      printDate: '');
   for (int i = 0; i < id.length; i++) {
-    element.tagID = id[i];
-    element.line = line[i];
-    element.printDate = printDate[i];
-    element.washingCount = washingCount[i];
-    element.lastTimeWashed = lastTimeWashed[i];
-    element.lifetime = lifetime[i];
+    QueriedTagDataStruct element = QueriedTagDataStruct(
+      tagID: id[i],
+      printDate: printDate[i],
+      washingCount: washingCount[i],
+      lastTimeWashed: lastTimeWashed[i],
+      line: line[i],
+      lifetime: lifetime[i],
+    );
     result.add(element);
   }
   return result;
