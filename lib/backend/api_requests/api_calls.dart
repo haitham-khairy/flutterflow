@@ -235,10 +235,11 @@ class GetTagsDataCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
-  static dynamic all(dynamic response) => getJsonField(
+  static List? all(dynamic response) => getJsonField(
         response,
         r'''$''',
-      );
+        true,
+      ) as List?;
 }
 
 class ApiPagingParams {
