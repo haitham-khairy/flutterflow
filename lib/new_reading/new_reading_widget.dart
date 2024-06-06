@@ -401,84 +401,102 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                           final queriedTagsListItem =
                                               queriedTagsList[
                                                   queriedTagsListIndex];
-                                          return SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      queriedTagsListItem.tagID,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      queriedTagsListItem.line,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      queriedTagsListItem
-                                                          .washingCount,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      queriedTagsListItem
-                                                          .printDate,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                          return Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .success,
+                                            ),
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        queriedTagsListItem
+                                                            .tagID,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        queriedTagsListItem
+                                                            .line,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        queriedTagsListItem
+                                                            .washingCount,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        queriedTagsListItem
+                                                            .printDate,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },
