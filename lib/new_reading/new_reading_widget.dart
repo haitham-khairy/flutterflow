@@ -429,13 +429,14 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 children: [
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                75.0, 0.0),
+                                                                30.0, 0.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
