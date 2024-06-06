@@ -9,45 +9,6 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class UserloginCall {
-  static Future<ApiCallResponse> call({
-    String? username = '',
-    String? password = '',
-  }) async {
-    final ffApiRequestBody = '''
-{
-  "username": "$username",
-  "password": "$password"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Userlogin',
-      apiUrl:
-          'https://47fa-197-53-150-180.ngrok-free.app/flutterflow/userlogin?username=$username &password=$password',
-      callType: ApiCallType.POST,
-      headers: {},
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-
-  static String? userLoginMSG(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$.msg''',
-      ));
-  static bool? userLoginStatus(dynamic response) =>
-      castToType<bool>(getJsonField(
-        response,
-        r'''$.status''',
-      ));
-}
-
 class QuerytaglistCall {
   static Future<ApiCallResponse> call({
     String? taglist = '',
@@ -61,7 +22,7 @@ class QuerytaglistCall {
     return ApiManager.instance.makeApiCall(
       callName: 'querytaglist',
       apiUrl:
-          'https://e6fe-197-53-147-17.ngrok-free.app/flutterflow/QueryTagList',
+          'https://9eb5-41-46-208-159.ngrok-free.app/flutterflow/QueryTagList',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -104,7 +65,7 @@ class QueryTagDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'QueryTagData',
       apiUrl:
-          'https://3db3-41-34-149-236.ngrok-free.app/v1/GetTagsData/GetTagsData',
+          'https://9eb5-41-46-208-159.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -149,7 +110,7 @@ class LogInRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
       apiUrl:
-          'https://e6fe-197-53-147-17.ngrok-free.app/v1/LoginAction/LogInRequest',
+          'https://9eb5-41-46-208-159.ngrok-free.app/v1/LoginAction/LogInRequest',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -177,7 +138,7 @@ class LoginDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
       apiUrl:
-          'https://e6fe-197-53-147-17.ngrok-free.app/v1/loginData/UserDataFromApp',
+          'https://9eb5-41-46-208-159.ngrok-free.app/v1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -206,7 +167,7 @@ class GetTagsDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
       apiUrl:
-          'https://3db3-41-34-149-236.ngrok-free.app/v1/GetTagsData/GetTagsData',
+          'https://9eb5-41-46-208-159.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -275,56 +236,6 @@ class GetTagsDataCall {
           .withoutNulls
           .toList();
   static dynamic all(dynamic response) => getJsonField(
-        response,
-        r'''$''',
-      );
-}
-
-class DummyJSONCall {
-  static Future<ApiCallResponse> call() async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'dummyJSON',
-      apiUrl: 'https://dummyjson.com/products',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class TestCall {
-  static Future<ApiCallResponse> call({
-    List<String>? tagsListList,
-  }) async {
-    final tagsList = _serializeList(tagsListList);
-
-    final ffApiRequestBody = '''
-{
-  "TagList": $tagsList
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'test',
-      apiUrl:
-          'https://3db3-41-34-149-236.ngrok-free.app/v1/GetTagsData/GetTagsData',
-      callType: ApiCallType.POST,
-      headers: {},
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-
-  static dynamic allData(dynamic response) => getJsonField(
         response,
         r'''$''',
       );
