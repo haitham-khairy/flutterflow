@@ -405,7 +405,12 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .success,
+                                                      .secondary,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .success,
+                                              ),
                                             ),
                                             child: SingleChildScrollView(
                                               scrollDirection: Axis.horizontal,
