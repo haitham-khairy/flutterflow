@@ -293,7 +293,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         padding: const EdgeInsets.all(5.0),
                         child: Container(
                           width: 100.0,
-                          height: 500.0,
+                          height: 300.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
