@@ -400,7 +400,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                         scrollDirection: Axis.vertical,
                                         itemCount: queriedTagsList.length,
                                         separatorBuilder: (_, __) =>
-                                            const SizedBox(height: 5.0),
+                                            const SizedBox(height: 2.0),
                                         itemBuilder:
                                             (context, queriedTagsListIndex) {
                                           final queriedTagsListItem =
@@ -501,7 +501,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      5.0,
+                                                                      7.0,
                                                                       0.0,
                                                                       0.0,
                                                                       0.0),
@@ -538,7 +538,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
-                                                                      5.0,
+                                                                      7.0,
                                                                       0.0),
                                                           child: Text(
                                                             queriedTagsListItem
