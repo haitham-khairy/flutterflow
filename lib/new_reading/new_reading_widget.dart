@@ -361,74 +361,80 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                     final queriedTagsList = FFAppState()
                                         .QueriedTagDataList
                                         .toList();
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: const Color(0xE6FFFFFF),
-                                          useSafeArea: true,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: const SizedBox(
-                                                  height: 350.0,
-                                                  child: TagContentWidget(),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(() {}));
-                                      },
-                                      child: ListView.separated(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: queriedTagsList.length,
-                                        separatorBuilder: (_, __) =>
-                                            const SizedBox(height: 2.0),
-                                        itemBuilder:
-                                            (context, queriedTagsListIndex) {
-                                          final queriedTagsListItem =
-                                              queriedTagsList[
-                                                  queriedTagsListIndex];
-                                          return Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: Container(
-                                              decoration: BoxDecoration(
+                                    return ListView.separated(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: queriedTagsList.length,
+                                      separatorBuilder: (_, __) =>
+                                          const SizedBox(height: 2.0),
+                                      itemBuilder:
+                                          (context, queriedTagsListIndex) {
+                                        final queriedTagsListItem =
+                                            queriedTagsList[
+                                                queriedTagsListIndex];
+                                        return Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .accent2,
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  blurRadius: 4.0,
+                                                  color: Color(0x7039D2C0),
+                                                  offset: Offset(
+                                                    0.0,
+                                                    2.0,
+                                                  ),
+                                                )
+                                              ],
+                                              border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .accent2,
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                    blurRadius: 4.0,
-                                                    color: Color(0x7039D2C0),
-                                                    offset: Offset(
-                                                      0.0,
-                                                      2.0,
-                                                    ),
-                                                  )
-                                                ],
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary,
-                                                ),
+                                                        .secondary,
                                               ),
+                                            ),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await showModalBottomSheet(
+                                                  isScrollControlled: true,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  enableDrag: false,
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child: Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child: TagContentWidget(
+                                                          componentlistitem:
+                                                              queriedTagsListItem,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then((value) =>
+                                                    safeSetState(() {}));
+                                              },
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -564,9 +570,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                         const SizedBox(width: 5.0)),
                                               ),
                                             ),
-                                          );
-                                        },
-                                      ),
+                                          ),
+                                        );
+                                      },
                                     );
                                   },
                                 ),

@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -7,7 +8,12 @@ import 'tag_content_model.dart';
 export 'tag_content_model.dart';
 
 class TagContentWidget extends StatefulWidget {
-  const TagContentWidget({super.key});
+  const TagContentWidget({
+    super.key,
+    this.componentlistitem,
+  });
+
+  final QueriedTagDataStruct? componentlistitem;
 
   @override
   State<TagContentWidget> createState() => _TagContentWidgetState();
@@ -98,7 +104,10 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                         ),
                   ),
                   Text(
-                    'Hello World',
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.lifetime,
+                      'NA',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
