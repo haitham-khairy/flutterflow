@@ -311,7 +311,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     'TagID',
@@ -438,7 +438,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                   Expanded(
                                                     child: Container(
                                                       width: 100.0,
-                                                      height: 50.0,
+                                                      height: 20.0,
                                                       decoration:
                                                           const BoxDecoration(),
                                                       child: Align(
@@ -464,29 +464,33 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                   Expanded(
                                                     child: Container(
                                                       width: 100.0,
-                                                      height: 50.0,
+                                                      height: 20.0,
                                                       decoration:
                                                           const BoxDecoration(),
-                                                      child: Text(
-                                                        queriedTagsListItem
-                                                            .line,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Text(
+                                                          queriedTagsListItem
+                                                              .line,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                   Expanded(
                                                     child: Container(
                                                       width: 100.0,
-                                                      height: 50.0,
+                                                      height: 20.0,
                                                       decoration:
                                                           const BoxDecoration(),
                                                       child: Align(
@@ -512,7 +516,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                   Expanded(
                                                     child: Container(
                                                       width: 100.0,
-                                                      height: 50.0,
+                                                      height: 20.0,
                                                       decoration:
                                                           const BoxDecoration(),
                                                       child: Align(
