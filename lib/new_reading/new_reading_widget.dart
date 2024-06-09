@@ -489,19 +489,23 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       height: 50.0,
                                                       decoration:
                                                           const BoxDecoration(),
-                                                      child: Text(
-                                                        queriedTagsListItem
-                                                            .washingCount,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Text(
+                                                          queriedTagsListItem
+                                                              .washingCount,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
