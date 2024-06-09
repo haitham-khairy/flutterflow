@@ -93,7 +93,7 @@ List<QueriedTagDataStruct>? buildTagsDataList(
   return result;
 }
 
-bool isTagsListEmpty(List<RFIDTagsdataStruct> listOfRFIDData) {
+bool isTagsListNotEmpty(List<RFIDTagsdataStruct> listOfRFIDData) {
   if (listOfRFIDData.isEmpty || listOfRFIDData == null) {
     return false;
   } else {
