@@ -316,6 +316,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         FFAppState().RFIDTagsList = _model.cleartagresponse!
                             .toList()
                             .cast<RFIDTagsdataStruct>();
+                        FFAppState().QueriedTagDataList = [];
                         setState(() {});
 
                         setState(() {});
