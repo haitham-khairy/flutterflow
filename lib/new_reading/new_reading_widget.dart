@@ -56,6 +56,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                     .tgagsListToList(FFAppState().RFIDTagsList.toList())
                     .toList()
                     .cast<String>();
+                _model.listsize = functions
+                    .tgagsListToList(FFAppState().RFIDTagsList.toList())
+                    .length;
                 setState(() {});
                 _model.getTagsDataResponse = await GetTagsDataCall.call(
                   tagsListList: _model.tagid,
