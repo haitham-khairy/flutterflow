@@ -433,7 +433,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
-                                                        .spaceAround,
+                                                        .spaceEvenly,
                                                 children: [
                                                   Expanded(
                                                     child: Container(
@@ -524,9 +524,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                     ),
                                                   ),
                                                 ]
-                                                    .addToStart(
+                                                    .divide(
                                                         const SizedBox(width: 5.0))
-                                                    .addToEnd(
+                                                    .around(
                                                         const SizedBox(width: 5.0)),
                                               ),
                                             ),
