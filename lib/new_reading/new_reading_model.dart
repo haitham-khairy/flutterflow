@@ -72,6 +72,8 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
   void updateLifetimeAtIndex(int index, Function(String) updateFn) =>
       lifetime[index] = updateFn(lifetime[index]);
 
+  int listsize = 0;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

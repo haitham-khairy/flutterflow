@@ -47,37 +47,39 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
             setState(() {});
             if (functions.isTagsListEmpty(FFAppState().RFIDTagsList.toList())) {
-              _model.tagid = functions
-                  .tgagsListToList(FFAppState().RFIDTagsList.toList())
-                  .toList()
-                  .cast<String>();
-              setState(() {});
-              _model.getTagsDataResponse = await GetTagsDataCall.call(
-                tagsListList: _model.tagid,
-              );
-              FFAppState().QueriedTagDataList = functions
-                  .buildTagsDataList(
-                      GetTagsDataCall.id(
-                        (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )?.toList(),
-                      GetTagsDataCall.printDate(
-                        (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )?.toList(),
-                      GetTagsDataCall.washingCount(
-                        (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )?.toList(),
-                      GetTagsDataCall.lastTimeWashed(
-                        (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )?.toList(),
-                      GetTagsDataCall.line(
-                        (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )?.toList(),
-                      GetTagsDataCall.lifetime(
-                        (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )?.toList())!
-                  .toList()
-                  .cast<QueriedTagDataStruct>();
-              setState(() {});
+              if (_model.listsize != FFAppState().RFIDTagsList.length) {
+                _model.tagid = functions
+                    .tgagsListToList(FFAppState().RFIDTagsList.toList())
+                    .toList()
+                    .cast<String>();
+                setState(() {});
+                _model.getTagsDataResponse = await GetTagsDataCall.call(
+                  tagsListList: _model.tagid,
+                );
+                FFAppState().QueriedTagDataList = functions
+                    .buildTagsDataList(
+                        GetTagsDataCall.id(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.printDate(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.washingCount(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.lastTimeWashed(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.line(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.lifetime(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList())!
+                    .toList()
+                    .cast<QueriedTagDataStruct>();
+                setState(() {});
+              }
             }
           } else {
             await actions.rFIDConnectAction();
