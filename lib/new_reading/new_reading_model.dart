@@ -92,8 +92,6 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
   ApiCallResponse? getTagsDataRsponse1;
   // Stores action output result for [Custom Action - readtagcount] action in Button widget.
   List<RFIDTagsdataStruct>? cleartagresponse;
-  // Stores action output result for [Backend Call - API (SendTagsList)] action in Button widget.
-  ApiCallResponse? apiResult412;
 
   @override
   void initState(BuildContext context) {}
