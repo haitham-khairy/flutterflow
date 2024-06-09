@@ -470,7 +470,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       child: Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.0, 0.0),
+                                                                -1.0, 0.0),
                                                         child: Text(
                                                           queriedTagsListItem
                                                               .line,
@@ -496,7 +496,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       child: Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.0, 0.0),
+                                                                -1.0, 0.0),
                                                         child: Text(
                                                           queriedTagsListItem
                                                               .washingCount,
