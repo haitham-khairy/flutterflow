@@ -146,6 +146,34 @@ class GetTagsDataCall {
       ) as List?;
 }
 
+class SendTagsListCall {
+  static Future<ApiCallResponse> call({
+    List<String>? tagsListList,
+  }) async {
+    final tagsList = _serializeList(tagsListList);
+
+    final ffApiRequestBody = '''
+{
+  "TagList": $tagsList
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SendTagsList',
+      apiUrl:
+          'https://9eb5-41-46-208-159.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
