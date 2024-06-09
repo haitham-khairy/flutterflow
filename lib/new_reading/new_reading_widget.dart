@@ -441,19 +441,27 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       height: 50.0,
                                                       decoration:
                                                           const BoxDecoration(),
-                                                      child: Text(
-                                                        queriedTagsListItem
-                                                            .tagID,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          queriedTagsListItem
+                                                              .tagID,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -507,12 +515,23 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       height: 50.0,
                                                       decoration:
                                                           const BoxDecoration(),
-                                                      child: Text(
-                                                        queriedTagsListItem
-                                                            .lifetime,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                1.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      5.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            queriedTagsListItem
+                                                                .lifetime,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
@@ -520,6 +539,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
