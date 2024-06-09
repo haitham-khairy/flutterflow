@@ -406,8 +406,10 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                 await showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   backgroundColor:
-                                                      Colors.transparent,
-                                                  enableDrag: false,
+                                                      const Color(0xB6FFFFFF),
+                                                  barrierColor:
+                                                      const Color(0xC957636C),
+                                                  useSafeArea: true,
                                                   context: context,
                                                   builder: (context) {
                                                     return GestureDetector(
@@ -425,9 +427,13 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                         padding: MediaQuery
                                                             .viewInsetsOf(
                                                                 context),
-                                                        child: TagContentWidget(
-                                                          componentlistitem:
-                                                              queriedTagsListItem,
+                                                        child: SizedBox(
+                                                          height: 400.0,
+                                                          child:
+                                                              TagContentWidget(
+                                                            componentlistitem:
+                                                                queriedTagsListItem,
+                                                          ),
                                                         ),
                                                       ),
                                                     );
