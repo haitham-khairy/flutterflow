@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -219,67 +220,86 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                       ),
                     ),
                     Expanded(
-                      child: Slider(
-                        activeColor: FlutterFlowTheme.of(context).tertiary,
-                        inactiveColor: FlutterFlowTheme.of(context).alternate,
-                        min: 0.0,
-                        max: 75.0,
-                        value: _model.sliderValue ??= 1.0,
-                        onChanged: (newValue) async {
-                          newValue = double.parse(newValue.toStringAsFixed(2));
-                          setState(() => _model.sliderValue = newValue);
-                          _model.readTagCountResponse =
-                              await actions.readtagcount(
-                            false,
-                          );
-                          FFAppState().RFIDTagsList = _model
-                              .readTagCountResponse!
-                              .where((e) => functions
-                                      .isNull(_model.sliderValue?.toString())
-                                  ? true
-                                  : functions.greaterOrEqual(
-                                      _model.sliderValue!,
-                                      e.peakRSSI.toString()))
-                              .toList()
-                              .cast<RFIDTagsdataStruct>();
-                          setState(() {});
-                          _model.getTagsDataRsponse1 =
-                              await GetTagsDataCall.call(
-                            tagsListList: functions.tgagsListToList(
-                                FFAppState().RFIDTagsList.toList()),
-                          );
-                          FFAppState().QueriedTagDataList = functions
-                              .buildTagsDataList(
-                                  GetTagsDataCall.id(
-                                    (_model.getTagsDataRsponse1?.jsonBody ??
-                                        ''),
-                                  )?.toList(),
-                                  GetTagsDataCall.printDate(
-                                    (_model.getTagsDataRsponse1?.jsonBody ??
-                                        ''),
-                                  )?.toList(),
-                                  GetTagsDataCall.washingCount(
-                                    (_model.getTagsDataRsponse1?.jsonBody ??
-                                        ''),
-                                  )?.toList(),
-                                  GetTagsDataCall.lastTimeWashed(
-                                    (_model.getTagsDataRsponse1?.jsonBody ??
-                                        ''),
-                                  )?.toList(),
-                                  GetTagsDataCall.line(
-                                    (_model.getTagsDataRsponse1?.jsonBody ??
-                                        ''),
-                                  )?.toList(),
-                                  GetTagsDataCall.lifetime(
-                                    (_model.getTagsDataRsponse1?.jsonBody ??
-                                        ''),
-                                  )?.toList())!
-                              .toList()
-                              .cast<QueriedTagDataStruct>();
-                          setState(() {});
+                      child: SliderTheme(
+                        data: const SliderThemeData(
+                          showValueIndicator: ShowValueIndicator.always,
+                        ),
+                        child: Slider(
+                          activeColor: FlutterFlowTheme.of(context).tertiary,
+                          inactiveColor: FlutterFlowTheme.of(context).alternate,
+                          min: 0.0,
+                          max: 75.0,
+                          value: _model.sliderValue ??= 1.0,
+                          label: _model.sliderValue?.toStringAsFixed(0),
+                          onChanged: (newValue) {
+                            newValue =
+                                double.parse(newValue.toStringAsFixed(0));
+                            setState(() => _model.sliderValue = newValue);
+                            EasyDebounce.debounce(
+                              '_model.sliderValue',
+                              const Duration(milliseconds: 500),
+                              () async {
+                                _model.readTagCountResponse =
+                                    await actions.readtagcount(
+                                  false,
+                                );
+                                FFAppState().RFIDTagsList = _model
+                                    .readTagCountResponse!
+                                    .where((e) => functions.isNull(
+                                            _model.sliderValue?.toString())
+                                        ? true
+                                        : functions.greaterOrEqual(
+                                            _model.sliderValue!,
+                                            e.peakRSSI.toString()))
+                                    .toList()
+                                    .cast<RFIDTagsdataStruct>();
+                                setState(() {});
+                                _model.getTagsDataRsponse1 =
+                                    await GetTagsDataCall.call(
+                                  tagsListList: functions.tgagsListToList(
+                                      FFAppState().RFIDTagsList.toList()),
+                                );
+                                FFAppState().QueriedTagDataList = functions
+                                    .buildTagsDataList(
+                                        GetTagsDataCall.id(
+                                          (_model.getTagsDataRsponse1
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.printDate(
+                                          (_model.getTagsDataRsponse1
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.washingCount(
+                                          (_model.getTagsDataRsponse1
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.lastTimeWashed(
+                                          (_model.getTagsDataRsponse1
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.line(
+                                          (_model.getTagsDataRsponse1
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.lifetime(
+                                          (_model.getTagsDataRsponse1
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList())!
+                                    .toList()
+                                    .cast<QueriedTagDataStruct>();
+                                setState(() {});
 
-                          setState(() {});
-                        },
+                                setState(() {});
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],
