@@ -43,8 +43,14 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
             _model.rfidtagdata = await actions.readtagcount(
               false,
             );
-            FFAppState().RFIDTagsList =
-                _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
+            FFAppState().RFIDTagsList = _model.rfidtagdata!
+                .where((e) => functions.isNull(_model.sliderValue?.toString())
+                    ? true
+                    : functions.greaterOrEqual(
+                        _model.sliderValue!, e.peakRSSI.toString()))
+                .toList()
+                .toList()
+                .cast<RFIDTagsdataStruct>();
             setState(() {});
             if (functions.isTagsListEmpty(FFAppState().RFIDTagsList.toList())) {
               _model.tagid = functions
