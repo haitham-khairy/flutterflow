@@ -441,14 +441,10 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       height: 50.0,
                                                       decoration:
                                                           const BoxDecoration(),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
                                                         child: Text(
                                                           queriedTagsListItem
                                                               .tagID,
@@ -518,7 +514,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                       child: Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                1.0, 0.0),
+                                                                0.0, 0.0),
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
