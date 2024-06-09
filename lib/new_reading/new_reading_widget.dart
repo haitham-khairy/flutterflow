@@ -237,7 +237,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                             setState(() => _model.sliderValue = newValue);
                             EasyDebounce.debounce(
                               '_model.sliderValue',
-                              const Duration(milliseconds: 500),
+                              const Duration(milliseconds: 1000),
                               () async {
                                 _model.readTagCountResponse =
                                     await actions.readtagcount(
