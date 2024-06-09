@@ -59,28 +59,22 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                   .buildTagsDataList(
                       GetTagsDataCall.id(
                         (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )!
-                          .toList(),
+                      )?.toList(),
                       GetTagsDataCall.printDate(
                         (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )!
-                          .toList(),
+                      )?.toList(),
                       GetTagsDataCall.washingCount(
                         (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )!
-                          .toList(),
+                      )?.toList(),
                       GetTagsDataCall.lastTimeWashed(
                         (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )!
-                          .toList(),
+                      )?.toList(),
                       GetTagsDataCall.line(
                         (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )!
-                          .toList(),
+                      )?.toList(),
                       GetTagsDataCall.lifetime(
                         (_model.getTagsDataResponse?.jsonBody ?? ''),
-                      )!
-                          .toList())
+                      )?.toList())!
                   .toList()
                   .cast<QueriedTagDataStruct>();
               setState(() {});
@@ -250,33 +244,27 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                   GetTagsDataCall.id(
                                     (_model.getTagsDataRsponse1?.jsonBody ??
                                         ''),
-                                  )!
-                                      .toList(),
+                                  )?.toList(),
                                   GetTagsDataCall.printDate(
                                     (_model.getTagsDataRsponse1?.jsonBody ??
                                         ''),
-                                  )!
-                                      .toList(),
+                                  )?.toList(),
                                   GetTagsDataCall.washingCount(
                                     (_model.getTagsDataRsponse1?.jsonBody ??
                                         ''),
-                                  )!
-                                      .toList(),
+                                  )?.toList(),
                                   GetTagsDataCall.lastTimeWashed(
                                     (_model.getTagsDataRsponse1?.jsonBody ??
                                         ''),
-                                  )!
-                                      .toList(),
+                                  )?.toList(),
                                   GetTagsDataCall.line(
                                     (_model.getTagsDataRsponse1?.jsonBody ??
                                         ''),
-                                  )!
-                                      .toList(),
+                                  )?.toList(),
                                   GetTagsDataCall.lifetime(
                                     (_model.getTagsDataRsponse1?.jsonBody ??
                                         ''),
-                                  )!
-                                      .toList())
+                                  )?.toList())!
                               .toList()
                               .cast<QueriedTagDataStruct>();
                           setState(() {});
