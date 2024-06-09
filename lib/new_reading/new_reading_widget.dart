@@ -34,7 +34,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.instantTimer2 = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 1000),
         callback: (timer) async {
           _model.getStatusResponse = await actions.getstatus();
           _model.rfidstatus = _model.getStatusResponse!;
