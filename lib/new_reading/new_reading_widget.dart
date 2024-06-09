@@ -222,9 +222,66 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         min: 0.0,
                         max: 75.0,
                         value: _model.sliderValue ??= 1.0,
-                        onChanged: (newValue) {
+                        onChanged: (newValue) async {
                           newValue = double.parse(newValue.toStringAsFixed(2));
                           setState(() => _model.sliderValue = newValue);
+                          _model.readTagCountResponse =
+                              await actions.readtagcount(
+                            false,
+                          );
+                          FFAppState().RFIDTagsList = _model
+                              .readTagCountResponse!
+                              .where((e) => functions
+                                      .isNull(_model.sliderValue?.toString())
+                                  ? true
+                                  : functions.greaterOrEqual(
+                                      _model.sliderValue!,
+                                      e.peakRSSI.toString()))
+                              .toList()
+                              .cast<RFIDTagsdataStruct>();
+                          setState(() {});
+                          _model.getTagsDataRsponse1 =
+                              await GetTagsDataCall.call(
+                            tagsListList: functions.tgagsListToList(
+                                FFAppState().RFIDTagsList.toList()),
+                          );
+                          FFAppState().QueriedTagDataList = functions
+                              .buildTagsDataList(
+                                  GetTagsDataCall.id(
+                                    (_model.getTagsDataRsponse1?.jsonBody ??
+                                        ''),
+                                  )!
+                                      .toList(),
+                                  GetTagsDataCall.printDate(
+                                    (_model.getTagsDataRsponse1?.jsonBody ??
+                                        ''),
+                                  )!
+                                      .toList(),
+                                  GetTagsDataCall.washingCount(
+                                    (_model.getTagsDataRsponse1?.jsonBody ??
+                                        ''),
+                                  )!
+                                      .toList(),
+                                  GetTagsDataCall.lastTimeWashed(
+                                    (_model.getTagsDataRsponse1?.jsonBody ??
+                                        ''),
+                                  )!
+                                      .toList(),
+                                  GetTagsDataCall.line(
+                                    (_model.getTagsDataRsponse1?.jsonBody ??
+                                        ''),
+                                  )!
+                                      .toList(),
+                                  GetTagsDataCall.lifetime(
+                                    (_model.getTagsDataRsponse1?.jsonBody ??
+                                        ''),
+                                  )!
+                                      .toList())
+                              .toList()
+                              .cast<QueriedTagDataStruct>();
+                          setState(() {});
+
+                          setState(() {});
                         },
                       ),
                     ),

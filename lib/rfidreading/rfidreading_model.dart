@@ -35,8 +35,6 @@ class RfidreadingModel extends FlutterFlowModel<RfidreadingWidget> {
   List<RFIDTagsdataStruct>? clearrfidoutput;
   // State field(s) for Slider widget.
   double? sliderValue;
-  // Stores action output result for [Backend Call - API (QueryTagData)] action in Container widget.
-  ApiCallResponse? tagdata;
   // Stores action output result for [Backend Call - API (GetTagsData)] action in Button widget.
   ApiCallResponse? apiResultp0d;
 
