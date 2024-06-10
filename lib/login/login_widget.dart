@@ -96,7 +96,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(15.0, 50.0, 15.0, 50.0),
+                      const EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 30.0),
                   child: Container(
                     height: 300.0,
                     decoration: BoxDecoration(
