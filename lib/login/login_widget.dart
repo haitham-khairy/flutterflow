@@ -301,7 +301,17 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   ).toString();
                                   setState(() {});
                                   if (_model.loginstatus == 'true') {
-                                    context.pushNamed('rfidreading');
+                                    context.goNamed(
+                                      'NewReading',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.bottomToTop,
+                                          duration: Duration(milliseconds: 100),
+                                        ),
+                                      },
+                                    );
                                   } else {
                                     await showDialog(
                                       context: context,

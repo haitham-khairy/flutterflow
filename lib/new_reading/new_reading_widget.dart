@@ -310,15 +310,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        _model.cleartagresponse = await actions.readtagcount(
-                          true,
-                        );
-                        FFAppState().RFIDTagsList = _model.cleartagresponse!
-                            .toList()
-                            .cast<RFIDTagsdataStruct>();
+                        FFAppState().RFIDTagsList = [];
                         FFAppState().QueriedTagDataList = [];
-                        setState(() {});
-
                         setState(() {});
                       },
                       text: 'Clear list',

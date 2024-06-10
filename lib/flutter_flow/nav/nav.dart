@@ -44,7 +44,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const NewReadingWidget(),
+          : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,22 +62,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const NewReadingWidget(),
+              : const LoginWidget(),
         ),
         FFRoute(
           name: 'Login',
           path: '/login',
           builder: (context, params) => const LoginWidget(),
-        ),
-        FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'rfidreading',
-          path: '/rfidreading',
-          builder: (context, params) => const RfidreadingWidget(),
         ),
         FFRoute(
           name: 'NewReading',
