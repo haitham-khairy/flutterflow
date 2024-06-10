@@ -60,40 +60,32 @@ class _LoginWidgetState extends State<LoginWidget> {
               children: [
                 Align(
                   alignment: const AlignmentDirectional(0.0, -1.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: SvgPicture.asset(
-                        'assets/images/logo-main.svg',
-                        fit: BoxFit.scaleDown,
-                        alignment: const Alignment(0.0, -1.0),
-                      ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: SvgPicture.asset(
+                      'assets/images/logo-main.svg',
+                      fit: BoxFit.scaleDown,
+                      alignment: const Alignment(0.0, -1.0),
                     ),
                   ),
                 ),
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
-                    child: Text(
-                      'Rework Bins Traceability',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 24.0,
-                            letterSpacing: 0.0,
-                          ),
-                    ),
+                  child: Text(
+                    'Rework Bins Traceability',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 24.0,
+                          letterSpacing: 0.0,
+                        ),
                   ),
                 ),
-              ],
+              ].divide(const SizedBox(height: 5.0)),
             ),
           ),
           actions: const [],
           centerTitle: false,
-          toolbarHeight: 150.0,
+          toolbarHeight: 100.0,
           elevation: 2.0,
         ),
         body: SafeArea(
