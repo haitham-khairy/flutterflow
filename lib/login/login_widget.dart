@@ -408,9 +408,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                           Align(
                             alignment: const AlignmentDirectional(1.0, 1.0),
                             child: Row(
-                              mainAxisSize: MainAxisSize.max,
+                              mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Align(
                                   alignment: const AlignmentDirectional(1.0, 1.0),
