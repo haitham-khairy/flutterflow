@@ -474,7 +474,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                 await showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   backgroundColor:
-                                                      const Color(0xB6FFFFFF),
+                                                      const Color(0xCEFFFFFF),
                                                   barrierColor:
                                                       const Color(0xC957636C),
                                                   useSafeArea: true,
