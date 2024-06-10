@@ -456,7 +456,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ],
                           ),
                         ),
-                      ].addToStart(const SizedBox(height: 50.0)),
+                      ].addToStart(const SizedBox(height: 40.0)),
                     ),
                   ),
                 ),
