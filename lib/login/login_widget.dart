@@ -481,7 +481,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Developed by ManEx Systems ',
