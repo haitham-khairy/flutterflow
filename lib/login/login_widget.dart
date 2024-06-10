@@ -336,8 +336,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title:
-                                            const Text('Empty Username or Password'),
+                                        title: const Text('Filed To Login'),
+                                        content:
+                                            const Text('EMpty username or password'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
