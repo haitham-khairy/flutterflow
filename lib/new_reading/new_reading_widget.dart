@@ -428,6 +428,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                   builder: (context) {
                                     final queriedTagsList = FFAppState()
                                         .QueriedTagDataList
+                                        .where((e) =>
+                                            e.tagID != '')
                                         .toList();
                                     return ListView.separated(
                                       padding: EdgeInsets.zero,
