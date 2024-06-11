@@ -461,11 +461,15 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .accent2,
-                                              boxShadow: const [
+                                              boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 4.0,
-                                                  color: Color(0x7039D2C0),
-                                                  offset: Offset(
+                                                  color: colorFromCssString(
+                                                    queriedTagsListItem.color,
+                                                    defaultColor:
+                                                        const Color(0xAA249689),
+                                                  ),
+                                                  offset: const Offset(
                                                     0.0,
                                                     2.0,
                                                   ),
