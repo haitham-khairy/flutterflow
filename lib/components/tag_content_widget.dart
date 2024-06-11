@@ -145,7 +145,10 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                         ),
                   ),
                   Text(
-                    'Hello World',
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.color,
+                      'NA',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
