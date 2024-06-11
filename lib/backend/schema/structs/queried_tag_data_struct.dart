@@ -13,12 +13,14 @@ class QueriedTagDataStruct extends BaseStruct {
     String? washingCount,
     String? lastTimeWashed,
     String? lifetime,
+    String? color,
   })  : _tagID = tagID,
         _line = line,
         _printDate = printDate,
         _washingCount = washingCount,
         _lastTimeWashed = lastTimeWashed,
-        _lifetime = lifetime;
+        _lifetime = lifetime,
+        _color = color;
 
   // "TagID" field.
   String? _tagID;
@@ -56,6 +58,12 @@ class QueriedTagDataStruct extends BaseStruct {
   set lifetime(String? val) => _lifetime = val;
   bool hasLifetime() => _lifetime != null;
 
+  // "Color" field.
+  String? _color;
+  String get color => _color ?? '\'\'';
+  set color(String? val) => _color = val;
+  bool hasColor() => _color != null;
+
   static QueriedTagDataStruct fromMap(Map<String, dynamic> data) =>
       QueriedTagDataStruct(
         tagID: data['TagID'] as String?,
@@ -64,6 +72,7 @@ class QueriedTagDataStruct extends BaseStruct {
         washingCount: data['WashingCount'] as String?,
         lastTimeWashed: data['LastTimeWashed'] as String?,
         lifetime: data['Lifetime'] as String?,
+        color: data['Color'] as String?,
       );
 
   static QueriedTagDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -77,6 +86,7 @@ class QueriedTagDataStruct extends BaseStruct {
         'WashingCount': _washingCount,
         'LastTimeWashed': _lastTimeWashed,
         'Lifetime': _lifetime,
+        'Color': _color,
       }.withoutNulls;
 
   @override
@@ -103,6 +113,10 @@ class QueriedTagDataStruct extends BaseStruct {
         ),
         'Lifetime': serializeParam(
           _lifetime,
+          ParamType.String,
+        ),
+        'Color': serializeParam(
+          _color,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -139,6 +153,11 @@ class QueriedTagDataStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        color: deserializeParam(
+          data['Color'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -152,12 +171,13 @@ class QueriedTagDataStruct extends BaseStruct {
         printDate == other.printDate &&
         washingCount == other.washingCount &&
         lastTimeWashed == other.lastTimeWashed &&
-        lifetime == other.lifetime;
+        lifetime == other.lifetime &&
+        color == other.color;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([tagID, line, printDate, washingCount, lastTimeWashed, lifetime]);
+  int get hashCode => const ListEquality().hash(
+      [tagID, line, printDate, washingCount, lastTimeWashed, lifetime, color]);
 }
 
 QueriedTagDataStruct createQueriedTagDataStruct({
@@ -167,6 +187,7 @@ QueriedTagDataStruct createQueriedTagDataStruct({
   String? washingCount,
   String? lastTimeWashed,
   String? lifetime,
+  String? color,
 }) =>
     QueriedTagDataStruct(
       tagID: tagID,
@@ -175,4 +196,5 @@ QueriedTagDataStruct createQueriedTagDataStruct({
       washingCount: washingCount,
       lastTimeWashed: lastTimeWashed,
       lifetime: lifetime,
+      color: color,
     );

@@ -74,6 +74,15 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
 
   int listsize = 0;
 
+  List<String> color = [];
+  void addToColor(String item) => color.add(item);
+  void removeFromColor(String item) => color.remove(item);
+  void removeAtIndexFromColor(int index) => color.removeAt(index);
+  void insertAtIndexInColor(int index, String item) =>
+      color.insert(index, item);
+  void updateColorAtIndex(int index, Function(String) updateFn) =>
+      color[index] = updateFn(color[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

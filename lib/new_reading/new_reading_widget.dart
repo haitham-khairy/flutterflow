@@ -83,7 +83,10 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         )?.toList(),
                         GetTagsDataCall.lifetime(
                           (_model.getTagsDataResponse?.jsonBody ?? ''),
-                        )?.toList())!
+                        )?.toList(),
+                        GetTagsDataCall.color(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.map((e) => e.toString()).toList().toList())!
                     .toList()
                     .cast<QueriedTagDataStruct>();
                 setState(() {});
@@ -290,7 +293,15 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                           (_model.getTagsDataRsponse1
                                                   ?.jsonBody ??
                                               ''),
-                                        )?.toList())!
+                                        )?.toList(),
+                                        GetTagsDataCall.color(
+                                          (_model.getTagsDataRsponse1
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )
+                                            ?.map((e) => e.toString())
+                                            .toList()
+                                            .toList())!
                                     .toList()
                                     .cast<QueriedTagDataStruct>();
                                 setState(() {});
@@ -364,7 +375,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         padding: const EdgeInsets.all(5.0),
                         child: Container(
                           width: 100.0,
-                          height: 300.0,
+                          height: 280.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,

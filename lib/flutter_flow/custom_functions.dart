@@ -44,6 +44,7 @@ List<QueriedTagDataStruct>? buildTagsDataList(
   List<String>? lastTimeWashed,
   List<String>? line,
   List<String>? lifetime,
+  List<String>? color,
 ) {
   List<QueriedTagDataStruct> result = [];
   if (id == null ||
@@ -51,7 +52,8 @@ List<QueriedTagDataStruct>? buildTagsDataList(
       washingCount == null ||
       lastTimeWashed == null ||
       line == null ||
-      lifetime == null) {
+      lifetime == null ||
+      color == null) {
   } else {
     for (int i = 0; i < id.length; i++) {
       QueriedTagDataStruct element = QueriedTagDataStruct(
@@ -61,6 +63,7 @@ List<QueriedTagDataStruct>? buildTagsDataList(
         lastTimeWashed: lastTimeWashed[i],
         line: line[i],
         lifetime: lifetime[i],
+        color: color[i],
       );
       result.add(element);
     }

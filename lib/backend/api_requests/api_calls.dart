@@ -139,9 +139,9 @@ class GetTagsDataCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
-  static List? all(dynamic response) => getJsonField(
+  static List? color(dynamic response) => getJsonField(
         response,
-        r'''$''',
+        r'''$[:].Color''',
         true,
       ) as List?;
 }
