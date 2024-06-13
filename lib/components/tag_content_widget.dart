@@ -70,7 +70,11 @@ class _TagContentWidgetState extends State<TagContentWidget> {
               ),
             ),
             CircularPercentIndicator(
-              percent: 0.5,
+              percent: functions.lifeTime(
+                  widget.componentlistitem!.lifetime,
+                  functions.remainigDayesInService(
+                      widget.componentlistitem!.lifetime,
+                      widget.componentlistitem!.printDate)),
               radius: 75.0,
               lineWidth: 12.0,
               animation: true,

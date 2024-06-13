@@ -101,10 +101,20 @@ String washBefore(
   String lastTimeWashed,
   int washSetPoint,
 ) {
-  DateFormat dateFormat = DateFormat("MM,dd,YYYY");
+  DateFormat dateFormat = DateFormat("MM/dd/yyyy");
   DateTime washedate = dateFormat.parse(lastTimeWashed);
   int millesecconds =
       washedate.millisecondsSinceEpoch + (washSetPoint * 24 * 60 * 60 * 1000);
   DateTime deadline = DateTime.fromMillisecondsSinceEpoch(millesecconds);
-  return deadline.toString();
+  String year = deadline.year.toString();
+  String month = deadline.month.toString();
+  String day = deadline.day.toString();
+  return "$month/$day/$year";
+}
+
+double lifeTime(
+  String lifetime,
+  String remainingdaysinservice,
+) {
+  return ((int.parse(remainingdaysinservice) - int.parse(lifetime)) / 100);
 }
