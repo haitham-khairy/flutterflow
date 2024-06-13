@@ -119,11 +119,10 @@ double lifeTime(
   String lifetime,
   String remainingdaysinservice,
 ) {
-  double result =
-      (int.parse(remainingdaysinservice) - int.parse(lifetime)) / 1000;
+  double result = (int.parse(remainingdaysinservice) / int.parse(lifetime));
   if (result < 0) {
     return 1.0;
   } else {
-    return result;
+    return (1 - result);
   }
 }
