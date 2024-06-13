@@ -127,7 +127,8 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                         ),
                   ),
                   Text(
-                    'Hello World',
+                    functions.washBefore(
+                        widget.componentlistitem!.lastTimeWashed, 15),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,

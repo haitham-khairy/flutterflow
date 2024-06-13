@@ -84,7 +84,7 @@ String remainigDayesInService(
   String lifetime,
   String printdate,
 ) {
-  DateFormat dateFormat = DateFormat("dd/MM/yyyy");
+  DateFormat dateFormat = DateFormat("MM/dd/yyyy");
   DateTime servicedate = dateFormat.parse(printdate);
   DateTime timeNow = DateTime.now();
 
@@ -92,6 +92,19 @@ String remainigDayesInService(
       timeNow.millisecondsSinceEpoch - servicedate.millisecondsSinceEpoch;
 
   double remainingDays = remainingmillisecconds / (1000 * 60 * 60 * 24);
+  double result = double.parse(lifetime) - remainingDays;
 
-  return remainingDays.toString();
+  return result.floor().toString();
+}
+
+String washBefore(
+  String lastTimeWashed,
+  int washSetPoint,
+) {
+  DateFormat dateFormat = DateFormat("MM,dd,YYYY");
+  DateTime washedate = dateFormat.parse(lastTimeWashed);
+  int millesecconds =
+      washedate.millisecondsSinceEpoch + (washSetPoint * 24 * 60 * 60 * 1000);
+  DateTime deadline = DateTime.fromMillisecondsSinceEpoch(millesecconds);
+  return deadline.toString();
 }
