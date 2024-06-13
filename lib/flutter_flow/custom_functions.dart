@@ -88,13 +88,16 @@ String remainigDayesInService(
   DateTime servicedate = dateFormat.parse(printdate);
   DateTime timeNow = DateTime.now();
 
-  int remainingmillisecconds =
+  int inServicemillisecconds =
       timeNow.millisecondsSinceEpoch - servicedate.millisecondsSinceEpoch;
 
-  double remainingDays = remainingmillisecconds / (1000 * 60 * 60 * 24);
-  double result = double.parse(lifetime) - remainingDays;
-
-  return result.floor().toString();
+  double inServiceDays = inServicemillisecconds / (1000 * 60 * 60 * 24);
+  double result = double.parse(lifetime) - inServiceDays;
+  if (result < 0) {
+    return "0";
+  } else {
+    return result.floor().toString();
+  }
 }
 
 String washBefore(
@@ -116,5 +119,11 @@ double lifeTime(
   String lifetime,
   String remainingdaysinservice,
 ) {
-  return ((int.parse(remainingdaysinservice) - int.parse(lifetime)) / 100);
+  double result =
+      (int.parse(remainingdaysinservice) - int.parse(lifetime)) / 1000;
+  if (result < 0) {
+    return 1.0;
+  } else {
+    return result;
+  }
 }
