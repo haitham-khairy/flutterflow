@@ -84,7 +84,8 @@ String remainigDayesInService(
   String lifetime,
   String printdate,
 ) {
-  DateTime servicedate = DateTime.parse(printdate);
+  DateFormat dateFormat = DateFormat("dd/MM/yyyy");
+  DateTime servicedate = dateFormat.parse(printdate);
   DateTime timeNow = DateTime.now();
 
   int remainingmillisecconds =
