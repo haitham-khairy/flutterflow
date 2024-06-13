@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'tag_content_model.dart';
@@ -105,7 +106,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                   ),
                   Text(
                     valueOrDefault<String>(
-                      widget.componentlistitem?.lifetime,
+                      widget.componentlistitem?.lastTimeWashed,
                       'NA',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -186,7 +187,9 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                         ),
                   ),
                   Text(
-                    'Hello World',
+                    functions.remainigDayesInService(
+                        widget.componentlistitem!.lifetime,
+                        widget.componentlistitem!.printDate),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,

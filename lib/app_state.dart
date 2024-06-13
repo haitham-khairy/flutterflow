@@ -34,26 +34,26 @@ class FFAppState extends ChangeNotifier {
   }
 
   void addToRFIDTagsList(RFIDTagsdataStruct value) {
-    _RFIDTagsList.add(value);
+    RFIDTagsList.add(value);
   }
 
   void removeFromRFIDTagsList(RFIDTagsdataStruct value) {
-    _RFIDTagsList.remove(value);
+    RFIDTagsList.remove(value);
   }
 
   void removeAtIndexFromRFIDTagsList(int index) {
-    _RFIDTagsList.removeAt(index);
+    RFIDTagsList.removeAt(index);
   }
 
   void updateRFIDTagsListAtIndex(
     int index,
     RFIDTagsdataStruct Function(RFIDTagsdataStruct) updateFn,
   ) {
-    _RFIDTagsList[index] = updateFn(_RFIDTagsList[index]);
+    RFIDTagsList[index] = updateFn(_RFIDTagsList[index]);
   }
 
   void insertAtIndexInRFIDTagsList(int index, RFIDTagsdataStruct value) {
-    _RFIDTagsList.insert(index, value);
+    RFIDTagsList.insert(index, value);
   }
 
   String _ConnectionStatus = '';
@@ -69,26 +69,26 @@ class FFAppState extends ChangeNotifier {
   }
 
   void addToQueriedTagDataList(QueriedTagDataStruct value) {
-    _QueriedTagDataList.add(value);
+    QueriedTagDataList.add(value);
   }
 
   void removeFromQueriedTagDataList(QueriedTagDataStruct value) {
-    _QueriedTagDataList.remove(value);
+    QueriedTagDataList.remove(value);
   }
 
   void removeAtIndexFromQueriedTagDataList(int index) {
-    _QueriedTagDataList.removeAt(index);
+    QueriedTagDataList.removeAt(index);
   }
 
   void updateQueriedTagDataListAtIndex(
     int index,
     QueriedTagDataStruct Function(QueriedTagDataStruct) updateFn,
   ) {
-    _QueriedTagDataList[index] = updateFn(_QueriedTagDataList[index]);
+    QueriedTagDataList[index] = updateFn(_QueriedTagDataList[index]);
   }
 
   void insertAtIndexInQueriedTagDataList(
       int index, QueriedTagDataStruct value) {
-    _QueriedTagDataList.insert(index, value);
+    QueriedTagDataList.insert(index, value);
   }
 }

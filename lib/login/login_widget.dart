@@ -320,7 +320,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.bottomToTop,
-                                          duration: Duration(milliseconds: 100),
+                                          duration: Duration(milliseconds: 300),
                                         ),
                                       },
                                     );

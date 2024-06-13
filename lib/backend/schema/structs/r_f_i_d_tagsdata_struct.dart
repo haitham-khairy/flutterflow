@@ -28,55 +28,68 @@ class RFIDTagsdataStruct extends BaseStruct {
   String? _tagID;
   String get tagID => _tagID ?? '';
   set tagID(String? val) => _tagID = val;
+
   bool hasTagID() => _tagID != null;
 
   // "relativeDistance" field.
   int? _relativeDistance;
   int get relativeDistance => _relativeDistance ?? 0;
   set relativeDistance(int? val) => _relativeDistance = val;
+
   void incrementRelativeDistance(int amount) =>
-      _relativeDistance = relativeDistance + amount;
+      relativeDistance = relativeDistance + amount;
+
   bool hasRelativeDistance() => _relativeDistance != null;
 
   // "peakRSSI" field.
   int? _peakRSSI;
   int get peakRSSI => _peakRSSI ?? 0;
   set peakRSSI(int? val) => _peakRSSI = val;
-  void incrementPeakRSSI(int amount) => _peakRSSI = peakRSSI + amount;
+
+  void incrementPeakRSSI(int amount) => peakRSSI = peakRSSI + amount;
+
   bool hasPeakRSSI() => _peakRSSI != null;
 
   // "count" field.
   int? _count;
   int get count => _count ?? 0;
   set count(int? val) => _count = val;
-  void incrementCount(int amount) => _count = count + amount;
+
+  void incrementCount(int amount) => count = count + amount;
+
   bool hasCount() => _count != null;
 
   // "antennaID" field.
   int? _antennaID;
   int get antennaID => _antennaID ?? 0;
   set antennaID(int? val) => _antennaID = val;
-  void incrementAntennaID(int amount) => _antennaID = antennaID + amount;
+
+  void incrementAntennaID(int amount) => antennaID = antennaID + amount;
+
   bool hasAntennaID() => _antennaID != null;
 
   // "memoryBankData" field.
   String? _memoryBankData;
   String get memoryBankData => _memoryBankData ?? '';
   set memoryBankData(String? val) => _memoryBankData = val;
+
   bool hasMemoryBankData() => _memoryBankData != null;
 
   // "lockData" field.
   String? _lockData;
   String get lockData => _lockData ?? '';
   set lockData(String? val) => _lockData = val;
+
   bool hasLockData() => _lockData != null;
 
   // "allocatedSize" field.
   int? _allocatedSize;
   int get allocatedSize => _allocatedSize ?? 0;
   set allocatedSize(int? val) => _allocatedSize = val;
+
   void incrementAllocatedSize(int amount) =>
-      _allocatedSize = allocatedSize + amount;
+      allocatedSize = allocatedSize + amount;
+
   bool hasAllocatedSize() => _allocatedSize != null;
 
   static RFIDTagsdataStruct fromMap(Map<String, dynamic> data) =>

@@ -79,3 +79,18 @@ bool isTagsListNotEmpty(List<RFIDTagsdataStruct> listOfRFIDData) {
     return true;
   }
 }
+
+String remainigDayesInService(
+  String lifetime,
+  String printdate,
+) {
+  DateTime servicedate = DateTime.parse(printdate);
+  DateTime timeNow = DateTime.now();
+
+  int remainingmillisecconds =
+      timeNow.millisecondsSinceEpoch - servicedate.millisecondsSinceEpoch;
+
+  double remainingDays = remainingmillisecconds / (1000 * 60 * 60 * 24);
+
+  return remainingDays.toString();
+}
