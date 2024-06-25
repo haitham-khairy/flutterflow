@@ -328,6 +328,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         setState(() {});
                         _model.listsize = 0;
                         setState(() {});
+                        await actions.readtagcount(
+                          true,
+                        );
                       },
                       text: 'Clear list',
                       options: FFButtonOptions(
