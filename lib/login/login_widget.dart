@@ -303,8 +303,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     password:
                                         _model.passwordTextController.text,
                                   );
+
                                   _model.logInRequestresponse =
                                       await LogInRequestCall.call();
+
                                   shouldSetState = true;
                                   _model.loginstatus =
                                       LogInRequestCall.logInStatus(

@@ -64,6 +64,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                 _model.getTagsDataResponse = await GetTagsDataCall.call(
                   tagsListList: _model.tagid,
                 );
+
                 FFAppState().QueriedTagDataList = functions
                     .buildTagsDataList(
                         GetTagsDataCall.id(
@@ -262,6 +263,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                   tagsListList: functions.tgagsListToList(
                                       FFAppState().RFIDTagsList.toList()),
                                 );
+
                                 FFAppState().QueriedTagDataList = functions
                                     .buildTagsDataList(
                                         GetTagsDataCall.id(
@@ -323,6 +325,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                       onPressed: () async {
                         FFAppState().RFIDTagsList = [];
                         FFAppState().QueriedTagDataList = [];
+                        setState(() {});
+                        _model.listsize = 0;
                         setState(() {});
                       },
                       text: 'Clear list',
