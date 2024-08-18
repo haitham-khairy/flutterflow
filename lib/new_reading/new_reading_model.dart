@@ -85,7 +85,6 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   InstantTimer? instantTimer2;
   // Stores action output result for [Custom Action - getstatus] action in NewReading widget.
   String? getStatusResponse;
@@ -105,7 +104,6 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     instantTimer2?.cancel();
   }
 }

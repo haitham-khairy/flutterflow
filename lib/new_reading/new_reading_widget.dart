@@ -43,6 +43,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
           if (_model.rfidstatus == 'Connected') {
             _model.rfidtagdata = await actions.readtagcount(
               false,
+              _model.sliderValue!,
             );
             FFAppState().RFIDTagsList =
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
@@ -116,9 +117,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -246,6 +245,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                 _model.readTagCountResponse =
                                     await actions.readtagcount(
                                   false,
+                                  _model.sliderValue!,
                                 );
                                 FFAppState().RFIDTagsList = _model
                                     .readTagCountResponse!
@@ -330,6 +330,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         setState(() {});
                         await actions.readtagcount(
                           true,
+                          _model.sliderValue!,
                         );
                       },
                       text: 'Clear list',
@@ -449,6 +450,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                         .where((e) =>
                                             e.tagID != '')
                                         .toList();
+
                                     return ListView.separated(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
@@ -506,15 +508,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                   context: context,
                                                   builder: (context) {
                                                     return GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
+                                                      onTap: () =>
+                                                          FocusScope.of(context)
                                                               .unfocus(),
                                                       child: Padding(
                                                         padding: MediaQuery

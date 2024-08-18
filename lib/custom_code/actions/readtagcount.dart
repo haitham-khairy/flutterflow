@@ -17,7 +17,8 @@ import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 Map<String?, RfidData> rfidDatas = {};
 ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 
-Future<List<RFIDTagsdataStruct>> readtagcount(bool? clear) async {
+Future<List<RFIDTagsdataStruct>> readtagcount(
+    bool? clear, double distancelimit) async {
   List<RFIDTagsdataStruct> frfid = [];
 
   if (clear == true) rfidDatas = {};
@@ -48,10 +49,12 @@ Future<List<RFIDTagsdataStruct>> readtagcount(bool? clear) async {
   ));
 
   for (int i = 0; i < rfidDatas.length; i++) {
-    frfid.add(RFIDTagsdataStruct(
-      tagID: rfidDatas.values.elementAt(i).tagID,
-      peakRSSI: rfidDatas.values.elementAt(i).peakRSSI,
-    ));
+    if (rfidDatas.values.elementAt(i).peakRSSI >= distancelimit.toInt()) {
+      frfid.add(RFIDTagsdataStruct(
+        tagID: rfidDatas.values.elementAt(i).tagID,
+        peakRSSI: rfidDatas.values.elementAt(i).peakRSSI,
+      ));
+    }
   }
 
   return frfid;

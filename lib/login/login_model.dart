@@ -10,7 +10,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Username widget.
   FocusNode? usernameFocusNode;
   TextEditingController? usernameTextController;
@@ -30,7 +29,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     usernameFocusNode?.dispose();
     usernameTextController?.dispose();
 
