@@ -43,7 +43,7 @@ class LoginDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
       apiUrl:
-          'https://7679-156-214-245-195.ngrok-free.app/v1/loginData/UserDataFromApp',
+          'https://2f98-197-53-141-56.ngrok-free.app/v1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -73,7 +73,7 @@ class GetTagsDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
       apiUrl:
-          'https://7679-156-214-245-195.ngrok-free.app/v1/GetTagsData/GetTagsData',
+          'https://2f98-197-53-141-56.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -162,7 +162,7 @@ class SendTagsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
       apiUrl:
-          'https://7679-156-214-245-195.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
+          'https://2f98-197-53-141-56.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
