@@ -186,7 +186,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 3.0, 10.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   height: 160.0,
@@ -215,7 +215,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectLineValueController ??=
-                                  FormFieldController<String>(null),
+                                  FormFieldController<String>(
+                                _model.selectLineValue ??= '...',
+                              ),
                               options: GetFilterParamatersCall.lines(
                                 (_model.filterParametersResponse?.jsonBody ??
                                     ''),
@@ -271,7 +273,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectSKUValueController ??=
-                                  FormFieldController<String>(null),
+                                  FormFieldController<String>(
+                                _model.selectSKUValue ??= '...',
+                              ),
                               options: GetFilterParamatersCall.skus(
                                 (_model.filterParametersResponse?.jsonBody ??
                                     ''),
@@ -408,7 +412,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectStatusValueController ??=
-                                  FormFieldController<String>(null),
+                                  FormFieldController<String>(
+                                _model.selectStatusValue ??= '...',
+                              ),
                               options: const [
                                 '3 days left',
                                 '1 day left',
@@ -579,6 +585,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w200,
                                     ),
                               ),
                               Text(
@@ -588,6 +595,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w200,
                                     ),
                               ),
                               Text(
@@ -597,6 +605,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w200,
                                     ),
                               ),
                               Text(
@@ -606,6 +615,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w200,
                                     ),
                               ),
                             ].map((c) => DataCell(c)).toList(),
@@ -615,7 +625,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                           hidePaginator: false,
                           showFirstLastButtons: false,
                           headingRowHeight: 56.0,
-                          dataRowHeight: 48.0,
+                          dataRowHeight: 50.0,
                           columnSpacing: 20.0,
                           headingRowColor: const Color(0xFF0000A0),
                           borderRadius: BorderRadius.circular(8.0),
