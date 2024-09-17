@@ -14,7 +14,7 @@ class LogInRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
       apiUrl:
-          'https://7679-156-214-245-195.ngrok-free.app/v1/LoginAction/LogInRequest',
+          'https://55c6-102-40-183-100.ngrok-free.app/v1/LoginAction/LogInRequest',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -43,7 +43,7 @@ class LoginDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
       apiUrl:
-          'https://2f98-197-53-141-56.ngrok-free.app/v1/loginData/UserDataFromApp',
+          'https://55c6-102-40-183-100.ngrok-free.app/v1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -216,7 +216,7 @@ class SendTagsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
       apiUrl:
-          'https://2f98-197-53-141-56.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
+          'https://55c6-102-40-183-100.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -371,38 +371,6 @@ class GetAlarmsListCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
-}
-
-class FilterAlarmsCall {
-  static Future<ApiCallResponse> call({
-    String? sku = '\"\"',
-    String? line = '',
-    String? tagID = '',
-    String? alarm = '\"\"',
-  }) async {
-    final ffApiRequestBody = '''
-{
-  "SKU": "$sku",
-  "Line": "$line",
-  "TagID": "$tagID",
-  "Alarm": "$alarm"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'FilterAlarms',
-      apiUrl: 'https://dummyjson.com/products',
-      callType: ApiCallType.POST,
-      headers: {},
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
 }
 
 class ApiPagingParams {
