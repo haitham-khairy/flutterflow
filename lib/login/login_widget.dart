@@ -317,7 +317,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   safeSetState(() {});
                                   if (_model.loginstatus == 'true') {
                                     context.goNamed(
-                                      'NewReading',
+                                      'HomePage',
                                       extra: <String, dynamic>{
                                         kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
