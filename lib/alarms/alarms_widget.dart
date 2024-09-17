@@ -207,7 +207,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectLineValueController ??=
-                                  FormFieldController<String>(null),
+                                  FormFieldController<String>(
+                                _model.selectLineValue ??= ' ',
+                              ),
                               options: FFAppState().linefilters,
                               onChanged: (val) => safeSetState(
                                   () => _model.selectLineValue = val),
@@ -256,7 +258,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectSKUValueController ??=
-                                  FormFieldController<String>(null),
+                                  FormFieldController<String>(
+                                _model.selectSKUValue ??= ' ',
+                              ),
                               options: FFAppState().skufilters,
                               onChanged: (val) => safeSetState(
                                   () => _model.selectSKUValue = val),
@@ -387,7 +391,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectStatusValueController ??=
-                                  FormFieldController<String>(null),
+                                  FormFieldController<String>(
+                                _model.selectStatusValue ??= ' ',
+                              ),
                               options: const [
                                 '3 days left',
                                 '1 day left',
