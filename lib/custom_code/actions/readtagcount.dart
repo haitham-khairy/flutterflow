@@ -49,12 +49,12 @@ Future<List<RFIDTagsdataStruct>> readtagcount(
   ));
 
   for (int i = 0; i < rfidDatas.length; i++) {
-    if (rfidDatas.values.elementAt(i).peakRSSI >= distancelimit.toInt()) {
-      frfid.add(RFIDTagsdataStruct(
-        tagID: rfidDatas.values.elementAt(i).tagID,
-        peakRSSI: rfidDatas.values.elementAt(i).peakRSSI,
-      ));
-    }
+    //if (rfidDatas.values.elementAt(i).peakRSSI >= distancelimit.toInt()) {
+    frfid.add(RFIDTagsdataStruct(
+      tagID: rfidDatas.values.elementAt(i).tagID,
+      peakRSSI: rfidDatas.values.elementAt(i).peakRSSI,
+    ));
+    //}
   }
 
   return frfid;
