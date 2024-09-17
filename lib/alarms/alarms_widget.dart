@@ -181,7 +181,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(10.0, 3.0, 10.0, 0.0),
                 child: Container(
                   width: double.infinity,
-                  height: 160.0,
+                  height: 170.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(10.0),
@@ -207,9 +207,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectLineValueController ??=
-                                  FormFieldController<String>(
-                                _model.selectLineValue ??= '...',
-                              ),
+                                  FormFieldController<String>(null),
                               options: FFAppState().linefilters,
                               onChanged: (val) => safeSetState(
                                   () => _model.selectLineValue = val),
@@ -258,9 +256,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectSKUValueController ??=
-                                  FormFieldController<String>(
-                                _model.selectSKUValue ??= '...',
-                              ),
+                                  FormFieldController<String>(null),
                               options: FFAppState().skufilters,
                               onChanged: (val) => safeSetState(
                                   () => _model.selectSKUValue = val),
@@ -391,9 +387,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                             ),
                             FlutterFlowDropDown<String>(
                               controller: _model.selectStatusValueController ??=
-                                  FormFieldController<String>(
-                                _model.selectStatusValue ??= '...',
-                              ),
+                                  FormFieldController<String>(null),
                               options: const [
                                 '3 days left',
                                 '1 day left',
