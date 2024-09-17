@@ -97,26 +97,6 @@ bool isTagsListNotEmpty(List<RFIDTagsdataStruct> listOfRFIDData) {
   }
 }
 
-String remainigDayesInService(
-  String lifetime,
-  String printdate,
-) {
-  DateFormat dateFormat = DateFormat("MM/dd/yyyy");
-  DateTime servicedate = dateFormat.parse(printdate);
-  DateTime timeNow = DateTime.now();
-
-  int inServicemillisecconds =
-      timeNow.millisecondsSinceEpoch - servicedate.millisecondsSinceEpoch;
-
-  double inServiceDays = inServicemillisecconds / (1000 * 60 * 60 * 24);
-  double result = double.parse(lifetime) - inServiceDays;
-  if (result < 0) {
-    return "0";
-  } else {
-    return result.floor().toString();
-  }
-}
-
 String washBefore(
   String lastTimeWashed,
   int washSetPoint,
