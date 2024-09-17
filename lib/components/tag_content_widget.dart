@@ -219,7 +219,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                   ),
                   Text(
                     valueOrDefault<String>(
-                      widget.componentlistitem?.daysRemaining,
+                      widget.componentlistitem?.remainingDaysInServeic,
                       '--',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(

@@ -51,6 +51,7 @@ List<QueriedTagDataStruct>? buildTagsDataList(
   List<String>? status,
   List<String>? daysRemaining,
   List<String>? alarms,
+  List<String>? remainingDaysInServeice,
 ) {
   List<QueriedTagDataStruct> result = [];
   if (id == null ||
@@ -65,7 +66,8 @@ List<QueriedTagDataStruct>? buildTagsDataList(
       washoverdue == null ||
       status == null ||
       daysRemaining == null ||
-      alarms == null) {
+      alarms == null ||
+      remainingDaysInServeice == null) {
   } else {
     for (int i = 0; i < id.length; i++) {
       QueriedTagDataStruct element = QueriedTagDataStruct(
@@ -81,7 +83,8 @@ List<QueriedTagDataStruct>? buildTagsDataList(
           washOverDue: washingCount[i],
           status: status[i],
           daysRemaining: daysRemaining[i],
-          alarms: alarms[i]);
+          alarms: alarms[i],
+          remainingDaysInServeic: remainingDaysInServeice[i]);
       result.add(element);
     }
   }

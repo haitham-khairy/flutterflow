@@ -137,6 +137,19 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
   void updateAlarmsAtIndex(int index, Function(String) updateFn) =>
       alarms[index] = updateFn(alarms[index]);
 
+  List<String> remainingDaysInServeic = [];
+  void addToRemainingDaysInServeic(String item) =>
+      remainingDaysInServeic.add(item);
+  void removeFromRemainingDaysInServeic(String item) =>
+      remainingDaysInServeic.remove(item);
+  void removeAtIndexFromRemainingDaysInServeic(int index) =>
+      remainingDaysInServeic.removeAt(index);
+  void insertAtIndexInRemainingDaysInServeic(int index, String item) =>
+      remainingDaysInServeic.insert(index, item);
+  void updateRemainingDaysInServeicAtIndex(
+          int index, Function(String) updateFn) =>
+      remainingDaysInServeic[index] = updateFn(remainingDaysInServeic[index]);
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer2;

@@ -201,6 +201,16 @@ class GetTagsDataCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
+  static List<String>? remainingDaysInService(dynamic response) =>
+      (getJsonField(
+        response,
+        r'''$[:].RemainingDaysInService''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class SendTagsListCall {

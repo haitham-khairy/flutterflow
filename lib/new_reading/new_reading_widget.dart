@@ -107,6 +107,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         )?.toList(),
                         GetTagsDataCall.alarms(
                           (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.remainingDaysInService(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
                         )?.toList())!
                     .toList()
                     .cast<QueriedTagDataStruct>();
@@ -339,6 +342,11 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                           (_model.getTagsDataResponse
                                                   ?.jsonBody ??
                                               ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.remainingDaysInService(
+                                          (_model.getTagsDataResponse
+                                                  ?.jsonBody ??
+                                              ''),
                                         )?.toList())!
                                     .toList()
                                     .cast<QueriedTagDataStruct>();
@@ -531,10 +539,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                               onTap: () async {
                                                 await showModalBottomSheet(
                                                   isScrollControlled: true,
-                                                  backgroundColor:
-                                                      const Color(0xCEFFFFFF),
+                                                  backgroundColor: Colors.white,
                                                   barrierColor:
-                                                      const Color(0xC957636C),
+                                                      const Color(0xFF393939),
                                                   useSafeArea: true,
                                                   context: context,
                                                   builder: (context) {
@@ -547,7 +554,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                             .viewInsetsOf(
                                                                 context),
                                                         child: SizedBox(
-                                                          height: 600.0,
+                                                          height: 550.0,
                                                           child:
                                                               TagContentWidget(
                                                             componentlistitem:

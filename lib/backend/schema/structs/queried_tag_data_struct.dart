@@ -20,6 +20,7 @@ class QueriedTagDataStruct extends BaseStruct {
     String? status,
     String? daysRemaining,
     String? alarms,
+    String? remainingDaysInServeic,
   })  : _tagID = tagID,
         _line = line,
         _printDate = printDate,
@@ -32,7 +33,8 @@ class QueriedTagDataStruct extends BaseStruct {
         _washOverDue = washOverDue,
         _status = status,
         _daysRemaining = daysRemaining,
-        _alarms = alarms;
+        _alarms = alarms,
+        _remainingDaysInServeic = remainingDaysInServeic;
 
   // "TagID" field.
   String? _tagID;
@@ -125,6 +127,13 @@ class QueriedTagDataStruct extends BaseStruct {
 
   bool hasAlarms() => _alarms != null;
 
+  // "RemainingDaysInServeic" field.
+  String? _remainingDaysInServeic;
+  String get remainingDaysInServeic => _remainingDaysInServeic ?? '\"\"';
+  set remainingDaysInServeic(String? val) => _remainingDaysInServeic = val;
+
+  bool hasRemainingDaysInServeic() => _remainingDaysInServeic != null;
+
   static QueriedTagDataStruct fromMap(Map<String, dynamic> data) =>
       QueriedTagDataStruct(
         tagID: data['TagID'] as String?,
@@ -140,6 +149,7 @@ class QueriedTagDataStruct extends BaseStruct {
         status: data['status'] as String?,
         daysRemaining: data['daysRemaining'] as String?,
         alarms: data['Alarms'] as String?,
+        remainingDaysInServeic: data['RemainingDaysInServeic'] as String?,
       );
 
   static QueriedTagDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -160,6 +170,7 @@ class QueriedTagDataStruct extends BaseStruct {
         'status': _status,
         'daysRemaining': _daysRemaining,
         'Alarms': _alarms,
+        'RemainingDaysInServeic': _remainingDaysInServeic,
       }.withoutNulls;
 
   @override
@@ -214,6 +225,10 @@ class QueriedTagDataStruct extends BaseStruct {
         ),
         'Alarms': serializeParam(
           _alarms,
+          ParamType.String,
+        ),
+        'RemainingDaysInServeic': serializeParam(
+          _remainingDaysInServeic,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -285,6 +300,11 @@ class QueriedTagDataStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        remainingDaysInServeic: deserializeParam(
+          data['RemainingDaysInServeic'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -305,7 +325,8 @@ class QueriedTagDataStruct extends BaseStruct {
         washOverDue == other.washOverDue &&
         status == other.status &&
         daysRemaining == other.daysRemaining &&
-        alarms == other.alarms;
+        alarms == other.alarms &&
+        remainingDaysInServeic == other.remainingDaysInServeic;
   }
 
   @override
@@ -322,7 +343,8 @@ class QueriedTagDataStruct extends BaseStruct {
         washOverDue,
         status,
         daysRemaining,
-        alarms
+        alarms,
+        remainingDaysInServeic
       ]);
 }
 
@@ -340,6 +362,7 @@ QueriedTagDataStruct createQueriedTagDataStruct({
   String? status,
   String? daysRemaining,
   String? alarms,
+  String? remainingDaysInServeic,
 }) =>
     QueriedTagDataStruct(
       tagID: tagID,
@@ -355,4 +378,5 @@ QueriedTagDataStruct createQueriedTagDataStruct({
       status: status,
       daysRemaining: daysRemaining,
       alarms: alarms,
+      remainingDaysInServeic: remainingDaysInServeic,
     );
