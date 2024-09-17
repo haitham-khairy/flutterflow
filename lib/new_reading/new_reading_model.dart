@@ -83,6 +83,60 @@ class NewReadingModel extends FlutterFlowModel<NewReadingWidget> {
   void updateColorAtIndex(int index, Function(String) updateFn) =>
       color[index] = updateFn(color[index]);
 
+  List<String> sku = [];
+  void addToSku(String item) => sku.add(item);
+  void removeFromSku(String item) => sku.remove(item);
+  void removeAtIndexFromSku(int index) => sku.removeAt(index);
+  void insertAtIndexInSku(int index, String item) => sku.insert(index, item);
+  void updateSkuAtIndex(int index, Function(String) updateFn) =>
+      sku[index] = updateFn(sku[index]);
+
+  List<String> maxwashcount = [];
+  void addToMaxwashcount(String item) => maxwashcount.add(item);
+  void removeFromMaxwashcount(String item) => maxwashcount.remove(item);
+  void removeAtIndexFromMaxwashcount(int index) => maxwashcount.removeAt(index);
+  void insertAtIndexInMaxwashcount(int index, String item) =>
+      maxwashcount.insert(index, item);
+  void updateMaxwashcountAtIndex(int index, Function(String) updateFn) =>
+      maxwashcount[index] = updateFn(maxwashcount[index]);
+
+  List<String> washoverdue = [];
+  void addToWashoverdue(String item) => washoverdue.add(item);
+  void removeFromWashoverdue(String item) => washoverdue.remove(item);
+  void removeAtIndexFromWashoverdue(int index) => washoverdue.removeAt(index);
+  void insertAtIndexInWashoverdue(int index, String item) =>
+      washoverdue.insert(index, item);
+  void updateWashoverdueAtIndex(int index, Function(String) updateFn) =>
+      washoverdue[index] = updateFn(washoverdue[index]);
+
+  List<String> status = [];
+  void addToStatus(String item) => status.add(item);
+  void removeFromStatus(String item) => status.remove(item);
+  void removeAtIndexFromStatus(int index) => status.removeAt(index);
+  void insertAtIndexInStatus(int index, String item) =>
+      status.insert(index, item);
+  void updateStatusAtIndex(int index, Function(String) updateFn) =>
+      status[index] = updateFn(status[index]);
+
+  List<String> daysremaining = [];
+  void addToDaysremaining(String item) => daysremaining.add(item);
+  void removeFromDaysremaining(String item) => daysremaining.remove(item);
+  void removeAtIndexFromDaysremaining(int index) =>
+      daysremaining.removeAt(index);
+  void insertAtIndexInDaysremaining(int index, String item) =>
+      daysremaining.insert(index, item);
+  void updateDaysremainingAtIndex(int index, Function(String) updateFn) =>
+      daysremaining[index] = updateFn(daysremaining[index]);
+
+  List<String> alarms = [];
+  void addToAlarms(String item) => alarms.add(item);
+  void removeFromAlarms(String item) => alarms.remove(item);
+  void removeAtIndexFromAlarms(int index) => alarms.removeAt(index);
+  void insertAtIndexInAlarms(int index, String item) =>
+      alarms.insert(index, item);
+  void updateAlarmsAtIndex(int index, Function(String) updateFn) =>
+      alarms[index] = updateFn(alarms[index]);
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer2;

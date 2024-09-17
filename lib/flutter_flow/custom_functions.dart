@@ -45,6 +45,12 @@ List<QueriedTagDataStruct>? buildTagsDataList(
   List<String>? line,
   List<String>? lifetime,
   List<String>? color,
+  List<String>? sku,
+  List<String>? maxwashcount,
+  List<String>? washoverdue,
+  List<String>? status,
+  List<String>? daysRemaining,
+  List<String>? alarms,
 ) {
   List<QueriedTagDataStruct> result = [];
   if (id == null ||
@@ -53,18 +59,29 @@ List<QueriedTagDataStruct>? buildTagsDataList(
       lastTimeWashed == null ||
       line == null ||
       lifetime == null ||
-      color == null) {
+      color == null ||
+      sku == null ||
+      maxwashcount == null ||
+      washoverdue == null ||
+      status == null ||
+      daysRemaining == null ||
+      alarms == null) {
   } else {
     for (int i = 0; i < id.length; i++) {
       QueriedTagDataStruct element = QueriedTagDataStruct(
-        tagID: id[i],
-        printDate: printDate[i],
-        washingCount: washingCount[i],
-        lastTimeWashed: lastTimeWashed[i],
-        line: line[i],
-        lifetime: lifetime[i],
-        color: color[i],
-      );
+          tagID: id[i],
+          printDate: printDate[i],
+          washingCount: washingCount[i],
+          lastTimeWashed: lastTimeWashed[i],
+          line: line[i],
+          lifetime: lifetime[i],
+          color: color[i],
+          sku: sku[i],
+          maxWashCount: maxwashcount[i],
+          washOverDue: washingCount[i],
+          status: status[i],
+          daysRemaining: daysRemaining[i],
+          alarms: alarms[i]);
       result.add(element);
     }
   }
@@ -125,4 +142,22 @@ double lifeTime(
   } else {
     return (1 - result);
   }
+}
+
+List<AlarmTypeStruct> buildAlarmList(
+  List<String>? tagID,
+  List<String>? line,
+  List<String>? sku,
+  List<String>? alarm,
+) {
+  List<AlarmTypeStruct> result = [];
+  if (tagID == null || line == null || sku == null || alarm == null) {
+  } else {
+    for (int i = 0; i < tagID.length; i++) {
+      AlarmTypeStruct elemnt = AlarmTypeStruct(
+          id: tagID[i], line: line[i], sku: sku[i], type: alarm[i]);
+      result.add(elemnt);
+    }
+  }
+  return result;
 }

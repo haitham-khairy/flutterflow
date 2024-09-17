@@ -28,6 +28,8 @@ dependencies:
   auto_size_text: 3.0.0
   cached_network_image: 3.3.1
   collection: 1.18.0
+  data_table_2: 2.5.10
+  dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   equatable: 2.0.5
   flutter_animate: 4.5.0
@@ -64,7 +66,6 @@ dependencies:
   xml: 6.5.0
   zebra_rfid_sdk_plugin: ^0.0.3
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
@@ -78,7 +79,6 @@ dev_dependencies:
   flutter_lints: 4.0.0
   image: 4.0.17
   lints: 4.0.0
-
   flutter_test:
     sdk: flutter
 
@@ -112,6 +112,10 @@ flutter:
     - assets/lottie_animations/
     - assets/rive_animations/
     - assets/pdfs/
+  fonts:
+    - family: RFIDIcons
+      fonts:
+        - asset: assets/fonts/RFID_Icons.ttf
 
   
   # An image asset can refer to one or more resolution-specific "variants", see

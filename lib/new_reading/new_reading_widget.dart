@@ -11,6 +11,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'new_reading_model.dart';
 export 'new_reading_model.dart';
@@ -39,7 +40,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
         callback: (timer) async {
           _model.getStatusResponse = await actions.getstatus();
           _model.rfidstatus = _model.getStatusResponse!;
-          setState(() {});
+          safeSetState(() {});
           if (_model.rfidstatus == 'Connected') {
             _model.rfidtagdata = await actions.readtagcount(
               false,
@@ -47,7 +48,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
             );
             FFAppState().RFIDTagsList =
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
-            setState(() {});
+            safeSetState(() {});
             if (functions
                 .isTagsListNotEmpty(FFAppState().RFIDTagsList.toList())) {
               if (_model.listsize !=
@@ -61,7 +62,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                 _model.listsize = functions
                     .tgagsListToList(FFAppState().RFIDTagsList.toList())
                     .length;
-                setState(() {});
+                safeSetState(() {});
                 _model.getTagsDataResponse = await GetTagsDataCall.call(
                   tagsListList: _model.tagid,
                 );
@@ -88,10 +89,28 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         )?.toList(),
                         GetTagsDataCall.color(
                           (_model.getTagsDataResponse?.jsonBody ?? ''),
-                        )?.map((e) => e.toString()).toList().toList())!
+                        )?.map((e) => e.toString()).toList().toList(),
+                        GetTagsDataCall.sku(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.maxWashCount(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.washOverDue(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.status(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.daysRemaining(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.alarms(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList())!
                     .toList()
                     .cast<QueriedTagDataStruct>();
-                setState(() {});
+                safeSetState(() {});
               }
             }
           } else {
@@ -102,7 +121,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
       );
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -120,25 +139,24 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(100.0),
           child: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).tertiary,
+            backgroundColor: const Color(0xFFFD6400),
             automaticallyImplyLeading: false,
             actions: const [],
             flexibleSpace: FlexibleSpaceBar(
-              title: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                      child: Row(
+              title: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
@@ -159,41 +177,41 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                               },
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                4.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Back',
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineMedium
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ),
                         ],
                       ),
-                    ),
-                    Padding(
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            12.0, 10.0, 0.0, 0.0),
+                        child: Text(
+                          'Bins Page',
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                fontFamily: 'Outfit',
+                                color: Colors.white,
+                                fontSize: 22.0,
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'RFID readings',
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Outfit',
-                              color: Colors.white,
-                              fontSize: 22.0,
-                              letterSpacing: 0.0,
-                            ),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 120.0, 0.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: SvgPicture.asset(
+                          'assets/images/logo-main.svg',
+                          fit: BoxFit.scaleDown,
+                          alignment: const Alignment(0.0, -1.0),
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               centerTitle: true,
               expandedTitleScale: 1.0,
@@ -210,34 +228,34 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Filter by distance:',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                            ),
+                    Opacity(
+                      opacity: 0.0,
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Filter by distance:',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0xFF393939),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                        ),
                       ),
                     ),
                     Expanded(
-                      child: SliderTheme(
-                        data: const SliderThemeData(
-                          showValueIndicator: ShowValueIndicator.always,
-                        ),
+                      child: Opacity(
+                        opacity: 0.0,
                         child: Slider(
-                          activeColor: FlutterFlowTheme.of(context).tertiary,
+                          activeColor: const Color(0xFF0000A0),
                           inactiveColor: FlutterFlowTheme.of(context).alternate,
                           min: 0.0,
                           max: 75.0,
                           value: _model.sliderValue ??= 1.0,
-                          label: _model.sliderValue?.toStringAsFixed(0),
                           onChanged: (newValue) {
-                            newValue =
-                                double.parse(newValue.toStringAsFixed(0));
-                            setState(() => _model.sliderValue = newValue);
+                            safeSetState(() => _model.sliderValue = newValue);
                             EasyDebounce.debounce(
                               '_model.sliderValue',
                               const Duration(milliseconds: 1000),
@@ -257,7 +275,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                             e.peakRSSI.toString()))
                                     .toList()
                                     .cast<RFIDTagsdataStruct>();
-                                setState(() {});
+                                safeSetState(() {});
                                 _model.getTagsDataRsponse1 =
                                     await GetTagsDataCall.call(
                                   tagsListList: functions.tgagsListToList(
@@ -303,12 +321,30 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                         )
                                             ?.map((e) => e.toString())
                                             .toList()
-                                            .toList())!
+                                            .toList(),
+                                        _model.sku.toList(),
+                                        _model.maxwashcount.toList(),
+                                        _model.washoverdue.toList(),
+                                        GetTagsDataCall.status(
+                                          (_model.getTagsDataResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.daysRemaining(
+                                          (_model.getTagsDataResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.alarms(
+                                          (_model.getTagsDataResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList())!
                                     .toList()
                                     .cast<QueriedTagDataStruct>();
-                                setState(() {});
+                                safeSetState(() {});
 
-                                setState(() {});
+                                safeSetState(() {});
                               },
                             );
                           },
@@ -321,38 +357,42 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        FFAppState().RFIDTagsList = [];
-                        FFAppState().QueriedTagDataList = [];
-                        setState(() {});
-                        _model.listsize = 0;
-                        setState(() {});
-                        await actions.readtagcount(
-                          true,
-                          _model.sliderValue!,
-                        );
-                      },
-                      text: 'Clear list',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).tertiary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          FFAppState().RFIDTagsList = [];
+                          FFAppState().QueriedTagDataList = [];
+                          safeSetState(() {});
+                          _model.listsize = 0;
+                          safeSetState(() {});
+                          await actions.readtagcount(
+                            true,
+                            _model.sliderValue!,
+                          );
+                        },
+                        text: 'Clear list',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFF0000A0),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ],
@@ -367,6 +407,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         'Tags list',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
+                              color: const Color(0xFF393939),
                               fontSize: 24.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
@@ -411,7 +452,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Line',
+                                    'Status',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -421,17 +462,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Wash Count',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                  Text(
-                                    'Lifetime',
+                                    'Days Remaining',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -516,7 +547,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                             .viewInsetsOf(
                                                                 context),
                                                         child: SizedBox(
-                                                          height: 400.0,
+                                                          height: 600.0,
                                                           child:
                                                               TagContentWidget(
                                                             componentlistitem:
@@ -573,7 +604,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                                 -1.0, 0.0),
                                                         child: Text(
                                                           queriedTagsListItem
-                                                              .line,
+                                                              .status,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -607,42 +638,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                                       0.0),
                                                           child: Text(
                                                             queriedTagsListItem
-                                                                .washingCount,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Container(
-                                                      width: 100.0,
-                                                      height: 20.0,
-                                                      decoration:
-                                                          const BoxDecoration(),
-                                                      child: Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      7.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            queriedTagsListItem
-                                                                .lifetime,
+                                                                .daysRemaining,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium

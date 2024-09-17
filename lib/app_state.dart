@@ -91,4 +91,33 @@ class FFAppState extends ChangeNotifier {
       int index, QueriedTagDataStruct value) {
     QueriedTagDataList.insert(index, value);
   }
+
+  List<AlarmTypeStruct> _AlarmsList = [];
+  List<AlarmTypeStruct> get AlarmsList => _AlarmsList;
+  set AlarmsList(List<AlarmTypeStruct> value) {
+    _AlarmsList = value;
+  }
+
+  void addToAlarmsList(AlarmTypeStruct value) {
+    AlarmsList.add(value);
+  }
+
+  void removeFromAlarmsList(AlarmTypeStruct value) {
+    AlarmsList.remove(value);
+  }
+
+  void removeAtIndexFromAlarmsList(int index) {
+    AlarmsList.removeAt(index);
+  }
+
+  void updateAlarmsListAtIndex(
+    int index,
+    AlarmTypeStruct Function(AlarmTypeStruct) updateFn,
+  ) {
+    AlarmsList[index] = updateFn(_AlarmsList[index]);
+  }
+
+  void insertAtIndexInAlarmsList(int index, AlarmTypeStruct value) {
+    AlarmsList.insert(index, value);
+  }
 }

@@ -46,9 +46,9 @@ class _LoginWidgetState extends State<LoginWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).alternate,
+          backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
@@ -73,6 +73,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     'Rework Bins Traceability',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
+                          color: const Color(0xFF393939),
                           fontSize: 24.0,
                           letterSpacing: 0.0,
                         ),
@@ -127,6 +128,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          color: const Color(0xFF393939),
                                           letterSpacing: 0.0,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
@@ -206,6 +208,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
+                                            color: const Color(0xFF393939),
                                             letterSpacing: 0.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
@@ -255,7 +258,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         Icons.password_sharp,
                                       ),
                                       suffixIcon: InkWell(
-                                        onTap: () => setState(
+                                        onTap: () => safeSetState(
                                           () => _model.passwordVisibility =
                                               !_model.passwordVisibility,
                                         ),
@@ -311,7 +314,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     (_model.logInRequestresponse?.jsonBody ??
                                         ''),
                                   ).toString();
-                                  setState(() {});
+                                  safeSetState(() {});
                                   if (_model.loginstatus == 'true') {
                                     context.goNamed(
                                       'NewReading',
@@ -361,11 +364,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       );
                                     },
                                   );
-                                  if (shouldSetState) setState(() {});
+                                  if (shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) setState(() {});
+                                if (shouldSetState) safeSetState(() {});
                               },
                               text: 'Login',
                               icon: const Icon(
@@ -379,7 +382,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).tertiary,
+                                color: const Color(0xFFFD6400),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -408,16 +411,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 alignment: const AlignmentDirectional(1.0, 1.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 5.0, 0.0, 0.0),
+                                      0.0, 20.0, 0.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
                                     fillColor: const Color(0x4CFFFFFF),
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.settings_sharp,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                      color: Color(0xFF393939),
                                       size: 24.0,
                                     ),
                                     onPressed: () async {
@@ -468,6 +470,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
+                                    color: const Color(0xFF393939),
                                     letterSpacing: 0.0,
                                   ),
                         ),

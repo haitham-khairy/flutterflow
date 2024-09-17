@@ -14,13 +14,25 @@ class QueriedTagDataStruct extends BaseStruct {
     String? lastTimeWashed,
     String? lifetime,
     String? color,
+    String? sku,
+    String? maxWashCount,
+    String? washOverDue,
+    String? status,
+    String? daysRemaining,
+    String? alarms,
   })  : _tagID = tagID,
         _line = line,
         _printDate = printDate,
         _washingCount = washingCount,
         _lastTimeWashed = lastTimeWashed,
         _lifetime = lifetime,
-        _color = color;
+        _color = color,
+        _sku = sku,
+        _maxWashCount = maxWashCount,
+        _washOverDue = washOverDue,
+        _status = status,
+        _daysRemaining = daysRemaining,
+        _alarms = alarms;
 
   // "TagID" field.
   String? _tagID;
@@ -66,10 +78,52 @@ class QueriedTagDataStruct extends BaseStruct {
 
   // "Color" field.
   String? _color;
-  String get color => _color ?? '\'\'';
+  String get color => _color ?? '\"\"';
   set color(String? val) => _color = val;
 
   bool hasColor() => _color != null;
+
+  // "SKU" field.
+  String? _sku;
+  String get sku => _sku ?? '\"\"';
+  set sku(String? val) => _sku = val;
+
+  bool hasSku() => _sku != null;
+
+  // "MaxWashCount" field.
+  String? _maxWashCount;
+  String get maxWashCount => _maxWashCount ?? '\"\"';
+  set maxWashCount(String? val) => _maxWashCount = val;
+
+  bool hasMaxWashCount() => _maxWashCount != null;
+
+  // "WashOverDue" field.
+  String? _washOverDue;
+  String get washOverDue => _washOverDue ?? '\"\"';
+  set washOverDue(String? val) => _washOverDue = val;
+
+  bool hasWashOverDue() => _washOverDue != null;
+
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '\"\"';
+  set status(String? val) => _status = val;
+
+  bool hasStatus() => _status != null;
+
+  // "daysRemaining" field.
+  String? _daysRemaining;
+  String get daysRemaining => _daysRemaining ?? '\"\"';
+  set daysRemaining(String? val) => _daysRemaining = val;
+
+  bool hasDaysRemaining() => _daysRemaining != null;
+
+  // "Alarms" field.
+  String? _alarms;
+  String get alarms => _alarms ?? '\"\"';
+  set alarms(String? val) => _alarms = val;
+
+  bool hasAlarms() => _alarms != null;
 
   static QueriedTagDataStruct fromMap(Map<String, dynamic> data) =>
       QueriedTagDataStruct(
@@ -80,6 +134,12 @@ class QueriedTagDataStruct extends BaseStruct {
         lastTimeWashed: data['LastTimeWashed'] as String?,
         lifetime: data['Lifetime'] as String?,
         color: data['Color'] as String?,
+        sku: data['SKU'] as String?,
+        maxWashCount: data['MaxWashCount'] as String?,
+        washOverDue: data['WashOverDue'] as String?,
+        status: data['status'] as String?,
+        daysRemaining: data['daysRemaining'] as String?,
+        alarms: data['Alarms'] as String?,
       );
 
   static QueriedTagDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -94,6 +154,12 @@ class QueriedTagDataStruct extends BaseStruct {
         'LastTimeWashed': _lastTimeWashed,
         'Lifetime': _lifetime,
         'Color': _color,
+        'SKU': _sku,
+        'MaxWashCount': _maxWashCount,
+        'WashOverDue': _washOverDue,
+        'status': _status,
+        'daysRemaining': _daysRemaining,
+        'Alarms': _alarms,
       }.withoutNulls;
 
   @override
@@ -124,6 +190,30 @@ class QueriedTagDataStruct extends BaseStruct {
         ),
         'Color': serializeParam(
           _color,
+          ParamType.String,
+        ),
+        'SKU': serializeParam(
+          _sku,
+          ParamType.String,
+        ),
+        'MaxWashCount': serializeParam(
+          _maxWashCount,
+          ParamType.String,
+        ),
+        'WashOverDue': serializeParam(
+          _washOverDue,
+          ParamType.String,
+        ),
+        'status': serializeParam(
+          _status,
+          ParamType.String,
+        ),
+        'daysRemaining': serializeParam(
+          _daysRemaining,
+          ParamType.String,
+        ),
+        'Alarms': serializeParam(
+          _alarms,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -165,6 +255,36 @@ class QueriedTagDataStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        sku: deserializeParam(
+          data['SKU'],
+          ParamType.String,
+          false,
+        ),
+        maxWashCount: deserializeParam(
+          data['MaxWashCount'],
+          ParamType.String,
+          false,
+        ),
+        washOverDue: deserializeParam(
+          data['WashOverDue'],
+          ParamType.String,
+          false,
+        ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
+        daysRemaining: deserializeParam(
+          data['daysRemaining'],
+          ParamType.String,
+          false,
+        ),
+        alarms: deserializeParam(
+          data['Alarms'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -179,12 +299,31 @@ class QueriedTagDataStruct extends BaseStruct {
         washingCount == other.washingCount &&
         lastTimeWashed == other.lastTimeWashed &&
         lifetime == other.lifetime &&
-        color == other.color;
+        color == other.color &&
+        sku == other.sku &&
+        maxWashCount == other.maxWashCount &&
+        washOverDue == other.washOverDue &&
+        status == other.status &&
+        daysRemaining == other.daysRemaining &&
+        alarms == other.alarms;
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [tagID, line, printDate, washingCount, lastTimeWashed, lifetime, color]);
+  int get hashCode => const ListEquality().hash([
+        tagID,
+        line,
+        printDate,
+        washingCount,
+        lastTimeWashed,
+        lifetime,
+        color,
+        sku,
+        maxWashCount,
+        washOverDue,
+        status,
+        daysRemaining,
+        alarms
+      ]);
 }
 
 QueriedTagDataStruct createQueriedTagDataStruct({
@@ -195,6 +334,12 @@ QueriedTagDataStruct createQueriedTagDataStruct({
   String? lastTimeWashed,
   String? lifetime,
   String? color,
+  String? sku,
+  String? maxWashCount,
+  String? washOverDue,
+  String? status,
+  String? daysRemaining,
+  String? alarms,
 }) =>
     QueriedTagDataStruct(
       tagID: tagID,
@@ -204,4 +349,10 @@ QueriedTagDataStruct createQueriedTagDataStruct({
       lastTimeWashed: lastTimeWashed,
       lifetime: lifetime,
       color: color,
+      sku: sku,
+      maxWashCount: maxWashCount,
+      washOverDue: washOverDue,
+      status: status,
+      daysRemaining: daysRemaining,
+      alarms: alarms,
     );

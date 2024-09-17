@@ -94,7 +94,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     suffixIcon: InkWell(
-                      onTap: () => setState(
+                      onTap: () => safeSetState(
                         () => _model.passwordVisibility =
                             !_model.passwordVisibility,
                       ),

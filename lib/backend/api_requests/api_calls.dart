@@ -73,7 +73,7 @@ class GetTagsDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
       apiUrl:
-          'https://2f98-197-53-141-56.ngrok-free.app/v1/GetTagsData/GetTagsData',
+          'https://55c6-102-40-183-100.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -147,6 +147,60 @@ class GetTagsDataCall {
         r'''$[:].Color''',
         true,
       ) as List?;
+  static List<String>? sku(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].SKU''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? maxWashCount(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].MaxWashCount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? washOverDue(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].WashOverDue''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? status(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].Status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? daysRemaining(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].DaysRemaining''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? alarms(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].Alarms''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class SendTagsListCall {
@@ -163,6 +217,179 @@ class SendTagsListCall {
       callName: 'SendTagsList',
       apiUrl:
           'https://2f98-197-53-141-56.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class RejectPinRequestCall {
+  static Future<ApiCallResponse> call({
+    String? tagID = '\"\"',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "TagID": "$tagID"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'RejectPinRequest',
+      apiUrl:
+          'https://55c6-102-40-183-100.ngrok-free.app/v1/RejectBinRequest/RejectBinRequest',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? response(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Operation''',
+      ));
+}
+
+class GetFilterParamatersCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetFilterParamaters',
+      apiUrl:
+          'https://55c6-102-40-183-100.ngrok-free.app/v1/Get_Filter_Parameters/GetFilterParameters',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<String>? skus(dynamic response) => (getJsonField(
+        response,
+        r'''$.SKUS''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? lines(dynamic response) => (getJsonField(
+        response,
+        r'''$.Lines''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class GetAlarmsListCall {
+  static Future<ApiCallResponse> call({
+    String? sku = '\"\"',
+    String? line = '\"\"',
+    String? tagID = '\"\"',
+    String? alarm = '\"\"',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "SKU": "$sku",
+  "Line": "$line",
+  "TagID": "$tagID",
+  "Alarm": "$alarm"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetAlarmsList',
+      apiUrl:
+          'https://55c6-102-40-183-100.ngrok-free.app/v1/GetAlarmsList/GetTagsAlarms',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<String>? tagID(dynamic response) => (getJsonField(
+        response,
+        r'''$.TagID''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? line(dynamic response) => (getJsonField(
+        response,
+        r'''$.Line''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? sku(dynamic response) => (getJsonField(
+        response,
+        r'''$.SKU''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? alarm(dynamic response) => (getJsonField(
+        response,
+        r'''$.Alarm''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class FilterAlarmsCall {
+  static Future<ApiCallResponse> call({
+    String? sku = '\"\"',
+    String? line = '',
+    String? tagID = '',
+    String? alarm = '\"\"',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "SKU": "$sku",
+  "Line": "$line",
+  "TagID": "$tagID",
+  "Alarm": "$alarm"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'FilterAlarms',
+      apiUrl: 'https://dummyjson.com/products',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

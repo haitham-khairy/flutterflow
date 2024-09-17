@@ -73,6 +73,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'NewReading',
           path: '/newReading',
           builder: (context, params) => const NewReadingWidget(),
+        ),
+        FFRoute(
+          name: 'HomePage',
+          path: '/homePage',
+          builder: (context, params) => const HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'Alarms',
+          path: '/alarms',
+          builder: (context, params) => const AlarmsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -58,7 +59,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
               lineWidth: 12.0,
               animation: true,
               animateFromLastPercent: true,
-              progressColor: FlutterFlowTheme.of(context).tertiary,
+              progressColor: const Color(0xFFFD6400),
               backgroundColor: FlutterFlowTheme.of(context).accent4,
               center: Text(
                 'Wash count',
@@ -79,7 +80,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
               lineWidth: 12.0,
               animation: true,
               animateFromLastPercent: true,
-              progressColor: FlutterFlowTheme.of(context).tertiary,
+              progressColor: const Color(0xFFFD6400),
               backgroundColor: FlutterFlowTheme.of(context).accent4,
               center: Text(
                 'Lifetime',
@@ -98,6 +99,72 @@ class _TagContentWidgetState extends State<TagContentWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'ID:',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Text(
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.tagID,
+                      '--',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'Line: ',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Text(
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.line,
+                      '--',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'SKU:',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Text(
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.sku,
+                      '--',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ],
+              ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -124,15 +191,17 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Wash before:',
+                    'Days Remaining For Next Wash:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
                         ),
                   ),
                   Text(
-                    functions.washBefore(
-                        widget.componentlistitem!.lastTimeWashed, 15),
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.daysRemaining,
+                      '--',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
@@ -166,14 +235,17 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Alarm:',
+                    'Status:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
                         ),
                   ),
                   Text(
-                    'Hello World',
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.status,
+                      '--',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
@@ -202,31 +274,100 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                   ),
                 ],
               ),
-              FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
-                },
-                text: 'Change to reject',
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).tertiary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.white,
-                        letterSpacing: 0.0,
-                      ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'Reworkbin Status:',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
+                  Text(
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.alarms,
+                      '--',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    _model.rejectionResponse =
+                        await RejectPinRequestCall.call();
+
+                    if ((_model.rejectionResponse?.succeeded ?? true)) {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Result'),
+                            content: Text(RejectPinRequestCall.response(
+                              (_model.rejectionResponse?.jsonBody ?? ''),
+                            )!),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Result'),
+                            content: Text(RejectPinRequestCall.response(
+                              (_model.rejectionResponse?.jsonBody ?? ''),
+                            )!),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+
+                    safeSetState(() {});
+                  },
+                  text: 'Change to reject',
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFFFD6400),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
               ),
-            ].divide(const SizedBox(height: 7.0)).around(const SizedBox(height: 7.0)),
+            ].divide(const SizedBox(height: 10.0)).around(const SizedBox(height: 10.0)),
           ),
         ),
       ],
