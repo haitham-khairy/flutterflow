@@ -39,6 +39,10 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
         Future(() async {
           _model.filterParametersResponse =
               await GetFilterParamatersCall.call();
+
+          if (!(_model.filterParametersResponse?.succeeded ?? true)) {
+            await Future.delayed(const Duration(milliseconds: 1000));
+          }
         }),
         Future(() async {
           _model.instantTimer = InstantTimer.periodic(
