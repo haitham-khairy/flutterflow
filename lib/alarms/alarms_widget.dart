@@ -45,10 +45,10 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
             duration: const Duration(milliseconds: 2000),
             callback: (timer) async {
               _model.getAlarmsListResponse = await GetAlarmsListCall.call(
-                sku: _model.selectSKUValue,
-                line: _model.selectLineValue,
+                sku: _model.skufilter,
+                line: _model.linefilter,
                 tagID: _model.selectIDTextController.text,
-                alarm: _model.selectStatusValue,
+                alarm: _model.statusfilter,
               );
 
               if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
@@ -220,8 +220,12 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                 (_model.filterParametersResponse?.jsonBody ??
                                     ''),
                               )!,
-                              onChanged: (val) => safeSetState(
-                                  () => _model.selectLineValue = val),
+                              onChanged: (val) async {
+                                safeSetState(
+                                    () => _model.selectLineValue = val);
+                                _model.linefilter = _model.selectLineValue!;
+                                safeSetState(() {});
+                              },
                               width: 200.0,
                               height: 40.0,
                               textStyle: FlutterFlowTheme.of(context)
@@ -272,8 +276,11 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                 (_model.filterParametersResponse?.jsonBody ??
                                     ''),
                               )!,
-                              onChanged: (val) => safeSetState(
-                                  () => _model.selectSKUValue = val),
+                              onChanged: (val) async {
+                                safeSetState(() => _model.selectSKUValue = val);
+                                _model.skufilter = _model.selectSKUValue!;
+                                safeSetState(() {});
+                              },
                               width: 200.0,
                               height: 40.0,
                               textStyle: FlutterFlowTheme.of(context)
@@ -408,8 +415,12 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                 'Exceeded Washing Count',
                                 'Exceeded Life Time'
                               ],
-                              onChanged: (val) => safeSetState(
-                                  () => _model.selectStatusValue = val),
+                              onChanged: (val) async {
+                                safeSetState(
+                                    () => _model.selectStatusValue = val);
+                                _model.statusfilter = _model.selectStatusValue!;
+                                safeSetState(() {});
+                              },
                               width: 200.0,
                               height: 40.0,
                               textStyle: FlutterFlowTheme.of(context)

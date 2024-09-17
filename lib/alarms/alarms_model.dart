@@ -44,6 +44,12 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
   void updateAlarmAtIndex(int index, Function(String) updateFn) =>
       alarm[index] = updateFn(alarm[index]);
 
+  String linefilter = ' ';
+
+  String skufilter = ' ';
+
+  String statusfilter = ' ';
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (GetFilterParamaters)] action in Alarms widget.
