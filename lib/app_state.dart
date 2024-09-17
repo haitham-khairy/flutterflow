@@ -120,4 +120,62 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAlarmsList(int index, AlarmTypeStruct value) {
     AlarmsList.insert(index, value);
   }
+
+  List<String> _linefilters = [];
+  List<String> get linefilters => _linefilters;
+  set linefilters(List<String> value) {
+    _linefilters = value;
+  }
+
+  void addToLinefilters(String value) {
+    linefilters.add(value);
+  }
+
+  void removeFromLinefilters(String value) {
+    linefilters.remove(value);
+  }
+
+  void removeAtIndexFromLinefilters(int index) {
+    linefilters.removeAt(index);
+  }
+
+  void updateLinefiltersAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    linefilters[index] = updateFn(_linefilters[index]);
+  }
+
+  void insertAtIndexInLinefilters(int index, String value) {
+    linefilters.insert(index, value);
+  }
+
+  List<String> _skufilters = [];
+  List<String> get skufilters => _skufilters;
+  set skufilters(List<String> value) {
+    _skufilters = value;
+  }
+
+  void addToSkufilters(String value) {
+    skufilters.add(value);
+  }
+
+  void removeFromSkufilters(String value) {
+    skufilters.remove(value);
+  }
+
+  void removeAtIndexFromSkufilters(int index) {
+    skufilters.removeAt(index);
+  }
+
+  void updateSkufiltersAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    skufilters[index] = updateFn(_skufilters[index]);
+  }
+
+  void insertAtIndexInSkufilters(int index, String value) {
+    skufilters.insert(index, value);
+  }
 }

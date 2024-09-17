@@ -149,7 +149,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
             flexibleSpace: FlexibleSpaceBar(
               title: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -161,7 +161,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
+                                3.0, 0.0, 0.0, 0.0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
                               borderRadius: 30.0,
@@ -180,8 +180,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 10.0, 0.0, 0.0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 0.0, 0.0),
                         child: Text(
                           'Bins Page',
                           style: FlutterFlowTheme.of(context)
@@ -197,10 +197,10 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                     ],
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 120.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(29.0, 0.0, 0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: SvgPicture.asset(

@@ -1,8 +1,11 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -22,6 +25,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.getFilterParametersHome = await GetFilterParamatersCall.call();
+
+      if ((_model.getFilterParametersHome?.succeeded ?? true)) {
+        FFAppState().linefilters = GetFilterParamatersCall.lines(
+          (_model.getFilterParametersHome?.jsonBody ?? ''),
+        )!
+            .toList()
+            .cast<String>();
+        FFAppState().skufilters = GetFilterParamatersCall.skus(
+          (_model.getFilterParametersHome?.jsonBody ?? ''),
+        )!
+            .toList()
+            .cast<String>();
+        safeSetState(() {});
+      }
+    });
   }
 
   @override
@@ -33,6 +55,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -47,7 +71,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             flexibleSpace: FlexibleSpaceBar(
               title: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -63,7 +87,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
+                                  3.0, 0.0, 0.0, 0.0),
                               child: FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
                                 borderRadius: 30.0,
@@ -83,8 +107,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 10.0, 0.0, 0.0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 0.0, 0.0),
                         child: Text(
                           'HomePage',
                           style: FlutterFlowTheme.of(context)
@@ -99,14 +123,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 120.0, 0.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: SvgPicture.asset(
-                        'assets/images/logo-main.svg',
-                        fit: BoxFit.cover,
+                  Align(
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: SvgPicture.asset(
+                          'assets/images/logo-main.svg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -121,7 +148,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 90.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -129,7 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
                     width: double.infinity,
-                    height: 400.0,
+                    height: 300.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(15.0),

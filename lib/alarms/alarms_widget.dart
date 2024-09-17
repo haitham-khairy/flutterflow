@@ -35,50 +35,38 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.wait([
-        Future(() async {
-          _model.filterParametersResponse =
-              await GetFilterParamatersCall.call();
-
-          if (!(_model.filterParametersResponse?.succeeded ?? true)) {
-            await Future.delayed(const Duration(milliseconds: 1000));
-          }
-        }),
-        Future(() async {
-          _model.instantTimer = InstantTimer.periodic(
-            duration: const Duration(milliseconds: 2000),
-            callback: (timer) async {
-              _model.getAlarmsListResponse = await GetAlarmsListCall.call(
-                sku: _model.skufilter,
-                line: _model.linefilter,
-                tagID: _model.selectIDTextController.text,
-                alarm: _model.statusfilter,
-              );
-
-              if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
-                FFAppState().AlarmsList = functions
-                    .buildAlarmList(
-                        GetAlarmsListCall.tagID(
-                          (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                        )?.toList(),
-                        GetAlarmsListCall.line(
-                          (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                        )?.toList(),
-                        GetAlarmsListCall.sku(
-                          (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                        )?.toList(),
-                        GetAlarmsListCall.alarm(
-                          (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                        )?.toList())
-                    .toList()
-                    .cast<AlarmTypeStruct>();
-                safeSetState(() {});
-              }
-            },
-            startImmediately: true,
+      _model.instantTimer = InstantTimer.periodic(
+        duration: const Duration(milliseconds: 2000),
+        callback: (timer) async {
+          _model.getAlarmsListResponse = await GetAlarmsListCall.call(
+            sku: _model.selectSKUValue,
+            line: _model.selectLineValue,
+            tagID: _model.selectIDTextController.text,
+            alarm: _model.selectStatusValue,
           );
-        }),
-      ]);
+
+          if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
+            FFAppState().AlarmsList = functions
+                .buildAlarmList(
+                    GetAlarmsListCall.tagID(
+                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
+                    )?.toList(),
+                    GetAlarmsListCall.line(
+                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
+                    )?.toList(),
+                    GetAlarmsListCall.sku(
+                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
+                    )?.toList(),
+                    GetAlarmsListCall.alarm(
+                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
+                    )?.toList())
+                .toList()
+                .cast<AlarmTypeStruct>();
+            safeSetState(() {});
+          }
+        },
+        startImmediately: true,
+      );
     });
 
     _model.selectIDTextController ??= TextEditingController();
@@ -110,7 +98,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
             flexibleSpace: FlexibleSpaceBar(
               title: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -125,7 +113,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
+                                  3.0, 0.0, 0.0, 0.0),
                               child: FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
                                 borderRadius: 30.0,
@@ -146,7 +134,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 0.0, 0.0),
                         child: Text(
                           'Alarms',
                           style: FlutterFlowTheme.of(context)
@@ -162,10 +150,10 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                     ],
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 120.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(54.0, 0.0, 0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: SvgPicture.asset(
@@ -222,16 +210,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                   FormFieldController<String>(
                                 _model.selectLineValue ??= '...',
                               ),
-                              options: GetFilterParamatersCall.lines(
-                                (_model.filterParametersResponse?.jsonBody ??
-                                    ''),
-                              )!,
-                              onChanged: (val) async {
-                                safeSetState(
-                                    () => _model.selectLineValue = val);
-                                _model.linefilter = _model.selectLineValue!;
-                                safeSetState(() {});
-                              },
+                              options: FFAppState().linefilters,
+                              onChanged: (val) => safeSetState(
+                                  () => _model.selectLineValue = val),
                               width: 200.0,
                               height: 40.0,
                               textStyle: FlutterFlowTheme.of(context)
@@ -280,15 +261,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                   FormFieldController<String>(
                                 _model.selectSKUValue ??= '...',
                               ),
-                              options: GetFilterParamatersCall.skus(
-                                (_model.filterParametersResponse?.jsonBody ??
-                                    ''),
-                              )!,
-                              onChanged: (val) async {
-                                safeSetState(() => _model.selectSKUValue = val);
-                                _model.skufilter = _model.selectSKUValue!;
-                                safeSetState(() {});
-                              },
+                              options: FFAppState().skufilters,
+                              onChanged: (val) => safeSetState(
+                                  () => _model.selectSKUValue = val),
                               width: 200.0,
                               height: 40.0,
                               textStyle: FlutterFlowTheme.of(context)
@@ -425,12 +400,8 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                 'Exceeded Washing Count',
                                 'Exceeded Life Time'
                               ],
-                              onChanged: (val) async {
-                                safeSetState(
-                                    () => _model.selectStatusValue = val);
-                                _model.statusfilter = _model.selectStatusValue!;
-                                safeSetState(() {});
-                              },
+                              onChanged: (val) => safeSetState(
+                                  () => _model.selectStatusValue = val),
                               width: 200.0,
                               height: 40.0,
                               textStyle: FlutterFlowTheme.of(context)
@@ -480,7 +451,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: const Color(0xFF0000A0),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: Colors.white,
