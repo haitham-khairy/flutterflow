@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'tag_content_model.dart';
 export 'tag_content_model.dart';
 
@@ -49,50 +48,6 @@ class _TagContentWidgetState extends State<TagContentWidget> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CircularPercentIndicator(
-              percent: 0.5,
-              radius: 75.0,
-              lineWidth: 12.0,
-              animation: true,
-              animateFromLastPercent: true,
-              progressColor: const Color(0xFFFD6400),
-              backgroundColor: FlutterFlowTheme.of(context).accent4,
-              center: Text(
-                'Wash count',
-                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      fontFamily: 'Outfit',
-                      fontSize: 20.0,
-                      letterSpacing: 0.0,
-                    ),
-              ),
-            ),
-            CircularPercentIndicator(
-              percent: functions.lifeTime(
-                  widget.componentlistitem!.lifetime,
-                  functions.remainigDayesInService(
-                      widget.componentlistitem!.lifetime,
-                      widget.componentlistitem!.printDate)),
-              radius: 75.0,
-              lineWidth: 12.0,
-              animation: true,
-              animateFromLastPercent: true,
-              progressColor: const Color(0xFFFD6400),
-              backgroundColor: FlutterFlowTheme.of(context).accent4,
-              center: Text(
-                'Lifetime',
-                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      fontFamily: 'Outfit',
-                      fontSize: 20.0,
-                      letterSpacing: 0.0,
-                    ),
-              ),
-            ),
-          ],
-        ),
         Padding(
           padding: const EdgeInsets.all(5.0),
           child: Column(
@@ -367,7 +322,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                   ),
                 ),
               ),
-            ].divide(const SizedBox(height: 10.0)).around(const SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 25.0)).around(const SizedBox(height: 25.0)),
           ),
         ),
       ],
