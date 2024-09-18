@@ -528,7 +528,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: colorFromCssString(
-                                                    queriedTagsListItem.color,
+                                                    functions.getColor(
+                                                        queriedTagsListItem
+                                                            .status)!,
                                                     defaultColor:
                                                         FlutterFlowTheme.of(
                                                                 context)

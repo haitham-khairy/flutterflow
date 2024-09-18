@@ -144,3 +144,16 @@ List<AlarmTypeStruct> buildAlarmList(
   }
   return result;
 }
+
+String? getColor(String status) {
+  switch (status) {
+    case 'Clean':
+      return 'Green';
+    case 'Exceed(scrap)':
+      return 'Red';
+    case 'Need To Be Cleaned':
+      return 'Gray';
+    default:
+      return null;
+  }
+}
