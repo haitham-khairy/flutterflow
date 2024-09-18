@@ -208,4 +208,10 @@ class FFAppState extends ChangeNotifier {
   set Hide(bool value) {
     _Hide = value;
   }
+
+  String _IPConfig = '';
+  String get IPConfig => _IPConfig;
+  set IPConfig(String value) {
+    _IPConfig = value;
+  }
 }
