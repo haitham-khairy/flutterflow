@@ -14,7 +14,7 @@ class LogInRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
       apiUrl:
-          'https://55c6-102-40-183-100.ngrok-free.app/v1/LoginAction/LogInRequest',
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/LoginAction/LogInRequest',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -43,7 +43,7 @@ class LoginDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
       apiUrl:
-          'https://55c6-102-40-183-100.ngrok-free.app/v1/loginData/UserDataFromApp',
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -73,7 +73,7 @@ class GetTagsDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
       apiUrl:
-          'https://55c6-102-40-183-100.ngrok-free.app/v1/GetTagsData/GetTagsData',
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -226,7 +226,7 @@ class SendTagsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
       apiUrl:
-          'https://55c6-102-40-183-100.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/StoreTagsInGlobal/StoreTagsInGlobal',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -253,7 +253,7 @@ class RejectPinRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'RejectPinRequest',
       apiUrl:
-          'https://55c6-102-40-183-100.ngrok-free.app/v1/RejectBinRequest/RejectBinRequest',
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/RejectBinRequest/RejectBinRequest',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -279,7 +279,7 @@ class GetFilterParamatersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetFilterParamaters',
       apiUrl:
-          'https://55c6-102-40-183-100.ngrok-free.app/v1/Get_Filter_Parameters/GetFilterParameters',
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/Get_Filter_Parameters/GetFilterParameters',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -330,7 +330,7 @@ class GetAlarmsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsList',
       apiUrl:
-          'https://55c6-102-40-183-100.ngrok-free.app/v1/GetAlarmsList/GetTagsAlarms',
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/GetAlarmsList/GetTagsAlarms',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -381,6 +381,43 @@ class GetAlarmsListCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
+}
+
+class GetAlarmsSummaryCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetAlarmsSummary',
+      apiUrl:
+          'https://5e42-196-129-54-35.ngrok-free.app/v1/AlarmsSummary/GetAlarmsSummary',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? twix(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Twix''',
+      ));
+  static String? molding(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Molding''',
+      ));
+  static String? flutes(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Flutes''',
+      ));
+  static String? jewels(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Jewels''',
+      ));
 }
 
 class ApiPagingParams {
