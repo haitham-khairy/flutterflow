@@ -99,7 +99,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -136,36 +136,44 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: SvgPicture.asset(
-                                'assets/images/logo-main.svg',
-                                fit: BoxFit.cover,
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 5.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/logo-main.svg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Text(
-                              'Home Page',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFF393939),
-                                    fontSize: 24.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Text(
+                                'Home Page',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0xFF393939),
+                                      fontSize: 24.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -239,9 +247,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: const Color(0xFF393939),
-                                                  fontSize: 20.0,
+                                                  fontSize: 24.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
+                                                  fontWeight: FontWeight.normal,
                                                 ),
                                           ),
                                         ),
@@ -271,18 +279,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               .override(
                                                 fontFamily: 'Readex Pro',
                                                 color: const Color(0xFF393939),
-                                                fontSize: 20.0,
+                                                fontSize: 24.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                       ],
                                     ),
                                   ].divide(const SizedBox(width: 80.0)),
                                 ),
+                                const SizedBox(
+                                  width: 320.0,
+                                  child: Divider(
+                                    thickness: 2.0,
+                                    color: Color(0xFF393939),
+                                  ),
+                                ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 25.0, 0.0, 10.0),
+                                      0.0, 0.0, 0.0, 10.0),
                                   child: Text(
                                     'Alarms Summary',
                                     style: FlutterFlowTheme.of(context)
@@ -290,9 +305,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: const Color(0xFF393939),
-                                          fontSize: 20.0,
+                                          fontSize: 24.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.normal,
                                         ),
                                   ),
                                 ),
@@ -318,9 +333,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         children: [
                                           Expanded(
                                             child: Container(
-                                              decoration: const BoxDecoration(
-                                                color: Color(0xFFFD6400),
-                                                borderRadius: BorderRadius.only(
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFFFD6400),
+                                                borderRadius: const BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
                                                   bottomRight:
@@ -329,6 +344,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       Radius.circular(10.0),
                                                   topRight:
                                                       Radius.circular(0.0),
+                                                ),
+                                                border: Border.all(
+                                                  color: const Color(0xFF393939),
                                                 ),
                                               ),
                                               child: Align(
@@ -343,7 +361,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         fontFamily:
                                                             'Readex Pro',
                                                         color:
-                                                            const Color(0xFFFBFBFB),
+                                                            const Color(0xFF393939),
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -352,8 +371,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                           Expanded(
                                             child: Container(
-                                              decoration: const BoxDecoration(
-                                                color: Color(0xFFFD6400),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFFFD6400),
+                                                border: Border.all(
+                                                  color: const Color(0xFF393939),
+                                                ),
                                               ),
                                               child: Align(
                                                 alignment: const AlignmentDirectional(
@@ -367,7 +389,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         fontFamily:
                                                             'Readex Pro',
                                                         color:
-                                                            const Color(0xFFFBFBFB),
+                                                            const Color(0xFF393939),
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -376,8 +399,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                           Expanded(
                                             child: Container(
-                                              decoration: const BoxDecoration(
-                                                color: Color(0xFFFD6400),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFFFD6400),
+                                                border: Border.all(
+                                                  color: const Color(0xFF393939),
+                                                ),
                                               ),
                                               child: Align(
                                                 alignment: const AlignmentDirectional(
@@ -391,7 +417,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         fontFamily:
                                                             'Readex Pro',
                                                         color:
-                                                            const Color(0xFFFBFBFB),
+                                                            const Color(0xFF393939),
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -400,9 +427,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                           Expanded(
                                             child: Container(
-                                              decoration: const BoxDecoration(
-                                                color: Color(0xFFFD6400),
-                                                borderRadius: BorderRadius.only(
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFFFD6400),
+                                                borderRadius: const BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
                                                   bottomRight:
@@ -410,6 +437,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   topLeft: Radius.circular(0.0),
                                                   topRight:
                                                       Radius.circular(10.0),
+                                                ),
+                                                border: Border.all(
+                                                  color: const Color(0xFF393939),
                                                 ),
                                               ),
                                               child: Align(
@@ -424,7 +454,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         fontFamily:
                                                             'Readex Pro',
                                                         color:
-                                                            const Color(0xFFFBFBFB),
+                                                            const Color(0xFF393939),
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
