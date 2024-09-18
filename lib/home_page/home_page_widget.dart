@@ -232,7 +232,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           },
                                           child: const Icon(
                                             FFIcons.krFIDIcon,
-                                            color: Color(0xFFFD6400),
+                                            color: Color(0xFF0000A0),
                                             size: 100.0,
                                           ),
                                         ),
@@ -268,7 +268,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           },
                                           child: const Icon(
                                             Icons.error_outline,
-                                            color: Color(0xFFFD6400),
+                                            color: Color(0xFF0000A0),
                                             size: 100.0,
                                           ),
                                         ),
@@ -334,7 +334,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFFFD6400),
+                                                color: const Color(0xFF0000A0),
                                                 borderRadius: const BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
@@ -360,8 +360,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        color:
-                                                            const Color(0xFF393939),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -372,7 +373,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFFFD6400),
+                                                color: const Color(0xFF0000A0),
                                                 border: Border.all(
                                                   color: const Color(0xFF393939),
                                                 ),
@@ -388,8 +389,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        color:
-                                                            const Color(0xFF393939),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -400,7 +402,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFFFD6400),
+                                                color: const Color(0xFF0000A0),
                                                 border: Border.all(
                                                   color: const Color(0xFF393939),
                                                 ),
@@ -416,8 +418,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        color:
-                                                            const Color(0xFF393939),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -428,7 +431,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFFFD6400),
+                                                color: const Color(0xFF0000A0),
                                                 borderRadius: const BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
@@ -453,8 +456,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        color:
-                                                            const Color(0xFF393939),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),

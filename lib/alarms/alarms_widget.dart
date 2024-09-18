@@ -488,7 +488,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                           alarm: _model.selectStatusValue,
                         );
 
-                        _model.hide = true;
+                        _model.hide = false;
                         safeSetState(() {});
                         if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
                           FFAppState().AlarmsList = functions
@@ -539,7 +539,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                       onPressed: () async {
                         FFAppState().AlarmsList = [];
                         safeSetState(() {});
-                        _model.hide = false;
+                        _model.hide = true;
                         safeSetState(() {});
                       },
                       text: 'Clear List',
