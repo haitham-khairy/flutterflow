@@ -52,9 +52,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
         key: scaffoldKey,
         backgroundColor: const Color(0xFFFBFBFB),
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50.0),
+          preferredSize: const Size.fromHeight(75.0),
           child: AppBar(
-            backgroundColor: const Color(0xFFFD6400),
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             actions: const [],
             flexibleSpace: FlexibleSpaceBar(
@@ -128,7 +128,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 3.0, 10.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   height: 180.0,

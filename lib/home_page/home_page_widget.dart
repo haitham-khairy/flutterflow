@@ -87,9 +87,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         key: scaffoldKey,
         backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50.0),
+          preferredSize: const Size.fromHeight(100.0),
           child: AppBar(
-            backgroundColor: const Color(0xFFFD6400),
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             actions: const [],
             flexibleSpace: FlexibleSpaceBar(
@@ -99,7 +99,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -117,6 +117,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 borderRadius: 30.0,
                                 borderWidth: 1.0,
                                 buttonSize: 50.0,
+                                fillColor: const Color(0xFF0000A0),
                                 icon: const Icon(
                                   Icons.arrow_back_rounded,
                                   color: Colors.white,
@@ -132,17 +133,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ],
                   ),
-                  Align(
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(75.0, 0.0, 0.0, 0.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: SvgPicture.asset(
-                          'assets/images/logo-main.svg',
-                          fit: BoxFit.cover,
-                        ),
+                  Expanded(
+                    child: Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: SvgPicture.asset(
+                                'assets/images/logo-main.svg',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Text(
+                              'Home Page',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0xFF393939),
+                                    fontSize: 24.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -171,9 +194,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(15.0),
-                        border: Border.all(
-                          color: const Color(0xFF393939),
-                        ),
                       ),
                       child: Padding(
                         padding:
@@ -260,16 +280,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                                   ].divide(const SizedBox(width: 80.0)),
                                 ),
-                                Text(
-                                  'Alarms Summary',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF393939),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 25.0, 0.0, 10.0),
+                                  child: Text(
+                                    'Alarms Summary',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: const Color(0xFF393939),
+                                          fontSize: 20.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
                                 ),
                                 Container(
                                   width: 320.0,
@@ -294,7 +319,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: const BoxDecoration(
-                                                color: Color(0xFF0000A0),
+                                                color: Color(0xFFFD6400),
                                                 borderRadius: BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
@@ -328,7 +353,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: const BoxDecoration(
-                                                color: Color(0xFF0000A0),
+                                                color: Color(0xFFFD6400),
                                               ),
                                               child: Align(
                                                 alignment: const AlignmentDirectional(
@@ -352,7 +377,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: const BoxDecoration(
-                                                color: Color(0xFF0000A0),
+                                                color: Color(0xFFFD6400),
                                               ),
                                               child: Align(
                                                 alignment: const AlignmentDirectional(
@@ -376,7 +401,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: const BoxDecoration(
-                                                color: Color(0xFF0000A0),
+                                                color: Color(0xFFFD6400),
                                                 borderRadius: BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
