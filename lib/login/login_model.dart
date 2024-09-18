@@ -14,8 +14,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   FocusNode? usernameFocusNode;
   TextEditingController? usernameTextController;
   String? Function(BuildContext, String?)? usernameTextControllerValidator;
-  // Stores action output result for [Backend Call - API (GetAlarmsSummary)] action in Username widget.
-  ApiCallResponse? getAlarmsSummaryResponse;
   // State field(s) for Password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;

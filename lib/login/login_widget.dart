@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'login_model.dart';
@@ -119,46 +118,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 child: TextFormField(
                                   controller: _model.usernameTextController,
                                   focusNode: _model.usernameFocusNode,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.usernameTextController',
-                                    const Duration(milliseconds: 2000),
-                                    () async {
-                                      _model.getAlarmsSummaryResponse =
-                                          await GetAlarmsSummaryCall.call();
-
-                                      if ((_model.getAlarmsSummaryResponse
-                                              ?.succeeded ??
-                                          true)) {
-                                        FFAppState().Twix =
-                                            GetAlarmsSummaryCall.twix(
-                                          (_model.getAlarmsSummaryResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )!;
-                                        FFAppState().Flutes =
-                                            GetAlarmsSummaryCall.flutes(
-                                          (_model.getAlarmsSummaryResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )!;
-                                        FFAppState().Molding =
-                                            GetAlarmsSummaryCall.molding(
-                                          (_model.getAlarmsSummaryResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )!;
-                                        FFAppState().Jewels =
-                                            GetAlarmsSummaryCall.jewels(
-                                          (_model.getAlarmsSummaryResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )!;
-                                        safeSetState(() {});
-                                      }
-
-                                      safeSetState(() {});
-                                    },
-                                  ),
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
