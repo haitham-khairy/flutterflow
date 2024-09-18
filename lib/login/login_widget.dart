@@ -30,19 +30,21 @@ class _LoginWidgetState extends State<LoginWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getAlarmsSummary2 = await GetAlarmsSummaryCall.call();
 
-      FFAppState().Twix = GetAlarmsSummaryCall.twix(
-        (_model.getAlarmsSummary2?.jsonBody ?? ''),
-      )!;
-      FFAppState().Flutes = GetAlarmsSummaryCall.flutes(
-        (_model.getAlarmsSummary2?.jsonBody ?? ''),
-      )!;
-      FFAppState().Molding = GetAlarmsSummaryCall.molding(
-        (_model.getAlarmsSummary2?.jsonBody ?? ''),
-      )!;
-      FFAppState().Jewels = GetAlarmsSummaryCall.jewels(
-        (_model.getAlarmsSummary2?.jsonBody ?? ''),
-      )!;
-      safeSetState(() {});
+      if ((_model.getAlarmsSummary2?.succeeded ?? true)) {
+        FFAppState().Twix = GetAlarmsSummaryCall.twix(
+          (_model.getAlarmsSummary2?.jsonBody ?? ''),
+        )!;
+        FFAppState().Flutes = GetAlarmsSummaryCall.flutes(
+          (_model.getAlarmsSummary2?.jsonBody ?? ''),
+        )!;
+        FFAppState().Molding = GetAlarmsSummaryCall.molding(
+          (_model.getAlarmsSummary2?.jsonBody ?? ''),
+        )!;
+        FFAppState().Jewels = GetAlarmsSummaryCall.jewels(
+          (_model.getAlarmsSummary2?.jsonBody ?? ''),
+        )!;
+        safeSetState(() {});
+      }
     });
 
     _model.usernameTextController ??= TextEditingController();
