@@ -216,7 +216,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 65.0, 5.0, 0.0, 5.0),
                             child: Text(
-                              'Scan',
+                              'Scanning',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
