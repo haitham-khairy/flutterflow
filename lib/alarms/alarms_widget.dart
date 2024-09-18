@@ -439,90 +439,93 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  FFButtonWidget(
-                    onPressed: () async {
-                      _model.getAlarmsListResponse =
-                          await GetAlarmsListCall.call(
-                        sku: _model.selectSKUValue,
-                        line: _model.selectLineValue,
-                        tagID: _model.selectIDTextController.text,
-                        alarm: _model.selectStatusValue,
-                      );
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    FFButtonWidget(
+                      onPressed: () async {
+                        _model.getAlarmsListResponse =
+                            await GetAlarmsListCall.call(
+                          sku: _model.selectSKUValue,
+                          line: _model.selectLineValue,
+                          tagID: _model.selectIDTextController.text,
+                          alarm: _model.selectStatusValue,
+                        );
 
-                      if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
-                        FFAppState().AlarmsList = functions
-                            .buildAlarmList(
-                                GetAlarmsListCall.tagID(
-                                  (_model.getAlarmsListResponse?.jsonBody ??
-                                      ''),
-                                )?.toList(),
-                                GetAlarmsListCall.line(
-                                  (_model.getAlarmsListResponse?.jsonBody ??
-                                      ''),
-                                )?.toList(),
-                                GetAlarmsListCall.sku(
-                                  (_model.getAlarmsListResponse?.jsonBody ??
-                                      ''),
-                                )?.toList(),
-                                GetAlarmsListCall.alarm(
-                                  (_model.getAlarmsListResponse?.jsonBody ??
-                                      ''),
-                                )?.toList())
-                            .toList()
-                            .cast<AlarmTypeStruct>();
+                        if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
+                          FFAppState().AlarmsList = functions
+                              .buildAlarmList(
+                                  GetAlarmsListCall.tagID(
+                                    (_model.getAlarmsListResponse?.jsonBody ??
+                                        ''),
+                                  )?.toList(),
+                                  GetAlarmsListCall.line(
+                                    (_model.getAlarmsListResponse?.jsonBody ??
+                                        ''),
+                                  )?.toList(),
+                                  GetAlarmsListCall.sku(
+                                    (_model.getAlarmsListResponse?.jsonBody ??
+                                        ''),
+                                  )?.toList(),
+                                  GetAlarmsListCall.alarm(
+                                    (_model.getAlarmsListResponse?.jsonBody ??
+                                        ''),
+                                  )?.toList())
+                              .toList()
+                              .cast<AlarmTypeStruct>();
+                          safeSetState(() {});
+                        }
+
                         safeSetState(() {});
-                      }
-
-                      safeSetState(() {});
-                    },
-                    text: 'Get List',
-                    options: FFButtonOptions(
-                      width: 120.0,
-                      height: 40.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF0000A0),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                      },
+                      text: 'Get List',
+                      options: FFButtonOptions(
+                        width: 120.0,
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF0000A0),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      FFAppState().AlarmsList = [];
-                      safeSetState(() {});
-                    },
-                    text: 'Clear List',
-                    options: FFButtonOptions(
-                      width: 120.0,
-                      height: 40.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF0000A0),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        FFAppState().AlarmsList = [];
+                        safeSetState(() {});
+                      },
+                      text: 'Clear List',
+                      options: FFButtonOptions(
+                        width: 120.0,
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF0000A0),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Expanded(
                 child: Padding(
