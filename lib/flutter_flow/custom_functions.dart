@@ -145,14 +145,15 @@ List<AlarmTypeStruct> buildAlarmList(
   return result;
 }
 
-String? getColor(String status) {
+Color? getColor(String status) {
+  // custome function that will return a color type based on the status of the input (Green, Red, Gray) if the status is (Clean, Exceed(scrap), Need to Be Cleaned)
   switch (status) {
     case 'Clean':
-      return 'Green';
+      return Colors.green;
     case 'Exceed(scrap)':
-      return 'Red';
-    case 'Need To Be Cleaned':
-      return 'Gray';
+      return Colors.red;
+    case 'Need to Be Cleaned':
+      return Colors.grey;
     default:
       return null;
   }

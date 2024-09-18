@@ -522,21 +522,12 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                           padding: const EdgeInsets.all(5.0),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent2,
-                                              boxShadow: [
+                                              color: functions.getColor(
+                                                  queriedTagsListItem.status),
+                                              boxShadow: const [
                                                 BoxShadow(
-                                                  color: colorFromCssString(
-                                                    functions.getColor(
-                                                        queriedTagsListItem
-                                                            .status)!,
-                                                    defaultColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .success,
-                                                  ),
-                                                  offset: const Offset(
+                                                  color: Color(0x7039D2C0),
+                                                  offset: Offset(
                                                     0.0,
                                                     0.0,
                                                   ),
