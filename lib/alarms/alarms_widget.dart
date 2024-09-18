@@ -7,10 +7,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/instant_timer.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'alarms_model.dart';
@@ -32,42 +30,6 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AlarmsModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.instantTimer = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 2000),
-        callback: (timer) async {
-          _model.getAlarmsListResponse = await GetAlarmsListCall.call(
-            sku: _model.selectSKUValue,
-            line: _model.selectLineValue,
-            tagID: _model.selectIDTextController.text,
-            alarm: _model.selectStatusValue,
-          );
-
-          if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
-            FFAppState().AlarmsList = functions
-                .buildAlarmList(
-                    GetAlarmsListCall.tagID(
-                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                    )?.toList(),
-                    GetAlarmsListCall.line(
-                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                    )?.toList(),
-                    GetAlarmsListCall.sku(
-                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                    )?.toList(),
-                    GetAlarmsListCall.alarm(
-                      (_model.getAlarmsListResponse?.jsonBody ?? ''),
-                    )?.toList())
-                .toList()
-                .cast<AlarmTypeStruct>();
-            safeSetState(() {});
-          }
-        },
-        startImmediately: true,
-      );
-    });
 
     _model.selectIDTextController ??= TextEditingController();
     _model.selectIDFocusNode ??= FocusNode();
@@ -438,30 +400,85 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    FFAppState().AlarmsList = [];
-                    safeSetState(() {});
-                  },
-                  text: 'Clear List',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFF0000A0),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
-                        ),
-                    elevation: 0.0,
-                    borderRadius: BorderRadius.circular(8.0),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  FFButtonWidget(
+                    onPressed: () async {
+                      _model.getAlarmsListResponse =
+                          await GetAlarmsListCall.call();
+
+                      if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
+                        FFAppState().AlarmsList = functions
+                            .buildAlarmList(
+                                GetAlarmsListCall.tagID(
+                                  (_model.getAlarmsListResponse?.jsonBody ??
+                                      ''),
+                                )?.toList(),
+                                GetAlarmsListCall.line(
+                                  (_model.getAlarmsListResponse?.jsonBody ??
+                                      ''),
+                                )?.toList(),
+                                GetAlarmsListCall.sku(
+                                  (_model.getAlarmsListResponse?.jsonBody ??
+                                      ''),
+                                )?.toList(),
+                                GetAlarmsListCall.alarm(
+                                  (_model.getAlarmsListResponse?.jsonBody ??
+                                      ''),
+                                )?.toList())
+                            .toList()
+                            .cast<AlarmTypeStruct>();
+                        safeSetState(() {});
+                      }
+
+                      safeSetState(() {});
+                    },
+                    text: 'Get List',
+                    options: FFButtonOptions(
+                      width: 120.0,
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF0000A0),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 0.0,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
-                ),
+                  FFButtonWidget(
+                    onPressed: () async {
+                      FFAppState().AlarmsList = [];
+                      safeSetState(() {});
+                    },
+                    text: 'Clear List',
+                    options: FFButtonOptions(
+                      width: 120.0,
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF0000A0),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 0.0,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ],
               ),
               Expanded(
                 child: Padding(

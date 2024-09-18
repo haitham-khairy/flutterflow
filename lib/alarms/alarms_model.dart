@@ -3,7 +3,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/instant_timer.dart';
 import 'alarms_widget.dart' show AlarmsWidget;
 import 'package:flutter/material.dart';
 
@@ -46,9 +45,6 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  InstantTimer? instantTimer;
-  // Stores action output result for [Backend Call - API (GetAlarmsList)] action in Alarms widget.
-  ApiCallResponse? getAlarmsListResponse;
   // State field(s) for SelectLine widget.
   String? selectLineValue;
   FormFieldController<String>? selectLineValueController;
@@ -62,6 +58,8 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
   // State field(s) for SelectStatus widget.
   String? selectStatusValue;
   FormFieldController<String>? selectStatusValueController;
+  // Stores action output result for [Backend Call - API (GetAlarmsList)] action in Button widget.
+  ApiCallResponse? getAlarmsListResponse;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<AlarmTypeStruct>();
@@ -71,7 +69,6 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
 
   @override
   void dispose() {
-    instantTimer?.cancel();
     selectIDFocusNode?.dispose();
     selectIDTextController?.dispose();
 
