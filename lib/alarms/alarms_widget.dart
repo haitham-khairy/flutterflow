@@ -624,7 +624,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                           showFirstLastButtons: false,
                           headingRowHeight: 30.0,
                           dataRowHeight: 65.0,
-                          columnSpacing: 20.0,
+                          columnSpacing: 5.0,
                           headingRowColor: const Color(0xFF0000A0),
                           borderRadius: BorderRadius.circular(8.0),
                           addHorizontalDivider: true,
