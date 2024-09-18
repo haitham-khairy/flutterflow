@@ -119,12 +119,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 buttonSize: 50.0,
                                 fillColor: const Color(0xFF0000A0),
                                 icon: const Icon(
-                                  Icons.arrow_back_rounded,
+                                  Icons.logout_outlined,
                                   color: Colors.white,
                                   size: 30.0,
                                 ),
                                 onPressed: () async {
-                                  context.pop();
+                                  context.pushNamed('Login');
                                 },
                               ),
                             ),
@@ -148,7 +148,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 10.0),
+                                    0.0, 5.0, 0.0, 5.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: SvgPicture.asset(
@@ -160,16 +160,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             Align(
                               alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                'Home Page',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0xFF393939),
-                                      fontSize: 24.0,
-                                      letterSpacing: 0.0,
-                                    ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 5.0),
+                                child: Text(
+                                  'Home Page',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: const Color(0xFF393939),
+                                        fontSize: 24.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
                               ),
                             ),
                           ],
@@ -265,6 +269,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed('Alarms');
+
+                                            FFAppState().Hide = false;
+                                            safeSetState(() {});
                                           },
                                           child: const Icon(
                                             Icons.error_outline,

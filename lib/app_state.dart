@@ -202,4 +202,10 @@ class FFAppState extends ChangeNotifier {
   set Jewels(String value) {
     _Jewels = value;
   }
+
+  bool _Hide = true;
+  bool get Hide => _Hide;
+  set Hide(bool value) {
+    _Hide = value;
+  }
 }

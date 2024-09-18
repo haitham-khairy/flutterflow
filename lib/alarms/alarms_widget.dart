@@ -152,7 +152,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (_model.hide)
+              if (FFAppState().Hide)
                 Padding(
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
@@ -488,7 +488,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                           alarm: _model.selectStatusValue,
                         );
 
-                        _model.hide = false;
+                        FFAppState().Hide = false;
                         safeSetState(() {});
                         if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
                           FFAppState().AlarmsList = functions
@@ -539,7 +539,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                       onPressed: () async {
                         FFAppState().AlarmsList = [];
                         safeSetState(() {});
-                        _model.hide = true;
+                        FFAppState().Hide = true;
                         safeSetState(() {});
                       },
                       text: 'Clear List',
