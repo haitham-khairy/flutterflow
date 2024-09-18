@@ -201,7 +201,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         },
                                         child: const Icon(
                                           FFIcons.krFIDIcon,
-                                          color: Color(0xFF393939),
+                                          color: Color(0xFF0000A0),
                                           size: 100.0,
                                         ),
                                       ),
@@ -236,7 +236,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         },
                                         child: const Icon(
                                           Icons.error_outline,
-                                          color: Color(0xFF393939),
+                                          color: Color(0xFF0000A0),
                                           size: 100.0,
                                         ),
                                       ),
