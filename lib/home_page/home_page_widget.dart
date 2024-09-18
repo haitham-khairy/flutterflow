@@ -48,19 +48,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           callback: (timer) async {
             _model.alarmsSummaryResponse = await GetAlarmsSummaryCall.call();
 
-            FFAppState().Twix = GetAlarmsSummaryCall.twix(
-              (_model.alarmsSummaryResponse?.jsonBody ?? ''),
-            )!;
-            FFAppState().Flutes = GetAlarmsSummaryCall.flutes(
-              (_model.alarmsSummaryResponse?.jsonBody ?? ''),
-            )!;
-            FFAppState().Molding = GetAlarmsSummaryCall.molding(
-              (_model.alarmsSummaryResponse?.jsonBody ?? ''),
-            )!;
-            FFAppState().Jewels = GetAlarmsSummaryCall.jewels(
-              (_model.alarmsSummaryResponse?.jsonBody ?? ''),
-            )!;
-            safeSetState(() {});
+            if ((_model.alarmsSummaryResponse?.succeeded ?? true)) {
+              FFAppState().Twix = GetAlarmsSummaryCall.twix(
+                (_model.alarmsSummaryResponse?.jsonBody ?? ''),
+              )!;
+              FFAppState().Flutes = GetAlarmsSummaryCall.flutes(
+                (_model.alarmsSummaryResponse?.jsonBody ?? ''),
+              )!;
+              FFAppState().Molding = GetAlarmsSummaryCall.molding(
+                (_model.alarmsSummaryResponse?.jsonBody ?? ''),
+              )!;
+              FFAppState().Jewels = GetAlarmsSummaryCall.jewels(
+                (_model.alarmsSummaryResponse?.jsonBody ?? ''),
+              )!;
+              safeSetState(() {});
+            }
           },
           startImmediately: true,
         );
