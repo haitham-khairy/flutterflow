@@ -407,7 +407,12 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       _model.getAlarmsListResponse =
-                          await GetAlarmsListCall.call();
+                          await GetAlarmsListCall.call(
+                        sku: _model.selectSKUValue,
+                        line: _model.selectLineValue,
+                        tagID: _model.selectIDTextController.text,
+                        alarm: _model.selectStatusValue,
+                      );
 
                       if ((_model.getAlarmsListResponse?.succeeded ?? true)) {
                         FFAppState().AlarmsList = functions
