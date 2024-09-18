@@ -10,12 +10,12 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - API (GetAlarmsSummary)] action in Login widget.
-  ApiCallResponse? getAlarmsSummary2;
   // State field(s) for Username widget.
   FocusNode? usernameFocusNode;
   TextEditingController? usernameTextController;
   String? Function(BuildContext, String?)? usernameTextControllerValidator;
+  // Stores action output result for [Backend Call - API (GetAlarmsSummary)] action in Username widget.
+  ApiCallResponse? getAlarmsSummaryResponse;
   // State field(s) for Password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;

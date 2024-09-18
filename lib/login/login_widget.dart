@@ -2,10 +2,9 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -26,27 +25,6 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.getAlarmsSummary2 = await GetAlarmsSummaryCall.call();
-
-      if ((_model.getAlarmsSummary2?.succeeded ?? true)) {
-        FFAppState().Twix = GetAlarmsSummaryCall.twix(
-          (_model.getAlarmsSummary2?.jsonBody ?? ''),
-        )!;
-        FFAppState().Flutes = GetAlarmsSummaryCall.flutes(
-          (_model.getAlarmsSummary2?.jsonBody ?? ''),
-        )!;
-        FFAppState().Molding = GetAlarmsSummaryCall.molding(
-          (_model.getAlarmsSummary2?.jsonBody ?? ''),
-        )!;
-        FFAppState().Jewels = GetAlarmsSummaryCall.jewels(
-          (_model.getAlarmsSummary2?.jsonBody ?? ''),
-        )!;
-        safeSetState(() {});
-      }
-    });
-
     _model.usernameTextController ??= TextEditingController();
     _model.usernameFocusNode ??= FocusNode();
 
@@ -63,8 +41,6 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -143,6 +119,46 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 child: TextFormField(
                                   controller: _model.usernameTextController,
                                   focusNode: _model.usernameFocusNode,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.usernameTextController',
+                                    const Duration(milliseconds: 2000),
+                                    () async {
+                                      _model.getAlarmsSummaryResponse =
+                                          await GetAlarmsSummaryCall.call();
+
+                                      if ((_model.getAlarmsSummaryResponse
+                                              ?.succeeded ??
+                                          true)) {
+                                        FFAppState().Twix =
+                                            GetAlarmsSummaryCall.twix(
+                                          (_model.getAlarmsSummaryResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )!;
+                                        FFAppState().Flutes =
+                                            GetAlarmsSummaryCall.flutes(
+                                          (_model.getAlarmsSummaryResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )!;
+                                        FFAppState().Molding =
+                                            GetAlarmsSummaryCall.molding(
+                                          (_model.getAlarmsSummaryResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )!;
+                                        FFAppState().Jewels =
+                                            GetAlarmsSummaryCall.jewels(
+                                          (_model.getAlarmsSummaryResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )!;
+                                        safeSetState(() {});
+                                      }
+
+                                      safeSetState(() {});
+                                    },
+                                  ),
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
