@@ -291,48 +291,120 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
-                                          Text(
-                                            'Twix',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
+                                          Expanded(
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFF0000A0),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(0.0),
+                                                  bottomRight:
+                                                      Radius.circular(0.0),
+                                                  topLeft:
+                                                      Radius.circular(10.0),
+                                                  topRight:
+                                                      Radius.circular(0.0),
                                                 ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              'FLutes',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                              ),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'Twix',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
+                                                        color:
+                                                            const Color(0xFFFBFBFB),
                                                         letterSpacing: 0.0,
                                                       ),
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                          Text(
-                                            'Jewels',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
+                                          Expanded(
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFF0000A0),
+                                              ),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'FLutes',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            const Color(0xFFFBFBFB),
+                                                        letterSpacing: 0.0,
+                                                      ),
                                                 ),
+                                              ),
+                                            ),
                                           ),
-                                          Text(
-                                            'Molding',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
+                                          Expanded(
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFF0000A0),
+                                              ),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'Jewels',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            const Color(0xFFFBFBFB),
+                                                        letterSpacing: 0.0,
+                                                      ),
                                                 ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFF0000A0),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(0.0),
+                                                  bottomRight:
+                                                      Radius.circular(0.0),
+                                                  topLeft: Radius.circular(0.0),
+                                                  topRight:
+                                                      Radius.circular(10.0),
+                                                ),
+                                              ),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'Molding',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            const Color(0xFFFBFBFB),
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -352,7 +424,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     bottomRight:
                                                         Radius.circular(0.0),
                                                     topLeft:
-                                                        Radius.circular(10.0),
+                                                        Radius.circular(0.0),
                                                     topRight:
                                                         Radius.circular(0.0),
                                                   ),
@@ -478,7 +550,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     topLeft:
                                                         Radius.circular(0.0),
                                                     topRight:
-                                                        Radius.circular(10.0),
+                                                        Radius.circular(0.0),
                                                   ),
                                                   border: Border.all(
                                                     color: const Color(0xFF393939),
