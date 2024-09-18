@@ -178,4 +178,28 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInSkufilters(int index, String value) {
     skufilters.insert(index, value);
   }
+
+  String _Twix = '';
+  String get Twix => _Twix;
+  set Twix(String value) {
+    _Twix = value;
+  }
+
+  String _Flutes = '';
+  String get Flutes => _Flutes;
+  set Flutes(String value) {
+    _Flutes = value;
+  }
+
+  String _Molding = '';
+  String get Molding => _Molding;
+  set Molding(String value) {
+    _Molding = value;
+  }
+
+  String _Jewels = '';
+  String get Jewels => _Jewels;
+  set Jewels(String value) {
+    _Jewels = value;
+  }
 }

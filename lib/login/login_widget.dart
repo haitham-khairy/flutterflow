@@ -3,7 +3,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -24,6 +26,25 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.getAlarmsSummary2 = await GetAlarmsSummaryCall.call();
+
+      FFAppState().Twix = GetAlarmsSummaryCall.twix(
+        (_model.getAlarmsSummary2?.jsonBody ?? ''),
+      )!;
+      FFAppState().Flutes = GetAlarmsSummaryCall.flutes(
+        (_model.getAlarmsSummary2?.jsonBody ?? ''),
+      )!;
+      FFAppState().Molding = GetAlarmsSummaryCall.molding(
+        (_model.getAlarmsSummary2?.jsonBody ?? ''),
+      )!;
+      FFAppState().Jewels = GetAlarmsSummaryCall.jewels(
+        (_model.getAlarmsSummary2?.jsonBody ?? ''),
+      )!;
+      safeSetState(() {});
+    });
+
     _model.usernameTextController ??= TextEditingController();
     _model.usernameFocusNode ??= FocusNode();
 
@@ -40,6 +61,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
