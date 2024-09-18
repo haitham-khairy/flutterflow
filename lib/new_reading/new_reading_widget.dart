@@ -144,7 +144,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
         key: scaffoldKey,
         backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(50.0),
           child: AppBar(
             backgroundColor: const Color(0xFFFD6400),
             automaticallyImplyLeading: false,
@@ -156,7 +156,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -182,28 +182,13 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 0.0, 0.0),
-                        child: Text(
-                          'Bins Page',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: Colors.white,
-                                fontSize: 22.0,
-                                letterSpacing: 0.0,
-                              ),
-                        ),
-                      ),
                     ],
                   ),
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(29.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(75.0, 0.0, 0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: SvgPicture.asset(

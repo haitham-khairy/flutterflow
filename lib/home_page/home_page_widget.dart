@@ -87,7 +87,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         key: scaffoldKey,
         backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(50.0),
           child: AppBar(
             backgroundColor: const Color(0xFFFD6400),
             automaticallyImplyLeading: false,
@@ -130,28 +130,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 0.0, 0.0),
-                        child: Text(
-                          'HomePage',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: Colors.white,
-                                fontSize: 22.0,
-                                letterSpacing: 0.0,
-                              ),
-                        ),
-                      ),
                     ],
                   ),
                   Align(
                     alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(75.0, 0.0, 0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: SvgPicture.asset(
@@ -219,7 +204,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           },
                                           child: const Icon(
                                             FFIcons.krFIDIcon,
-                                            color: Color(0xFF0000A0),
+                                            color: Color(0xFFFD6400),
                                             size: 100.0,
                                           ),
                                         ),
@@ -255,7 +240,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           },
                                           child: const Icon(
                                             Icons.error_outline,
-                                            color: Color(0xFF0000A0),
+                                            color: Color(0xFFFD6400),
                                             size: 100.0,
                                           ),
                                         ),
