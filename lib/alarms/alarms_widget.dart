@@ -398,7 +398,8 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                 '3 days left',
                                 '1 day left',
                                 'Exceeded Washing Count',
-                                'Exceeded Life Time'
+                                'Exceeded Life Time',
+                                ' '
                               ],
                               onChanged: (val) => safeSetState(
                                   () => _model.selectStatusValue = val),
