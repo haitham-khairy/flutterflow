@@ -131,7 +131,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(10.0, 3.0, 10.0, 0.0),
                 child: Container(
                   width: double.infinity,
-                  height: 170.0,
+                  height: 180.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(10.0),
