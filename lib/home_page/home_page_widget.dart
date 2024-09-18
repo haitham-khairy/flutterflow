@@ -270,7 +270,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           onTap: () async {
                                             context.pushNamed('Alarms');
 
-                                            FFAppState().Hide = false;
+                                            FFAppState().Hide = true;
                                             safeSetState(() {});
                                           },
                                           child: const Icon(

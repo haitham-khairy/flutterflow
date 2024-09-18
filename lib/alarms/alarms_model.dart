@@ -43,8 +43,6 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
   void updateAlarmAtIndex(int index, Function(String) updateFn) =>
       alarm[index] = updateFn(alarm[index]);
 
-  bool hide = false;
-
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for SelectLine widget.
