@@ -156,7 +156,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -192,14 +192,41 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(75.0, 0.0, 0.0, 0.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: SvgPicture.asset(
-                          'assets/images/logo-main.svg',
-                          fit: BoxFit.scaleDown,
-                          alignment: const Alignment(0.0, -1.0),
-                        ),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  75.0, 5.0, 0.0, 5.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: SvgPicture.asset(
+                                  'assets/images/logo-main.svg',
+                                  fit: BoxFit.scaleDown,
+                                  alignment: const Alignment(0.0, -1.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                65.0, 5.0, 0.0, 5.0),
+                            child: Text(
+                              'Scan',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 24.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
