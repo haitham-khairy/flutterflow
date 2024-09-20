@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -14,12 +15,19 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _IPConfig = prefs.getString('ff_IPConfig') ?? _IPConfig;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   bool _RFIDReaderStatus = false;
   bool get RFIDReaderStatus => _RFIDReaderStatus;
@@ -213,5 +221,18 @@ class FFAppState extends ChangeNotifier {
   String get IPConfig => _IPConfig;
   set IPConfig(String value) {
     _IPConfig = value;
+    prefs.setString('ff_IPConfig', value);
   }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }
