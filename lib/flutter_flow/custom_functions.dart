@@ -158,3 +158,12 @@ Color? getColor(String status) {
       return null;
   }
 }
+
+double progressBarCalculator(
+  String value,
+  String divider,
+) {
+  int upper = int.parse(value);
+  int lower = int.parse(divider);
+  return (upper / lower);
+}

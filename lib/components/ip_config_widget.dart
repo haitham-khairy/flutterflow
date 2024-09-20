@@ -1,20 +1,19 @@
-import '/components/ip_config_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'setting_model.dart';
-export 'setting_model.dart';
+import 'ip_config_model.dart';
+export 'ip_config_model.dart';
 
-class SettingWidget extends StatefulWidget {
-  const SettingWidget({super.key});
+class IpConfigWidget extends StatefulWidget {
+  const IpConfigWidget({super.key});
 
   @override
-  State<SettingWidget> createState() => _SettingWidgetState();
+  State<IpConfigWidget> createState() => _IpConfigWidgetState();
 }
 
-class _SettingWidgetState extends State<SettingWidget> {
-  late SettingModel _model;
+class _IpConfigWidgetState extends State<IpConfigWidget> {
+  late IpConfigModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -25,7 +24,7 @@ class _SettingWidgetState extends State<SettingWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SettingModel());
+    _model = createModel(context, () => IpConfigModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -55,7 +54,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                   autofocus: true,
                   obscureText: !_model.passwordVisibility,
                   decoration: InputDecoration(
-                    labelText: 'Enter vendor  password',
+                    labelText: 'Enter Host IP',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Readex Pro',
@@ -124,42 +123,24 @@ class _SettingWidgetState extends State<SettingWidget> {
           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
-              if (_model.textController.text == 'Manex@dmin010') {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor:
-                      FlutterFlowTheme.of(context).secondaryBackground,
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) {
-                    return Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: const SizedBox(
-                        height: 300.0,
-                        child: IpConfigWidget(),
+              FFAppState().IPConfig = _model.textController.text;
+              safeSetState(() {});
+              await showDialog(
+                context: context,
+                builder: (alertDialogContext) {
+                  return AlertDialog(
+                    title: const Text('Result'),
+                    content: const Text('IP updated successfully '),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(alertDialogContext),
+                        child: const Text('Ok'),
                       ),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
-
-                Navigator.pop(context);
-              } else {
-                await showDialog(
-                  context: context,
-                  builder: (alertDialogContext) {
-                    return AlertDialog(
-                      title: const Text('Request Denied!'),
-                      content: const Text('Wrong Password'),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(alertDialogContext),
-                          child: const Text('Ok'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
+                    ],
+                  );
+                },
+              );
+              Navigator.pop(context);
             },
             text: 'submit',
             options: FFButtonOptions(
