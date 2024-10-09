@@ -9,39 +9,13 @@ import 'package:flutter/material.dart';
 class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
   ///  Local state fields for this page.
 
-  List<String> tagid = [];
-  void addToTagid(String item) => tagid.add(item);
-  void removeFromTagid(String item) => tagid.remove(item);
-  void removeAtIndexFromTagid(int index) => tagid.removeAt(index);
-  void insertAtIndexInTagid(int index, String item) =>
-      tagid.insert(index, item);
-  void updateTagidAtIndex(int index, Function(String) updateFn) =>
-      tagid[index] = updateFn(tagid[index]);
+  String tagid = '';
 
-  List<String> line = [];
-  void addToLine(String item) => line.add(item);
-  void removeFromLine(String item) => line.remove(item);
-  void removeAtIndexFromLine(int index) => line.removeAt(index);
-  void insertAtIndexInLine(int index, String item) => line.insert(index, item);
-  void updateLineAtIndex(int index, Function(String) updateFn) =>
-      line[index] = updateFn(line[index]);
+  String line = ' ';
 
-  List<String> sku = [];
-  void addToSku(String item) => sku.add(item);
-  void removeFromSku(String item) => sku.remove(item);
-  void removeAtIndexFromSku(int index) => sku.removeAt(index);
-  void insertAtIndexInSku(int index, String item) => sku.insert(index, item);
-  void updateSkuAtIndex(int index, Function(String) updateFn) =>
-      sku[index] = updateFn(sku[index]);
+  String sku = ' ';
 
-  List<String> alarm = [];
-  void addToAlarm(String item) => alarm.add(item);
-  void removeFromAlarm(String item) => alarm.remove(item);
-  void removeAtIndexFromAlarm(int index) => alarm.removeAt(index);
-  void insertAtIndexInAlarm(int index, String item) =>
-      alarm.insert(index, item);
-  void updateAlarmAtIndex(int index, Function(String) updateFn) =>
-      alarm[index] = updateFn(alarm[index]);
+  String alarm = ' ';
 
   ///  State fields for stateful widgets in this page.
 

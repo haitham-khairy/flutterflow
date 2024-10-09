@@ -200,8 +200,12 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     _model.selectLineValue ??= ' ',
                                   ),
                                   options: FFAppState().linefilters,
-                                  onChanged: (val) => safeSetState(
-                                      () => _model.selectLineValue = val),
+                                  onChanged: (val) async {
+                                    safeSetState(
+                                        () => _model.selectLineValue = val);
+                                    _model.sku = _model.selectLineValue!;
+                                    safeSetState(() {});
+                                  },
                                   width: 200.0,
                                   height: 40.0,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -264,8 +268,12 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     _model.selectSKUValue ??= ' ',
                                   ),
                                   options: FFAppState().skufilters,
-                                  onChanged: (val) => safeSetState(
-                                      () => _model.selectSKUValue = val),
+                                  onChanged: (val) async {
+                                    safeSetState(
+                                        () => _model.selectSKUValue = val);
+                                    _model.sku = _model.selectSKUValue!;
+                                    safeSetState(() {});
+                                  },
                                   width: 200.0,
                                   height: 40.0,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -326,6 +334,11 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                   child: TextFormField(
                                     controller: _model.selectIDTextController,
                                     focusNode: _model.selectIDFocusNode,
+                                    onFieldSubmitted: (_) async {
+                                      _model.tagid =
+                                          _model.selectIDTextController.text;
+                                      safeSetState(() {});
+                                    },
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -434,8 +447,12 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     'Exceeded Life Time',
                                     ' '
                                   ],
-                                  onChanged: (val) => safeSetState(
-                                      () => _model.selectStatusValue = val),
+                                  onChanged: (val) async {
+                                    safeSetState(
+                                        () => _model.selectStatusValue = val);
+                                    _model.alarm = _model.selectStatusValue!;
+                                    safeSetState(() {});
+                                  },
                                   width: 200.0,
                                   height: 40.0,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -482,10 +499,10 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                       onPressed: () async {
                         _model.getAlarmsListResponse =
                             await GetAlarmsListCall.call(
-                          sku: _model.selectSKUValue,
-                          line: _model.selectLineValue,
+                          sku: _model.sku,
+                          line: _model.line,
                           tagID: _model.selectIDTextController.text,
-                          alarm: _model.selectStatusValue,
+                          alarm: _model.alarm,
                         );
 
                         FFAppState().Hide = false;
@@ -542,23 +559,17 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                         FFAppState().Hide = true;
                         safeSetState(() {});
                         safeSetState(() {
-                          _model.selectLineValueController?.value = ' ';
-                        });
-                        safeSetState(() {
-                          _model.selectSKUValueController?.value = ' ';
-                        });
-                        safeSetState(() {
-                          _model.selectStatusValueController?.value = ' ';
-                        });
-                        safeSetState(() {
-                          _model.selectLineValueController?.reset();
                           _model.selectSKUValueController?.reset();
                           _model.selectStatusValueController?.reset();
+                          _model.selectLineValueController?.reset();
                         });
                         safeSetState(() {
                           _model.selectIDTextController?.clear();
                         });
-                        _model.sku = [];
+                        _model.tagid = '';
+                        _model.line = ' ';
+                        _model.sku = ' ';
+                        _model.alarm = ' ';
                         safeSetState(() {});
                       },
                       text: 'Clear List',
