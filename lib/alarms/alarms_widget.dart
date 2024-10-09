@@ -541,6 +541,14 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                         safeSetState(() {});
                         FFAppState().Hide = true;
                         safeSetState(() {});
+                        safeSetState(() {
+                          _model.selectLineValueController?.reset();
+                          _model.selectSKUValueController?.reset();
+                          _model.selectStatusValueController?.reset();
+                        });
+                        safeSetState(() {
+                          _model.selectIDTextController?.clear();
+                        });
                       },
                       text: 'Clear List',
                       options: FFButtonOptions(
