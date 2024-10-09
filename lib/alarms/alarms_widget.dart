@@ -203,7 +203,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                   onChanged: (val) async {
                                     safeSetState(
                                         () => _model.selectLineValue = val);
-                                    _model.sku = _model.selectLineValue!;
+                                    _model.line = _model.selectLineValue!;
                                     safeSetState(() {});
                                   },
                                   width: 200.0,
