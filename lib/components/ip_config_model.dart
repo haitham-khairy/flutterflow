@@ -8,13 +8,10 @@ class IpConfigModel extends FlutterFlowModel<IpConfigWidget> {
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
-  late bool passwordVisibility;
   String? Function(BuildContext, String?)? textControllerValidator;
 
   @override
-  void initState(BuildContext context) {
-    passwordVisibility = false;
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {

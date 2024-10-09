@@ -223,6 +223,35 @@ class FFAppState extends ChangeNotifier {
     _IPConfig = value;
     prefs.setString('ff_IPConfig', value);
   }
+
+  List<RFIDTagsdataStruct> _RFIDTagsList2 = [];
+  List<RFIDTagsdataStruct> get RFIDTagsList2 => _RFIDTagsList2;
+  set RFIDTagsList2(List<RFIDTagsdataStruct> value) {
+    _RFIDTagsList2 = value;
+  }
+
+  void addToRFIDTagsList2(RFIDTagsdataStruct value) {
+    RFIDTagsList2.add(value);
+  }
+
+  void removeFromRFIDTagsList2(RFIDTagsdataStruct value) {
+    RFIDTagsList2.remove(value);
+  }
+
+  void removeAtIndexFromRFIDTagsList2(int index) {
+    RFIDTagsList2.removeAt(index);
+  }
+
+  void updateRFIDTagsList2AtIndex(
+    int index,
+    RFIDTagsdataStruct Function(RFIDTagsdataStruct) updateFn,
+  ) {
+    RFIDTagsList2[index] = updateFn(_RFIDTagsList2[index]);
+  }
+
+  void insertAtIndexInRFIDTagsList2(int index, RFIDTagsdataStruct value) {
+    RFIDTagsList2.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

@@ -124,7 +124,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   size: 30.0,
                                 ),
                                 onPressed: () async {
-                                  context.pushNamed('Login');
+                                  context.goNamed('Login');
                                 },
                               ),
                             ),

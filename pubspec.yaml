@@ -36,7 +36,7 @@ dependencies:
   flutter_cache_manager: 3.3.1
   flutter_native_splash: 2.3.1
   flutter_svg: 2.0.9
-  font_awesome_flutter: 10.6.0
+  font_awesome_flutter: 10.7.0
   from_css_color: 2.0.0
   go_router: 12.1.3
   google_fonts: 6.1.0
@@ -59,9 +59,9 @@ dependencies:
   sqflite: 2.2.6
   timeago: 3.6.1
   universal_io: 2.2.2
-  url_launcher: 6.2.5
-  url_launcher_android: 6.3.0
-  url_launcher_ios: 6.2.5
+  url_launcher: 6.3.0
+  url_launcher_android: 6.3.4
+  url_launcher_ios: 6.3.1
   url_launcher_platform_interface: 2.3.2
   xml: 6.5.0
   zebra_rfid_sdk_plugin: ^0.0.3
@@ -112,6 +112,7 @@ flutter:
     - assets/lottie_animations/
     - assets/rive_animations/
     - assets/pdfs/
+
   fonts:
     - family: RFIDIcons
       fonts:

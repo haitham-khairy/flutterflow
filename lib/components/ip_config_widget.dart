@@ -52,7 +52,7 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
                   autofocus: true,
-                  obscureText: !_model.passwordVisibility,
+                  obscureText: false,
                   decoration: InputDecoration(
                     labelText: 'Enter Host IP',
                     labelStyle:
@@ -92,20 +92,6 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    suffixIcon: InkWell(
-                      onTap: () => safeSetState(
-                        () => _model.passwordVisibility =
-                            !_model.passwordVisibility,
-                      ),
-                      focusNode: FocusNode(skipTraversal: true),
-                      child: Icon(
-                        _model.passwordVisibility
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                        color: const Color(0xFF9C9797),
-                        size: 15.0,
-                      ),
                     ),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(

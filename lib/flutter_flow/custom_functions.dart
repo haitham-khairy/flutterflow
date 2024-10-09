@@ -167,3 +167,12 @@ double progressBarCalculator(
   int lower = int.parse(divider);
   return (upper / lower);
 }
+
+double progressBarCalculator2(
+  String value,
+  String divider,
+) {
+  int upper = int.parse(value);
+  int lower = int.parse(divider);
+  return ((lower - upper) / lower);
+}

@@ -76,7 +76,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                 ),
               ),
               CircularPercentIndicator(
-                percent: functions.progressBarCalculator(
+                percent: functions.progressBarCalculator2(
                     widget.componentlistitem!.washingCount,
                     widget.componentlistitem!.maxWashCount),
                 radius: 50.0,
