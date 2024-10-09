@@ -542,14 +542,6 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                         FFAppState().Hide = true;
                         safeSetState(() {});
                         safeSetState(() {
-                          _model.selectLineValueController?.reset();
-                          _model.selectSKUValueController?.reset();
-                          _model.selectStatusValueController?.reset();
-                        });
-                        safeSetState(() {
-                          _model.selectIDTextController?.clear();
-                        });
-                        safeSetState(() {
                           _model.selectLineValueController?.value = ' ';
                         });
                         safeSetState(() {
@@ -557,6 +549,14 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                         });
                         safeSetState(() {
                           _model.selectStatusValueController?.value = ' ';
+                        });
+                        safeSetState(() {
+                          _model.selectLineValueController?.reset();
+                          _model.selectSKUValueController?.reset();
+                          _model.selectStatusValueController?.reset();
+                        });
+                        safeSetState(() {
+                          _model.selectIDTextController?.clear();
                         });
                       },
                       text: 'Clear List',
