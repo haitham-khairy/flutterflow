@@ -405,8 +405,9 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    _model.rejectionResponse =
-                        await RejectPinRequestCall.call();
+                    _model.rejectionResponse = await RejectPinRequestCall.call(
+                      tagID: widget.componentlistitem?.tagID,
+                    );
 
                     if ((_model.rejectionResponse?.succeeded ?? true)) {
                       await showDialog(
