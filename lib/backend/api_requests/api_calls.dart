@@ -42,7 +42,8 @@ class LoginDataCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
-      apiUrl: 'http://\${FFAppState().IPConfig}/v1/loginData/UserDataFromApp',
+      apiUrl:
+          'http://\${FFAppState().IPConfig}:8001/v1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -71,7 +72,8 @@ class GetTagsDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
-      apiUrl: 'http://\${FFAppState().IPConfig}/v1/GetTagsData/GetTagsData',
+      apiUrl:
+          'http://\${FFAppState().IPConfig}:8001/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -224,7 +226,7 @@ class SendTagsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
       apiUrl:
-          'http://\${FFAppState().IPConfig}/v1/StoreTagsInGlobal/StoreTagsInGlobal',
+          'http://\${FFAppState().IPConfig}:8001/v1/StoreTagsInGlobal/StoreTagsInGlobal',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -253,7 +255,7 @@ class RejectPinRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'RejectPinRequest',
       apiUrl:
-          'https://f708-154-183-233-15.ngrok-free.app/v1/RejectBinRequest/RejectBinRequest',
+          'http://\${FFAppState().IPConfig}:8001/v1/RejectBinRequest/RejectBinRequest',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -279,7 +281,7 @@ class GetFilterParamatersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetFilterParamaters',
       apiUrl:
-          'http://\${FFAppState().IPConfig}/v1/Get_Filter_Parameters/GetFilterParameters',
+          'http://\${FFAppState().IPConfig}:8001/v1/Get_Filter_Parameters/GetFilterParameters',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -329,7 +331,8 @@ class GetAlarmsListCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsList',
-      apiUrl: 'http://\${FFAppState().IPConfig}/v1/GetAlarmsList/GetTagsAlarms',
+      apiUrl:
+          'http://\${FFAppState().IPConfig}:8001/v1/GetAlarmsList/GetTagsAlarms',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -387,7 +390,7 @@ class GetAlarmsSummaryCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsSummary',
       apiUrl:
-          'http://\${FFAppState().IPConfig}/v1/AlarmsSummary/GetAlarmsSummary',
+          'http://\${FFAppState().IPConfig}:8001/v1/AlarmsSummary/GetAlarmsSummary',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
