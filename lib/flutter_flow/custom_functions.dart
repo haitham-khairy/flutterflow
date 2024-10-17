@@ -172,6 +172,12 @@ double progressBarCalculator2(
   String value,
   String divider,
 ) {
+  if (value == "") {
+    value = "0";
+  }
+  if (divider == "") {
+    divider = "0";
+  }
   int upper = int.parse(value);
   int lower = int.parse(divider);
   return ((lower - upper) / lower);
