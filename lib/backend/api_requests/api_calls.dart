@@ -243,15 +243,17 @@ class SendTagsListCall {
 class RejectPinRequestCall {
   static Future<ApiCallResponse> call({
     String? tagID = '\"\"',
+    String? status = '\"\"',
   }) async {
     final ffApiRequestBody = '''
 {
-  "TagID": "$tagID"
+  "TagID": "$tagID",
+  "Status": "$status"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'RejectPinRequest',
       apiUrl:
-          'http://\${FFAppState().IPConfig}/v1/RejectBinRequest/RejectBinRequest',
+          'https://f708-154-183-233-15.ngrok-free.app/v1/RejectBinRequest/RejectBinRequest',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

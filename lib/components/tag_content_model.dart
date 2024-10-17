@@ -8,6 +8,8 @@ class TagContentModel extends FlutterFlowModel<TagContentWidget> {
 
   // Stores action output result for [Backend Call - API (RejectPinRequest)] action in Button widget.
   ApiCallResponse? rejectionResponse;
+  // Stores action output result for [Backend Call - API (RejectPinRequest)] action in Button widget.
+  ApiCallResponse? binStatusChangeResponse;
 
   @override
   void initState(BuildContext context) {}

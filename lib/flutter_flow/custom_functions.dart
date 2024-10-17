@@ -153,7 +153,7 @@ Color? getColor(String status) {
     case 'Exceed(scrap)':
       return Colors.red;
     case 'Need to Be Cleaned':
-      return Colors.grey;
+      return Colors.orange;
     default:
       return null;
   }

@@ -401,77 +401,164 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    _model.rejectionResponse = await RejectPinRequestCall.call(
-                      tagID: widget.componentlistitem?.tagID,
-                    );
-
-                    if ((_model.rejectionResponse?.succeeded ?? true)) {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('Result'),
-                            content: Text(RejectPinRequestCall.response(
-                              (_model.rejectionResponse?.jsonBody ?? ''),
-                            )!),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    } else {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('Result'),
-                            content: Text(RejectPinRequestCall.response(
-                              (_model.rejectionResponse?.jsonBody ?? ''),
-                            )!),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-
-                    safeSetState(() {});
-                  },
-                  text: 'Change to reject',
-                  options: FFButtonOptions(
-                    height: 40.0,
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFFFD6400),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        _model.rejectionResponse =
+                            await RejectPinRequestCall.call(
+                          tagID: widget.componentlistitem?.tagID,
+                          status: 'Not Acceptable',
+                        );
+
+                        if ((_model.rejectionResponse?.succeeded ?? true)) {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('Result'),
+                                content: Text(RejectPinRequestCall.response(
+                                  (_model.rejectionResponse?.jsonBody ?? ''),
+                                )!),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('Result'),
+                                content: Text(RejectPinRequestCall.response(
+                                  (_model.rejectionResponse?.jsonBody ?? ''),
+                                )!),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+
+                        safeSetState(() {});
+                      },
+                      text: 'Change to reject',
+                      options: FFButtonOptions(
+                        width: 180.0,
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFFFD6400),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 3.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
                         ),
-                    elevation: 3.0,
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        _model.binStatusChangeResponse =
+                            await RejectPinRequestCall.call(
+                          tagID: widget.componentlistitem?.tagID,
+                          status: 'Good',
+                        );
+
+                        if ((_model.binStatusChangeResponse?.succeeded ??
+                            true)) {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('Re'),
+                                content: Text(RejectPinRequestCall.response(
+                                  (_model.binStatusChangeResponse?.jsonBody ??
+                                      ''),
+                                )!),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('Re'),
+                                content: Text(RejectPinRequestCall.response(
+                                  (_model.binStatusChangeResponse?.jsonBody ??
+                                      ''),
+                                )!),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+
+                        safeSetState(() {});
+                      },
+                      text: 'Change to good',
+                      options: FFButtonOptions(
+                        width: 180.0,
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFFFD6400),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ].divide(const SizedBox(height: 2.0)).around(const SizedBox(height: 2.0)),
           ),
