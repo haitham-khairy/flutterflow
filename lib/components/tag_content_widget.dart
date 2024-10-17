@@ -460,7 +460,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                       },
                       text: 'Change to reject',
                       options: FFButtonOptions(
-                        width: 180.0,
+                        width: 150.0,
                         height: 40.0,
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
@@ -471,6 +471,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Readex Pro',
                                   color: Colors.white,
+                                  fontSize: 20.0,
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
@@ -540,7 +541,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                       },
                       text: 'Change to good',
                       options: FFButtonOptions(
-                        width: 180.0,
+                        width: 150.0,
                         height: 40.0,
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
