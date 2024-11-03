@@ -563,7 +563,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                                             .viewInsetsOf(
                                                                 context),
                                                         child: SizedBox(
-                                                          height: 550.0,
+                                                          height: 650.0,
                                                           child:
                                                               TagContentWidget(
                                                             componentlistitem:

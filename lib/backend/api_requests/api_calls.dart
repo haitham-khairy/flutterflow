@@ -422,6 +422,40 @@ class GetAlarmsSummaryCall {
       ));
 }
 
+class UpdateLifeTimeCall {
+  static Future<ApiCallResponse> call({
+    String? tagID = '',
+    int? days,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "TagID": "$tagID",
+  "Days": $days
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateLifeTime',
+      apiUrl:
+          'https://e54b-197-53-254-204.ngrok-free.app/v1/UpdateLifeTime/LifetimeUpdater',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? response(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Response''',
+      ));
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
