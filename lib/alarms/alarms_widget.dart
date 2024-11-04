@@ -441,11 +441,10 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     _model.selectStatusValue ??= ' ',
                                   ),
                                   options: const [
-                                    '3 days left',
-                                    '1 day left',
+                                    'Clean Needed',
+                                    'Exceed(scrap)',
                                     'Exceeded Washing Count',
-                                    'Exceeded Life Time',
-                                    ' '
+                                    'Exceeded Life Time'
                                   ],
                                   onChanged: (val) async {
                                     safeSetState(
