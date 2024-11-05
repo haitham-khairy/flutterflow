@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:flutter/services.dart';
+
 Future closeApp() async {
   // Add your function code here!
   // Add a small delay to ensure cleanup is complete
   await Future.delayed(const Duration(milliseconds: 500));
   try {
     // Force kill the app process
-    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    await SystemNavigator.pop();
   } catch (e) {
     print('Error during cleanup and exit: $e');
     // Attempt force exit even if cleanup fails
