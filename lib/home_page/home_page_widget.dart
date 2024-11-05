@@ -119,6 +119,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             await actions.dissconnect(
                               context,
                             );
+                            await actions.closeApp();
                           },
                         ),
                       ),
