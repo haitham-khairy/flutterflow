@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -104,6 +105,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     children: [
                       Padding(
                         padding:
+                            const EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderRadius: 30.0,
+                          buttonSize: 40.0,
+                          fillColor: const Color(0xFF0000A0),
+                          icon: Icon(
+                            Icons.close,
+                            color: FlutterFlowTheme.of(context).info,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            await actions.dissconnect(
+                              context,
+                            );
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -116,7 +136,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 borderColor: Colors.transparent,
                                 borderRadius: 30.0,
                                 borderWidth: 1.0,
-                                buttonSize: 50.0,
+                                buttonSize: 40.0,
                                 fillColor: const Color(0xFF0000A0),
                                 icon: const Icon(
                                   Icons.logout_outlined,
@@ -131,7 +151,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ],
                         ),
                       ),
-                    ],
+                    ].divide(const SizedBox(height: 5.0)),
                   ),
                   Expanded(
                     child: Align(
