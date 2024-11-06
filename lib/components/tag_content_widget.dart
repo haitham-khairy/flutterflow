@@ -501,7 +501,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('Re'),
+                                title: const Text('Result'),
                                 content: Text(RejectPinRequestCall.response(
                                   (_model.binStatusChangeResponse?.jsonBody ??
                                       ''),
@@ -521,7 +521,7 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('Re'),
+                                title: const Text('Result'),
                                 content: Text(RejectPinRequestCall.response(
                                   (_model.binStatusChangeResponse?.jsonBody ??
                                       ''),

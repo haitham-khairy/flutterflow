@@ -88,15 +88,15 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryText,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryText,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
@@ -116,8 +116,7 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
+                        fillColor: FlutterFlowTheme.of(context).alternate,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
