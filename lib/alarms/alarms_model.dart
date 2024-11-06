@@ -22,6 +22,8 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
   // State field(s) for SelectLine widget.
   String? selectLineValue;
   FormFieldController<String>? selectLineValueController;
+  // Stores action output result for [Backend Call - API (GetSKUsFilter)] action in SelectLine widget.
+  ApiCallResponse? getSKUsFilterResponse;
   // State field(s) for SelectSKU widget.
   String? selectSKUValue;
   FormFieldController<String>? selectSKUValueController;

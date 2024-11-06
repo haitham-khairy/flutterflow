@@ -295,15 +295,6 @@ class GetFilterParamatersCall {
     );
   }
 
-  static List<String>? skus(dynamic response) => (getJsonField(
-        response,
-        r'''$.SKUS''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
   static List<String>? lines(dynamic response) => (getJsonField(
         response,
         r'''$.Lines''',
@@ -435,7 +426,7 @@ class UpdateLifeTimeCall {
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateLifeTime',
       apiUrl:
-          'https://e54b-197-53-254-204.ngrok-free.app/v1/UpdateLifeTime/LifetimeUpdater',
+          'http://\${FFAppState().IPConfig}:8001/v1/UpdateLifeTime/LifetimeUpdater',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -454,6 +445,43 @@ class UpdateLifeTimeCall {
         response,
         r'''$.Response''',
       ));
+}
+
+class GetSKUsFilterCall {
+  static Future<ApiCallResponse> call({
+    String? line = ' ',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "Line": "$line"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetSKUsFilter',
+      apiUrl:
+          'http://\${FFAppState().IPConfig}:8001/v1/GetSKUsFilter/GetSKUsFilter',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<String>? sKUsFilter(dynamic response) => (getJsonField(
+        response,
+        r'''$.SKUs''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ApiPagingParams {

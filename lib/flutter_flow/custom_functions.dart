@@ -182,3 +182,7 @@ double progressBarCalculator2(
   int lower = int.parse(divider);
   return ((lower - upper) / lower);
 }
+
+List<String> emptyListGenerator() {
+  return ['Select A Line First'];
+}

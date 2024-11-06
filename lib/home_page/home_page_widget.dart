@@ -38,11 +38,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         )!
             .toList()
             .cast<String>();
-        FFAppState().skufilters = GetFilterParamatersCall.skus(
-          (_model.getFilterParametersHome?.jsonBody ?? ''),
-        )!
-            .toList()
-            .cast<String>();
         safeSetState(() {});
         _model.instantTimer = InstantTimer.periodic(
           duration: const Duration(milliseconds: 1000),

@@ -205,6 +205,26 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                         () => _model.selectLineValue = val);
                                     _model.line = _model.selectLineValue!;
                                     safeSetState(() {});
+                                    _model.getSKUsFilterResponse =
+                                        await GetSKUsFilterCall.call(
+                                      line: _model.selectLineValue,
+                                    );
+
+                                    if ((_model
+                                            .getSKUsFilterResponse?.succeeded ??
+                                        true)) {
+                                      FFAppState().skufilters =
+                                          GetSKUsFilterCall.sKUsFilter(
+                                        (_model.getSKUsFilterResponse
+                                                ?.jsonBody ??
+                                            ''),
+                                      )!
+                                              .toList()
+                                              .cast<String>();
+                                      safeSetState(() {});
+                                    }
+
+                                    safeSetState(() {});
                                   },
                                   width: 200.0,
                                   height: 40.0,
@@ -267,7 +287,9 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                           FormFieldController<String>(
                                     _model.selectSKUValue ??= ' ',
                                   ),
-                                  options: FFAppState().skufilters,
+                                  options: FFAppState().skufilters.isNotEmpty
+                                      ? FFAppState().skufilters
+                                      : functions.emptyListGenerator(),
                                   onChanged: (val) async {
                                     safeSetState(
                                         () => _model.selectSKUValue = val);
