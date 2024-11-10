@@ -11,10 +11,12 @@ class AlarmTypeStruct extends BaseStruct {
     String? type,
     String? line,
     String? sku,
+    String? status,
   })  : _id = id,
         _type = type,
         _line = line,
-        _sku = sku;
+        _sku = sku,
+        _status = status;
 
   // "ID" field.
   String? _id;
@@ -44,11 +46,19 @@ class AlarmTypeStruct extends BaseStruct {
 
   bool hasSku() => _sku != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '\"\"';
+  set status(String? val) => _status = val;
+
+  bool hasStatus() => _status != null;
+
   static AlarmTypeStruct fromMap(Map<String, dynamic> data) => AlarmTypeStruct(
         id: data['ID'] as String?,
         type: data['Type'] as String?,
         line: data['Line'] as String?,
         sku: data['SKU'] as String?,
+        status: data['status'] as String?,
       );
 
   static AlarmTypeStruct? maybeFromMap(dynamic data) => data is Map
@@ -60,6 +70,7 @@ class AlarmTypeStruct extends BaseStruct {
         'Type': _type,
         'Line': _line,
         'SKU': _sku,
+        'status': _status,
       }.withoutNulls;
 
   @override
@@ -78,6 +89,10 @@ class AlarmTypeStruct extends BaseStruct {
         ),
         'SKU': serializeParam(
           _sku,
+          ParamType.String,
+        ),
+        'status': serializeParam(
+          _status,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -104,6 +119,11 @@ class AlarmTypeStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -115,11 +135,12 @@ class AlarmTypeStruct extends BaseStruct {
         id == other.id &&
         type == other.type &&
         line == other.line &&
-        sku == other.sku;
+        sku == other.sku &&
+        status == other.status;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, type, line, sku]);
+  int get hashCode => const ListEquality().hash([id, type, line, sku, status]);
 }
 
 AlarmTypeStruct createAlarmTypeStruct({
@@ -127,10 +148,12 @@ AlarmTypeStruct createAlarmTypeStruct({
   String? type,
   String? line,
   String? sku,
+  String? status,
 }) =>
     AlarmTypeStruct(
       id: id,
       type: type,
       line: line,
       sku: sku,
+      status: status,
     );

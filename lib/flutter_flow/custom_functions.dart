@@ -132,13 +132,18 @@ List<AlarmTypeStruct> buildAlarmList(
   List<String>? line,
   List<String>? sku,
   List<String>? alarm,
+  List<String> status,
 ) {
   List<AlarmTypeStruct> result = [];
   if (tagID == null || line == null || sku == null || alarm == null) {
   } else {
     for (int i = 0; i < tagID.length; i++) {
       AlarmTypeStruct elemnt = AlarmTypeStruct(
-          id: tagID[i], line: line[i], sku: sku[i], type: alarm[i]);
+          id: tagID[i],
+          line: line[i],
+          sku: sku[i],
+          type: alarm[i],
+          status: status[i]);
       result.add(elemnt);
     }
   }

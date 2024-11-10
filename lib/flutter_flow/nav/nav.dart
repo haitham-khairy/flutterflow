@@ -83,6 +83,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Alarms',
           path: '/alarms',
           builder: (context, params) => const AlarmsWidget(),
+        ),
+        FFRoute(
+          name: 'EditTags',
+          path: '/editTags',
+          builder: (context, params) => const EditTagsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

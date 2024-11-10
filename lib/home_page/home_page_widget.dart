@@ -248,7 +248,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('NewReading');
+                                            context.pushNamed(
+                                              'NewReading',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType
+                                                          .leftToRight,
+                                                ),
+                                              },
+                                            );
                                           },
                                           child: const Icon(
                                             FFIcons.krFIDIcon,
@@ -284,7 +295,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('Alarms');
+                                            context.pushNamed(
+                                              'Alarms',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType
+                                                          .bottomToTop,
+                                                ),
+                                              },
+                                            );
 
                                             FFAppState().Hide = true;
                                             safeSetState(() {});
@@ -309,7 +331,56 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(width: 80.0)),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 6.0, 0.0, 10.0),
+                                          child: FlutterFlowIconButton(
+                                            borderColor: const Color(0xFF0000A0),
+                                            borderRadius: 40.0,
+                                            borderWidth: 7.0,
+                                            buttonSize: 85.0,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryBackground,
+                                            icon: const Icon(
+                                              Icons.edit_square,
+                                              color: Color(0xFF0000A0),
+                                              size: 40.0,
+                                            ),
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                'EditTags',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .rightToLeft,
+                                                  ),
+                                                },
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        Text(
+                                          'Edit',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: const Color(0xFF393939),
+                                                fontSize: 24.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ].divide(const SizedBox(width: 20.0)),
                                 ),
                                 const SizedBox(
                                   width: 320.0,

@@ -1,6 +1,6 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/update_life_time_widget.dart';
+import '/components/update_status_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -411,55 +411,28 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        _model.rejectionResponse =
-                            await RejectPinRequestCall.call(
-                          tagID: widget.componentlistitem?.tagID,
-                          status: 'Not Acceptable',
-                        );
-
-                        if ((_model.rejectionResponse?.succeeded ?? true)) {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: const Text('Result'),
-                                content: Text(RejectPinRequestCall.response(
-                                  (_model.rejectionResponse?.jsonBody ?? ''),
-                                )!),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        } else {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: const Text('Result'),
-                                content: Text(RejectPinRequestCall.response(
-                                  (_model.rejectionResponse?.jsonBody ?? ''),
-                                )!),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
-
-                        safeSetState(() {});
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          barrierColor:
+                              FlutterFlowTheme.of(context).secondaryText,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: SizedBox(
+                                height: 300.0,
+                                child: UpdateStatusWidget(
+                                  tagid: widget.componentlistitem?.tagID,
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
                       },
-                      text: 'Change to reject',
+                      text: 'Change Status',
                       options: FFButtonOptions(
                         width: 150.0,
                         height: 40.0,
@@ -489,58 +462,28 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        _model.binStatusChangeResponse =
-                            await RejectPinRequestCall.call(
-                          tagID: widget.componentlistitem?.tagID,
-                          status: 'Good',
-                        );
-
-                        if ((_model.binStatusChangeResponse?.succeeded ??
-                            true)) {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: const Text('Result'),
-                                content: Text(RejectPinRequestCall.response(
-                                  (_model.binStatusChangeResponse?.jsonBody ??
-                                      ''),
-                                )!),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        } else {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: const Text('Result'),
-                                content: Text(RejectPinRequestCall.response(
-                                  (_model.binStatusChangeResponse?.jsonBody ??
-                                      ''),
-                                )!),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
-
-                        safeSetState(() {});
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          barrierColor:
+                              FlutterFlowTheme.of(context).secondaryText,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: SizedBox(
+                                height: 300.0,
+                                child: UpdateLifeTimeWidget(
+                                  tagid: widget.componentlistitem!.tagID,
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
                       },
-                      text: 'Change to good',
+                      text: 'Change data',
                       options: FFButtonOptions(
                         width: 150.0,
                         height: 40.0,
@@ -564,48 +507,6 @@ class _TagContentWidgetState extends State<TagContentWidget> {
               ),
             ].divide(const SizedBox(height: 2.0)).around(const SizedBox(height: 2.0)),
           ),
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FFButtonWidget(
-              onPressed: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: const Color(0xFFFDFEFF),
-                  barrierColor: const Color(0xFF393939),
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) {
-                    return Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: SizedBox(
-                        height: 300.0,
-                        child: UpdateLifeTimeWidget(
-                          tagid: widget.componentlistitem!.tagID,
-                        ),
-                      ),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
-              },
-              text: 'Update LifeTime',
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: const Color(0xFFFD6400),
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
-                    ),
-                elevation: 0.0,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-          ],
         ),
       ],
     );

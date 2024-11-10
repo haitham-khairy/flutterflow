@@ -312,18 +312,20 @@ class GetAlarmsListCall {
     String? line = '\"\"',
     String? tagID = '\"\"',
     String? alarm = '\"\"',
+    String? status = '\"\"',
   }) async {
     final ffApiRequestBody = '''
 {
   "SKU": "$sku",
   "Line": "$line",
   "TagID": "$tagID",
-  "Alarm": "$alarm"
+  "Alarm": "$alarm",
+  "Status": "$status"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsList',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/GetAlarmsList/GetTagsAlarms',
+          'https://e1bb-154-183-234-39.ngrok-free.app/v1/GetAlarmsList/GetTagsAlarms',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -368,6 +370,15 @@ class GetAlarmsListCall {
   static List<String>? alarm(dynamic response) => (getJsonField(
         response,
         r'''$.Alarm''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? staus(dynamic response) => (getJsonField(
+        response,
+        r'''$.Status''',
         true,
       ) as List?)
           ?.withoutNulls
@@ -482,6 +493,43 @@ class GetSKUsFilterCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
+}
+
+class BinsDataUpdaterCall {
+  static Future<ApiCallResponse> call({
+    String? from = '',
+    int? value,
+    String? operation = '',
+    String? line = '',
+    String? sku = '',
+    String? to = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "From": "$from",
+  "To":"$to",
+  "Value": $value,
+  "Operation": "$operation",
+  "Line": "$line",
+  "SKU": "$sku"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'BinsDataUpdater',
+      apiUrl:
+          'https://9188-154-183-237-197.ngrok-free.app/v1/UpdateLifeTime/BinsDataUpdater',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {

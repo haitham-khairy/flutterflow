@@ -17,6 +17,8 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
 
   String alarm = ' ';
 
+  String status = '\"\"';
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for SelectLine widget.
@@ -31,6 +33,9 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
   FocusNode? selectIDFocusNode;
   TextEditingController? selectIDTextController;
   String? Function(BuildContext, String?)? selectIDTextControllerValidator;
+  // State field(s) for SelectAlarm widget.
+  String? selectAlarmValue;
+  FormFieldController<String>? selectAlarmValueController;
   // State field(s) for SelectStatus widget.
   String? selectStatusValue;
   FormFieldController<String>? selectStatusValueController;

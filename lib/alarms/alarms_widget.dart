@@ -158,7 +158,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                       const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                   child: Container(
                     width: double.infinity,
-                    height: 180.0,
+                    height: 225.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(10.0),
@@ -447,6 +447,79 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Text(
+                                    'Alarm: ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                                FlutterFlowDropDown<String>(
+                                  controller:
+                                      _model.selectAlarmValueController ??=
+                                          FormFieldController<String>(
+                                    _model.selectAlarmValue ??= ' ',
+                                  ),
+                                  options: const [
+                                    'Clean Needed',
+                                    'Exceed(scrap)',
+                                    'Exceeded Washing Count',
+                                    'Exceeded Life Time'
+                                  ],
+                                  onChanged: (val) async {
+                                    safeSetState(
+                                        () => _model.selectAlarmValue = val);
+                                    _model.alarm = _model.selectAlarmValue!;
+                                    safeSetState(() {});
+                                  },
+                                  width: 200.0,
+                                  height: 40.0,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Select Alarm...',
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 2.0,
+                                  borderColor: Colors.transparent,
+                                  borderWidth: 0.0,
+                                  borderRadius: 8.0,
+                                  margin: const EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 0.0, 12.0, 0.0),
+                                  hidesUnderline: true,
+                                  isOverButton: false,
+                                  isSearchable: false,
+                                  isMultiSelect: false,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: Border.all(
+                                color: const Color(0xFF393939),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 0.0, 0.0, 0.0),
+                                  child: Text(
                                     'Status: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -463,15 +536,14 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     _model.selectStatusValue ??= ' ',
                                   ),
                                   options: const [
-                                    'Clean Needed',
-                                    'Exceed(scrap)',
-                                    'Exceeded Washing Count',
-                                    'Exceeded Life Time'
+                                    'Very Good',
+                                    'Good',
+                                    'Not Acceptable '
                                   ],
                                   onChanged: (val) async {
                                     safeSetState(
                                         () => _model.selectStatusValue = val);
-                                    _model.alarm = _model.selectStatusValue!;
+                                    _model.status = _model.selectStatusValue!;
                                     safeSetState(() {});
                                   },
                                   width: 200.0,
@@ -505,7 +577,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                               ],
                             ),
                           ),
-                        ],
+                        ].divide(const SizedBox(height: 2.0)),
                       ),
                     ),
                   ),
@@ -524,6 +596,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                           line: _model.line,
                           tagID: _model.selectIDTextController.text,
                           alarm: _model.alarm,
+                          status: _model.status,
                         );
 
                         FFAppState().Hide = false;
@@ -546,7 +619,12 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                   GetAlarmsListCall.alarm(
                                     (_model.getAlarmsListResponse?.jsonBody ??
                                         ''),
-                                  )?.toList())
+                                  )?.toList(),
+                                  GetAlarmsListCall.staus(
+                                    (_model.getAlarmsListResponse?.jsonBody ??
+                                        ''),
+                                  )!
+                                      .toList())
                               .toList()
                               .cast<AlarmTypeStruct>();
                           safeSetState(() {});
@@ -581,7 +659,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                         safeSetState(() {});
                         safeSetState(() {
                           _model.selectSKUValueController?.reset();
-                          _model.selectStatusValueController?.reset();
+                          _model.selectAlarmValueController?.reset();
                           _model.selectLineValueController?.reset();
                         });
                         safeSetState(() {
@@ -694,6 +772,22 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                 ),
                               ),
                             ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: Text(
+                                  'Status',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ),
                           ],
                           dataRowBuilder: (alarmsListItem, alarmsListIndex,
                                   selected, onSelectChanged) =>
@@ -742,6 +836,18 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w200,
+                                    ),
+                              ),
+                              Text(
+                                alarmsListItem.status,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w200,
                                     ),
