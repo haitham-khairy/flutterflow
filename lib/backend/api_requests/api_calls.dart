@@ -325,7 +325,7 @@ class GetAlarmsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsList',
       apiUrl:
-          'https://e1bb-154-183-234-39.ngrok-free.app/v1/GetAlarmsList/GetTagsAlarms',
+          'http://\${FFAppState().IPConfig}:8001/v1/GetAlarmsList/GetTagsAlarms',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
