@@ -506,7 +506,7 @@ class _EditTagsWidgetState extends State<EditTagsWidget> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
-                  height: 160.0,
+                  height: 200.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(10.0),
@@ -527,7 +527,9 @@ class _EditTagsWidgetState extends State<EditTagsWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                if (_model.textController3.text != '') {
+                                if ((_model.textController3.text != '') &&
+                                    (_model.selectLineValue != null &&
+                                        _model.selectLineValue != '')) {
                                   if (_model.selectLineValue != null &&
                                       _model.selectLineValue != '') {
                                     _model.updateBinData =
@@ -818,6 +820,44 @@ class _EditTagsWidgetState extends State<EditTagsWidget> {
                             ),
                           ].divide(const SizedBox(width: 3.0)),
                         ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FFButtonWidget(
+                            onPressed: () async {
+                              safeSetState(() {
+                                _model.fromTextController?.clear();
+                                _model.toTextController?.clear();
+                                _model.textController3?.text = 'Enter A number';
+                              });
+                              safeSetState(() {
+                                _model.selectSKUValueController?.reset();
+                                _model.selectLineValueController?.reset();
+                              });
+                            },
+                            text: 'Clear',
+                            options: FFButtonOptions(
+                              width: 150.0,
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: const Color(0xFF0000A0),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

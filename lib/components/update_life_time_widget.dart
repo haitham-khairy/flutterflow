@@ -116,7 +116,8 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         filled: true,
-                        fillColor: FlutterFlowTheme.of(context).alternate,
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
@@ -130,9 +131,9 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                 ),
               ],
             ),
-            Row(
+            Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FFButtonWidget(
                   onPressed: () async {
@@ -187,6 +188,7 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                   },
                   text: 'Update Life Time',
                   options: FFButtonOptions(
+                    width: 300.0,
                     height: 40.0,
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
@@ -216,7 +218,7 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                       if (UpdateLifeTimeCall.response(
                             (_model.updateWashingCycleResponse?.jsonBody ?? ''),
                           ) ==
-                          'success') {
+                          'Success') {
                         await showDialog(
                           context: context,
                           builder: (alertDialogContext) {
@@ -257,6 +259,7 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                   },
                   text: 'Update Washing Cycle',
                   options: FFButtonOptions(
+                    width: 300.0,
                     height: 40.0,
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
@@ -273,7 +276,7 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-              ],
+              ].divide(const SizedBox(height: 10.0)),
             ),
           ],
         ),

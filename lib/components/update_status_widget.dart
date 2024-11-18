@@ -42,143 +42,159 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            FFButtonWidget(
-              onPressed: () async {
-                _model.binStatusChangeResponse2 =
-                    await RejectPinRequestCall.call(
-                  tagID: widget.tagid,
-                  status: 'Good',
-                );
+    return Align(
+      alignment: const AlignmentDirectional(0.0, 0.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Align(
+            alignment: const AlignmentDirectional(0.0, 0.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FFButtonWidget(
+                  onPressed: () async {
+                    _model.binStatusChangeResponse2 =
+                        await RejectPinRequestCall.call(
+                      tagID: widget.tagid,
+                      status: 'Good',
+                    );
 
-                if ((_model.binStatusChangeResponse2?.succeeded ?? true)) {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: const Text('Result'),
-                        content: Text(RejectPinRequestCall.response(
-                          (_model.binStatusChangeResponse2?.jsonBody ?? ''),
-                        )!),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
+                    if ((_model.binStatusChangeResponse2?.succeeded ?? true)) {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Result'),
+                            content: Text(RejectPinRequestCall.response(
+                              (_model.binStatusChangeResponse2?.jsonBody ?? ''),
+                            )!),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
                       );
-                    },
-                  );
-                } else {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: const Text('Result'),
-                        content: Text(RejectPinRequestCall.response(
-                          (_model.binStatusChangeResponse2?.jsonBody ?? ''),
-                        )!),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
+                    } else {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Result'),
+                            content: Text(RejectPinRequestCall.response(
+                              (_model.binStatusChangeResponse2?.jsonBody ?? ''),
+                            )!),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
                       );
-                    },
-                  );
-                }
+                    }
 
-                safeSetState(() {});
-              },
-              text: 'Change To Good',
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: const Color(0xFFFD6400),
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
-                    ),
-                elevation: 0.0,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+                    safeSetState(() {});
+                  },
+                  text: 'Change To Good',
+                  options: FFButtonOptions(
+                    width: 300.0,
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFFFD6400),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 0.0,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                FFButtonWidget(
+                  onPressed: () async {
+                    _model.binStatusChangeResponse =
+                        await RejectPinRequestCall.call(
+                      tagID: widget.tagid,
+                      status: 'Not Acceptable',
+                    );
+
+                    if ((_model.binStatusChangeResponse?.succeeded ?? true)) {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Result'),
+                            content: Text(RejectPinRequestCall.response(
+                              (_model.binStatusChangeResponse?.jsonBody ?? ''),
+                            )!),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Result'),
+                            content: Text(RejectPinRequestCall.response(
+                              (_model.binStatusChangeResponse?.jsonBody ?? ''),
+                            )!),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+
+                    safeSetState(() {});
+                  },
+                  text: 'Change To Reject',
+                  options: FFButtonOptions(
+                    width: 300.0,
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFFFD6400),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 0.0,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ],
             ),
-            FFButtonWidget(
-              onPressed: () async {
-                _model.binStatusChangeResponse =
-                    await RejectPinRequestCall.call(
-                  tagID: widget.tagid,
-                  status: 'Not Acceptable',
-                );
-
-                if ((_model.binStatusChangeResponse?.succeeded ?? true)) {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: const Text('Result'),
-                        content: Text(RejectPinRequestCall.response(
-                          (_model.binStatusChangeResponse?.jsonBody ?? ''),
-                        )!),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                } else {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: const Text('Result'),
-                        content: Text(RejectPinRequestCall.response(
-                          (_model.binStatusChangeResponse?.jsonBody ?? ''),
-                        )!),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
-
-                safeSetState(() {});
-              },
-              text: 'Change To Reject',
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: const Color(0xFFFD6400),
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
-                    ),
-                elevation: 0.0,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }
