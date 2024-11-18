@@ -428,11 +428,13 @@ class UpdateLifeTimeCall {
   static Future<ApiCallResponse> call({
     String? tagID = '',
     int? days,
+    String? operation = ' ',
   }) async {
     final ffApiRequestBody = '''
 {
   "TagID": "$tagID",
-  "Days": $days
+  "Days": $days,
+  "Operation": "$operation"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateLifeTime',
@@ -516,7 +518,7 @@ class BinsDataUpdaterCall {
     return ApiManager.instance.makeApiCall(
       callName: 'BinsDataUpdater',
       apiUrl:
-          'https://9188-154-183-237-197.ngrok-free.app/v1/UpdateLifeTime/BinsDataUpdater',
+          'http://\${FFAppState().IPConfig}:8001/v1/UpdateLifeTime/BinsDataUpdater',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -530,6 +532,71 @@ class BinsDataUpdaterCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class GetAlarmsTypesCall {
+  static Future<ApiCallResponse> call() async {
+    const ffApiRequestBody = '''
+{
+  "test":"test"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetAlarmsTypes',
+      apiUrl:
+          'http://\${FFAppState().IPConfig}:8001/v1/Get_Filter_Parameters/GetAlarmsTypes',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<String>? alarmsTypes(dynamic response) => (getJsonField(
+        response,
+        r'''$.Alarms_Types_List''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class GetStatusTypesCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetStatusTypes',
+      apiUrl:
+          'http://\${FFAppState().IPConfig}:8001/v1/Get_Filter_Parameters/getStatusTypes',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<String>? statusTypes(dynamic response) => (getJsonField(
+        response,
+        r'''$.Status_Types_List''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ApiPagingParams {
@@ -574,4 +641,15 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
     }
     return isList ? '[]' : '{}';
   }
+}
+
+String? escapeStringForJson(String? input) {
+  if (input == null) {
+    return null;
+  }
+  return input
+      .replaceAll('\\', '\\\\')
+      .replaceAll('"', '\\"')
+      .replaceAll('\n', '\\n')
+      .replaceAll('\t', '\\t');
 }

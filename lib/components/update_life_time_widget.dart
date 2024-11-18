@@ -139,6 +139,7 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                     _model.apiResulterh = await UpdateLifeTimeCall.call(
                       tagID: widget.tagid,
                       days: _model.days,
+                      operation: 'life_time',
                     );
 
                     if ((_model.apiResulterh?.succeeded ?? true)) {
@@ -202,8 +203,57 @@ class _UpdateLifeTimeWidgetState extends State<UpdateLifeTimeWidget> {
                   ),
                 ),
                 FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    _model.updateWashingCycleResponse =
+                        await UpdateLifeTimeCall.call(
+                      tagID: widget.tagid,
+                      days: _model.days,
+                      operation: 'washing_cycle',
+                    );
+
+                    if ((_model.updateWashingCycleResponse?.succeeded ??
+                        true)) {
+                      if (UpdateLifeTimeCall.response(
+                            (_model.updateWashingCycleResponse?.jsonBody ?? ''),
+                          ) ==
+                          'success') {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('Result'),
+                              content: const Text('Success'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('Result'),
+                              content: const Text('Faild!'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    }
+
+                    safeSetState(() {});
                   },
                   text: 'Update Washing Cycle',
                   options: FFButtonOptions(

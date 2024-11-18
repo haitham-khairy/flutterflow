@@ -252,6 +252,64 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInRFIDTagsList2(int index, RFIDTagsdataStruct value) {
     RFIDTagsList2.insert(index, value);
   }
+
+  List<String> _AlarmTypes = [];
+  List<String> get AlarmTypes => _AlarmTypes;
+  set AlarmTypes(List<String> value) {
+    _AlarmTypes = value;
+  }
+
+  void addToAlarmTypes(String value) {
+    AlarmTypes.add(value);
+  }
+
+  void removeFromAlarmTypes(String value) {
+    AlarmTypes.remove(value);
+  }
+
+  void removeAtIndexFromAlarmTypes(int index) {
+    AlarmTypes.removeAt(index);
+  }
+
+  void updateAlarmTypesAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    AlarmTypes[index] = updateFn(_AlarmTypes[index]);
+  }
+
+  void insertAtIndexInAlarmTypes(int index, String value) {
+    AlarmTypes.insert(index, value);
+  }
+
+  List<String> _StatusTypes = [];
+  List<String> get StatusTypes => _StatusTypes;
+  set StatusTypes(List<String> value) {
+    _StatusTypes = value;
+  }
+
+  void addToStatusTypes(String value) {
+    StatusTypes.add(value);
+  }
+
+  void removeFromStatusTypes(String value) {
+    StatusTypes.remove(value);
+  }
+
+  void removeAtIndexFromStatusTypes(int index) {
+    StatusTypes.removeAt(index);
+  }
+
+  void updateStatusTypesAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    StatusTypes[index] = updateFn(_StatusTypes[index]);
+  }
+
+  void insertAtIndexInStatusTypes(int index, String value) {
+    StatusTypes.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

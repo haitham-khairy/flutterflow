@@ -39,6 +39,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             .toList()
             .cast<String>();
         safeSetState(() {});
+        await Future.wait([
+          Future(() async {
+            _model.getAlarmsTypesResponse = await GetAlarmsTypesCall.call();
+
+            if ((_model.getAlarmsTypesResponse?.succeeded ?? true)) {
+              FFAppState().AlarmTypes = GetAlarmsTypesCall.alarmsTypes(
+                (_model.getAlarmsTypesResponse?.jsonBody ?? ''),
+              )!
+                  .toList()
+                  .cast<String>();
+              safeSetState(() {});
+            }
+          }),
+          Future(() async {
+            _model.getStatusTypesResponse = await GetStatusTypesCall.call();
+
+            if ((_model.getStatusTypesResponse?.succeeded ?? true)) {
+              FFAppState().StatusTypes = GetStatusTypesCall.statusTypes(
+                (_model.getStatusTypesResponse?.jsonBody ?? ''),
+              )!
+                  .toList()
+                  .cast<String>();
+              safeSetState(() {});
+            }
+          }),
+        ]);
         _model.instantTimer = InstantTimer.periodic(
           duration: const Duration(milliseconds: 1000),
           callback: (timer) async {
@@ -95,15 +121,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
-                          borderRadius: 30.0,
-                          buttonSize: 40.0,
+                          borderRadius: 40.0,
+                          buttonSize: 50.0,
                           fillColor: const Color(0xFF0000A0),
                           icon: Icon(
                             Icons.close,
@@ -118,84 +144,76 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           },
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  3.0, 0.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 30.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                fillColor: const Color(0xFF0000A0),
-                                icon: const Icon(
-                                  Icons.logout_outlined,
-                                  color: Colors.white,
-                                  size: 30.0,
-                                ),
-                                onPressed: () async {
-                                  context.goNamed('Login');
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ].divide(const SizedBox(height: 5.0)),
                   ),
                   Expanded(
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 5.0, 0.0, 5.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/logo-main.svg',
-                                    fit: BoxFit.cover,
-                                  ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 5.0, 0.0, 5.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: SvgPicture.asset(
+                                  'assets/images/logo-main.svg',
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 5.0),
-                                child: Text(
-                                  'Home Page',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF393939),
-                                        fontSize: 24.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 5.0),
+                              child: Text(
+                                'Home Page',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0xFF393939),
+                                      fontSize: 24.0,
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 30.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          fillColor: const Color(0xFF0000A0),
+                          icon: const Icon(
+                            Icons.logout_outlined,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            context.goNamed('Login');
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

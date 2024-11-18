@@ -9,6 +9,10 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   // Stores action output result for [Backend Call - API (GetFilterParamaters)] action in HomePage widget.
   ApiCallResponse? getFilterParametersHome;
+  // Stores action output result for [Backend Call - API (GetAlarmsTypes)] action in HomePage widget.
+  ApiCallResponse? getAlarmsTypesResponse;
+  // Stores action output result for [Backend Call - API (GetStatusTypes)] action in HomePage widget.
+  ApiCallResponse? getStatusTypesResponse;
   InstantTimer? instantTimer;
   // Stores action output result for [Backend Call - API (GetAlarmsSummary)] action in HomePage widget.
   ApiCallResponse? alarmsSummaryResponse;

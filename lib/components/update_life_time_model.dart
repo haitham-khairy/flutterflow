@@ -16,6 +16,8 @@ class UpdateLifeTimeModel extends FlutterFlowModel<UpdateLifeTimeWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - API (UpdateLifeTime)] action in Button widget.
   ApiCallResponse? apiResulterh;
+  // Stores action output result for [Backend Call - API (UpdateLifeTime)] action in Button widget.
+  ApiCallResponse? updateWashingCycleResponse;
 
   @override
   void initState(BuildContext context) {}
