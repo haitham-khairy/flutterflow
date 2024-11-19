@@ -642,11 +642,11 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                         safeSetState(() {
                           _model.selectIDTextController?.clear();
                         });
-                        _model.tagid = '';
+                        _model.tagid = ' ';
                         _model.line = ' ';
                         _model.sku = ' ';
                         _model.alarm = ' ';
-                        _model.status = '\"\"';
+                        _model.status = ' ';
                         safeSetState(() {});
                       },
                       text: 'Clear List',

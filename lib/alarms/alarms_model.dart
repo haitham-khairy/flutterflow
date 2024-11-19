@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
   ///  Local state fields for this page.
 
-  String tagid = '';
+  String tagid = ' ';
 
   String line = ' ';
 
@@ -17,7 +17,7 @@ class AlarmsModel extends FlutterFlowModel<AlarmsWidget> {
 
   String alarm = ' ';
 
-  String status = '\"\"';
+  String status = ' ';
 
   ///  State fields for stateful widgets in this page.
 
