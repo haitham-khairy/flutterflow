@@ -297,24 +297,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             '') &&
                                     (_model.passwordTextController.text !=
                                             '')) {
-                                  await LoginDataCall.call(
+                                  _model.logInRequestresponse =
+                                      await LogInRequestCall.call(
                                     username:
                                         _model.usernameTextController.text,
                                     password:
                                         _model.passwordTextController.text,
                                   );
 
-                                  _model.logInRequestresponse =
-                                      await LogInRequestCall.call();
-
                                   shouldSetState = true;
                                   _model.loginstatus =
                                       LogInRequestCall.logInStatus(
                                     (_model.logInRequestresponse?.jsonBody ??
                                         ''),
-                                  ).toString();
+                                  );
                                   safeSetState(() {});
-                                  if (_model.loginstatus == 'true') {
+                                  if (_model.loginstatus == true) {
                                     context.goNamed(
                                       'HomePage',
                                       extra: <String, dynamic>{

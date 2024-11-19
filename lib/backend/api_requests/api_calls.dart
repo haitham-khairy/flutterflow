@@ -10,16 +10,24 @@ export 'api_manager.dart' show ApiCallResponse;
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class LogInRequestCall {
-  static Future<ApiCallResponse> call() async {
+  static Future<ApiCallResponse> call({
+    String? username = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "username": "$username",
+  "password": "$password"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/LoginAction/LogInRequest',
-      callType: ApiCallType.GET,
+          'https://8e46-154-183-237-146.ngrok-free.app/v1/LoginAction/LogInRequest',
+      callType: ApiCallType.POST,
       headers: {},
-      params: {
-        'LogIn': 1,
-      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

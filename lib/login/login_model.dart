@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class LoginModel extends FlutterFlowModel<LoginWidget> {
   ///  Local state fields for this page.
 
-  String loginstatus = 'false';
+  bool loginstatus = false;
 
   ///  State fields for stateful widgets in this page.
 
