@@ -638,6 +638,7 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                           _model.selectSKUValueController?.reset();
                           _model.selectAlarmValueController?.reset();
                           _model.selectLineValueController?.reset();
+                          _model.selectStatusValueController?.reset();
                         });
                         safeSetState(() {
                           _model.selectIDTextController?.clear();
