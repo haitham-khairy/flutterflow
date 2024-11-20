@@ -527,7 +527,8 @@ class _EditTagsWidgetState extends State<EditTagsWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                if ((_model.textController3.text != '') &&
+                                if ((_model.textController3.text !=
+                                        'Enter A number') &&
                                     (_model.selectLineValue != null &&
                                         _model.selectLineValue != '')) {
                                   if (_model.selectLineValue != null &&
@@ -628,7 +629,8 @@ class _EditTagsWidgetState extends State<EditTagsWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                if (_model.textController3.text != '') {
+                                if (_model.textController3.text !=
+                                    'Enter A number') {
                                   if (_model.selectLineValue != null &&
                                       _model.selectLineValue != '') {
                                     _model.updateBinData2 =

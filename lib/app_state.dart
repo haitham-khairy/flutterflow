@@ -310,6 +310,12 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInStatusTypes(int index, String value) {
     StatusTypes.insert(index, value);
   }
+
+  bool _Autherized = false;
+  bool get Autherized => _Autherized;
+  set Autherized(bool value) {
+    _Autherized = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

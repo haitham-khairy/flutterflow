@@ -310,7 +310,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       LogInRequestCall.logInStatus(
                                     (_model.logInRequestresponse?.jsonBody ??
                                         ''),
-                                  );
+                                  )!;
+                                  safeSetState(() {});
+                                  FFAppState().Autherized =
+                                      LogInRequestCall.autherized(
+                                    (_model.logInRequestresponse?.jsonBody ??
+                                        ''),
+                                  )!;
                                   safeSetState(() {});
                                   if (_model.loginstatus == true) {
                                     context.goNamed(

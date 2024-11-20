@@ -22,7 +22,7 @@ class LogInRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
       apiUrl:
-          'https://8e46-154-183-237-146.ngrok-free.app/v1/LoginAction/LogInRequest',
+          'http://\${FFAppState().IPConfig}:8001/v1/LoginAction/LogInRequest',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -37,10 +37,14 @@ class LogInRequestCall {
     );
   }
 
-  static dynamic logInStatus(dynamic response) => getJsonField(
+  static bool? logInStatus(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.status''',
-      );
+      ));
+  static bool? autherized(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.Autherized''',
+      ));
 }
 
 class LoginDataCall {
