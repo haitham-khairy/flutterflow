@@ -751,22 +751,6 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                 ),
                               ),
                             ),
-                            DataColumn2(
-                              label: DefaultTextStyle.merge(
-                                softWrap: true,
-                                child: Text(
-                                  'Status',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ),
                           ],
                           dataRowBuilder: (alarmsListItem, alarmsListIndex,
                                   selected, onSelectChanged) =>
@@ -815,18 +799,6 @@ class _AlarmsWidgetState extends State<AlarmsWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w200,
-                                    ),
-                              ),
-                              Text(
-                                alarmsListItem.status,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w200,
                                     ),
