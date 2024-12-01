@@ -349,53 +349,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       ],
                                     ),
-                                    if (FFAppState().Autherized)
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 6.0, 0.0, 10.0),
-                                            child: FlutterFlowIconButton(
-                                              borderColor: const Color(0xFF0000A0),
-                                              borderRadius: 40.0,
-                                              borderWidth: 7.0,
-                                              buttonSize: 85.0,
-                                              icon: const Icon(
-                                                Icons.edit_square,
-                                                color: Color(0xFF0000A0),
-                                                size: 40.0,
-                                              ),
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                  'EditTags',
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .rightToLeft,
-                                                    ),
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Text(
-                                            'Edit',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFF393939),
-                                                  fontSize: 24.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
                                   ].divide(const SizedBox(width: 20.0)),
                                 ),
                                 const SizedBox(
