@@ -168,9 +168,9 @@ double progressBarCalculator(
   String value,
   String divider,
 ) {
-  int upper = int.parse(value);
-  int lower = int.parse(divider);
-  return (upper / lower);
+  int upper = int.parse(value); //remaining Days in Service
+  int lower = int.parse(divider); //Life Time
+  return ((lower - upper) / lower);
 }
 
 double progressBarCalculator2(
