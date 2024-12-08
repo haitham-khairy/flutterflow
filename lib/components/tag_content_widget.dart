@@ -100,9 +100,12 @@ class _TagContentWidgetState extends State<TagContentWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   CircularPercentIndicator(
-                    percent: functions.progressBarCalculator2(
-                        widget.componentlistitem!.washingCount,
-                        widget.componentlistitem!.maxWashCount),
+                    percent: valueOrDefault<double>(
+                      functions.progressBarCalculator2(
+                          widget.componentlistitem!.washingCount,
+                          widget.componentlistitem!.maxWashCount),
+                      0.0,
+                    ),
                     radius: 50.0,
                     lineWidth: 12.0,
                     animation: true,

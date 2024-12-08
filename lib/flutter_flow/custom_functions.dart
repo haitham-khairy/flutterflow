@@ -185,7 +185,7 @@ double progressBarCalculator2(
   }
   int upper = int.parse(value);
   int lower = int.parse(divider);
-  return ((lower - upper) / lower);
+  return (upper / lower);
 }
 
 List<String> emptyListGenerator() {
