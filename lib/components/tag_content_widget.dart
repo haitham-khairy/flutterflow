@@ -58,45 +58,79 @@ class _TagContentWidgetState extends State<TagContentWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CircularPercentIndicator(
-                percent: functions.progressBarCalculator(
-                    widget.componentlistitem!.remainingDaysInServeic,
-                    widget.componentlistitem!.lifetime),
-                radius: 50.0,
-                lineWidth: 12.0,
-                animation: true,
-                animateFromLastPercent: true,
-                progressColor: const Color(0xFF0000A0),
-                backgroundColor: FlutterFlowTheme.of(context).accent4,
-                center: Text(
-                  'Life\nTime',
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Outfit',
-                        fontSize: 18.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.normal,
-                      ),
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  CircularPercentIndicator(
+                    percent: functions.progressBarCalculator(
+                        widget.componentlistitem!.remainingDaysInServeic,
+                        widget.componentlistitem!.lifetime),
+                    radius: 50.0,
+                    lineWidth: 12.0,
+                    animation: true,
+                    animateFromLastPercent: true,
+                    progressColor: const Color(0xFF0000A0),
+                    backgroundColor: FlutterFlowTheme.of(context).accent4,
+                    center: Text(
+                      'Life\nTime',
+                      style:
+                          FlutterFlowTheme.of(context).headlineSmall.override(
+                                fontFamily: 'Outfit',
+                                fontSize: 18.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                    ),
+                  ),
+                  Text(
+                    valueOrDefault<String>(
+                      functions.daysinService(
+                          widget.componentlistitem!.lifetime,
+                          widget.componentlistitem!.remainingDaysInServeic),
+                      '0',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ].divide(const SizedBox(height: 5.0)),
               ),
-              CircularPercentIndicator(
-                percent: functions.progressBarCalculator2(
-                    widget.componentlistitem!.washingCount,
-                    widget.componentlistitem!.maxWashCount),
-                radius: 50.0,
-                lineWidth: 12.0,
-                animation: true,
-                animateFromLastPercent: true,
-                progressColor: const Color(0xFF0000A0),
-                backgroundColor: FlutterFlowTheme.of(context).accent4,
-                center: Text(
-                  'Washing\nCount',
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Outfit',
-                        fontSize: 18.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.normal,
-                      ),
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  CircularPercentIndicator(
+                    percent: functions.progressBarCalculator2(
+                        widget.componentlistitem!.washingCount,
+                        widget.componentlistitem!.maxWashCount),
+                    radius: 50.0,
+                    lineWidth: 12.0,
+                    animation: true,
+                    animateFromLastPercent: true,
+                    progressColor: const Color(0xFF0000A0),
+                    backgroundColor: FlutterFlowTheme.of(context).accent4,
+                    center: Text(
+                      'Washing\nCount',
+                      style:
+                          FlutterFlowTheme.of(context).headlineSmall.override(
+                                fontFamily: 'Outfit',
+                                fontSize: 18.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                    ),
+                  ),
+                  Text(
+                    valueOrDefault<String>(
+                      widget.componentlistitem?.washingCount,
+                      '0',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ].divide(const SizedBox(height: 5.0)),
               ),
             ],
           ),

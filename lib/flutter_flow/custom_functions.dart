@@ -191,3 +191,18 @@ double progressBarCalculator2(
 List<String> emptyListGenerator() {
   return ['Select A Line First'];
 }
+
+String? daysinService(
+  String lifeTime,
+  String remainingDaysInService,
+) {
+  // custome function to take two strings as arguments (life_time & RemainingDaysInService) subtracts them and returns the value of (Life_time - remainingDaysInService) as string
+  try {
+    int lifeTimeInt = int.parse(lifeTime);
+    int remainingDaysInServiceInt = int.parse(remainingDaysInService);
+    int difference = lifeTimeInt - remainingDaysInServiceInt;
+    return difference.toString();
+  } catch (e) {
+    return null;
+  }
+}
