@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'update_status_model.dart';
 export 'update_status_model.dart';
 
@@ -43,13 +44,13 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,7 +68,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: const Text('Result'),
+                            title: Text('Result'),
                             content: Text(RejectPinRequestCall.response(
                               (_model.binStatusChangeResponse2?.jsonBody ?? ''),
                             )!),
@@ -75,7 +76,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
+                                child: Text('Ok'),
                               ),
                             ],
                           );
@@ -86,7 +87,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: const Text('Result'),
+                            title: Text('Result'),
                             content: Text(RejectPinRequestCall.response(
                               (_model.binStatusChangeResponse2?.jsonBody ?? ''),
                             )!),
@@ -94,7 +95,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
+                                child: Text('Ok'),
                               ),
                             ],
                           );
@@ -109,14 +110,26 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                     width: 300.0,
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFFFD6400),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: Color(0xFFFD6400),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          font: GoogleFonts.readexPro(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
                         ),
                     elevation: 0.0,
                     borderRadius: BorderRadius.circular(8.0),
@@ -135,7 +148,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: const Text('Result'),
+                            title: Text('Result'),
                             content: Text(RejectPinRequestCall.response(
                               (_model.binStatusChangeResponse?.jsonBody ?? ''),
                             )!),
@@ -143,7 +156,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
+                                child: Text('Ok'),
                               ),
                             ],
                           );
@@ -154,7 +167,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: const Text('Result'),
+                            title: Text('Result'),
                             content: Text(RejectPinRequestCall.response(
                               (_model.binStatusChangeResponse?.jsonBody ?? ''),
                             )!),
@@ -162,7 +175,7 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
+                                child: Text('Ok'),
                               ),
                             ],
                           );
@@ -177,14 +190,26 @@ class _UpdateStatusWidgetState extends State<UpdateStatusWidget> {
                     width: 300.0,
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFFFD6400),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: Color(0xFFFD6400),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          font: GoogleFonts.readexPro(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
                         ),
                     elevation: 0.0,
                     borderRadius: BorderRadius.circular(8.0),

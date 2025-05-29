@@ -18,13 +18,11 @@ void main() async {
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
-    child: const MyApp(),
+    child: MyApp(),
   ));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
@@ -38,6 +36,19 @@ class _MyAppState extends State<MyApp> {
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
+  String getRoute([RouteMatch? routeMatch]) {
+    final RouteMatch lastMatch =
+        routeMatch ?? _router.routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : _router.routerDelegate.currentConfiguration;
+    return matchList.uri.toString();
+  }
+
+  List<String> getRouteStack() =>
+      _router.routerDelegate.currentConfiguration.matches
+          .map((e) => getRoute(e))
+          .toList();
 
   bool displaySplashImage = true;
 
@@ -48,7 +59,7 @@ class _MyAppState extends State<MyApp> {
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
 
-    Future.delayed(const Duration(milliseconds: 2000),
+    Future.delayed(Duration(milliseconds: 2000),
         () => safeSetState(() => _appStateNotifier.stopShowingSplashImage()));
   }
 
@@ -60,8 +71,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Manex-RFID Traceability',
-      localizationsDelegates: const [
+      localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -76,12 +88,12 @@ class _MyAppState extends State<MyApp> {
           thickness: WidgetStateProperty.all(4.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff57636c);
+              return Color(4283917164);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff57636c);
+              return Color(4283917164);
             }
-            return const Color(0xff57636c);
+            return Color(4283917164);
           }),
         ),
         useMaterial3: false,
@@ -95,12 +107,12 @@ class _MyAppState extends State<MyApp> {
           thickness: WidgetStateProperty.all(4.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff95a1ac);
+              return Color(4287996332);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff95a1ac);
+              return Color(4287996332);
             }
-            return const Color(0xff95a1ac);
+            return Color(4287996332);
           }),
         ),
         useMaterial3: false,

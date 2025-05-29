@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'ip_config_model.dart';
 export 'ip_config_model.dart';
 
@@ -47,7 +48,7 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
@@ -57,13 +58,39 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
                     labelText: 'Enter Host IP',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
+                              ),
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontStyle,
                             ),
                     hintStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
+                              ),
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontStyle,
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
@@ -95,8 +122,18 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
                     ),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
+                        font: GoogleFonts.readexPro(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
                         letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                   validator:
                       _model.textControllerValidator.asValidator(context),
@@ -106,7 +143,7 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
           ],
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
               FFAppState().IPConfig = _model.textController.text;
@@ -115,12 +152,12 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
                 context: context,
                 builder: (alertDialogContext) {
                   return AlertDialog(
-                    title: const Text('Result'),
-                    content: const Text('IP updated successfully '),
+                    title: Text('Result'),
+                    content: Text('IP updated successfully '),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
+                        child: Text('Ok'),
                       ),
                     ],
                   );
@@ -131,16 +168,25 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
             text: 'submit',
             options: FFButtonOptions(
               height: 40.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: const Color(0xFFFD6400),
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: Color(0xFFFD6400),
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Readex Pro',
+                    font: GoogleFonts.readexPro(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                    ),
                     color: Colors.white,
                     letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).titleSmall.fontStyle,
                   ),
               elevation: 3.0,
-              borderSide: const BorderSide(
+              borderSide: BorderSide(
                 color: Colors.transparent,
                 width: 1.0,
               ),

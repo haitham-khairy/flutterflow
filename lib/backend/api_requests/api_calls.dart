@@ -16,8 +16,8 @@ class LogInRequestCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "username": "$username",
-  "password": "$password"
+  "username": "${username}",
+  "password": "${password}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
@@ -80,7 +80,7 @@ class GetTagsDataCall {
 
     final ffApiRequestBody = '''
 {
-  "TagList": $tagsList
+  "TagList": ${tagsList}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
@@ -233,7 +233,7 @@ class SendTagsListCall {
 
     final ffApiRequestBody = '''
 {
-  "TagList": $tagsList
+  "TagList": ${tagsList}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
@@ -261,8 +261,8 @@ class RejectPinRequestCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "TagID": "$tagID",
-  "Status": "$status"
+  "TagID": "${tagID}",
+  "Status": "${status}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'RejectPinRequest',
@@ -328,11 +328,11 @@ class GetAlarmsListCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "SKU": "$sku",
-  "Line": "$line",
-  "TagID": "$tagID",
-  "Alarm": "$alarm",
-  "Status": "$status"
+  "SKU": "${sku}",
+  "Line": "${line}",
+  "TagID": "${tagID}",
+  "Alarm": "${alarm}",
+  "Status": "${status}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsList',
@@ -444,9 +444,9 @@ class UpdateLifeTimeCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "TagID": "$tagID",
-  "Days": $days,
-  "Operation": "$operation"
+  "TagID": "${tagID}",
+  "Days": ${days},
+  "Operation": "${operation}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateLifeTime',
@@ -478,7 +478,7 @@ class GetSKUsFilterCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "Line": "$line"
+  "Line": "${line}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetSKUsFilter',
@@ -520,12 +520,12 @@ class BinsDataUpdaterCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "From": "$from",
-  "To":"$to",
-  "Value": $value,
-  "Operation": "$operation",
-  "Line": "$line",
-  "SKU": "$sku"
+  "From": "${from}",
+  "To":"${to}",
+  "Value": ${value},
+  "Operation": "${operation}",
+  "Line": "${line}",
+  "SKU": "${sku}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'BinsDataUpdater',
@@ -548,7 +548,7 @@ class BinsDataUpdaterCall {
 
 class GetAlarmsTypesCall {
   static Future<ApiCallResponse> call() async {
-    const ffApiRequestBody = '''
+    final ffApiRequestBody = '''
 {
   "test":"test"
 }''';
@@ -609,6 +609,42 @@ class GetStatusTypesCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
+}
+
+class UpdateWorkingBinsCall {
+  static Future<ApiCallResponse> call({
+    List<String>? tagsList,
+    String? state = '',
+  }) async {
+    final tags = _serializeList(tagsList);
+
+    final ffApiRequestBody = '''
+{
+  "Tags": ${tags},
+  "State": "${escapeStringForJson(state)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateWorkingBins',
+      apiUrl:
+          'https://61b8-154-183-244-222.ngrok-free.app/v1/ChangeWorkingBinsStatus/ChangeWorkingBins',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? response(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Response''',
+      ));
 }
 
 class ApiPagingParams {

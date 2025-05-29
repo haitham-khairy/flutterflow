@@ -4,15 +4,20 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
+
+  static String routeName = 'HomePage';
+  static String routePath = '/homePage';
 
   @override
   State<HomePageWidget> createState() => _HomePageWidgetState();
@@ -66,7 +71,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           }),
         ]);
         _model.instantTimer = InstantTimer.periodic(
-          duration: const Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: 1000),
           callback: (timer) async {
             _model.alarmsSummaryResponse = await GetAlarmsSummaryCall.call();
 
@@ -104,16 +109,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0),
+          preferredSize: Size.fromHeight(100.0),
           child: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
-            actions: const [],
+            actions: [],
             flexibleSpace: FlexibleSpaceBar(
               title: Row(
                 mainAxisSize: MainAxisSize.max,
@@ -126,11 +134,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderRadius: 40.0,
                           buttonSize: 50.0,
-                          fillColor: const Color(0xFF0000A0),
+                          fillColor: Color(0xFF0000A0),
                           icon: Icon(
                             Icons.close,
                             color: FlutterFlowTheme.of(context).info,
@@ -144,20 +152,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           },
                         ),
                       ),
-                    ].divide(const SizedBox(height: 5.0)),
+                    ].divide(SizedBox(height: 5.0)),
                   ),
                   Expanded(
                     child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 5.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -169,19 +177,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: Text(
                                 'Home Page',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0xFF393939),
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color: Color(0xFF393939),
                                       fontSize: 24.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ),
@@ -196,20 +217,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 30.0,
                           borderWidth: 1.0,
                           buttonSize: 50.0,
-                          fillColor: const Color(0xFF0000A0),
-                          icon: const Icon(
+                          fillColor: Color(0xFF0000A0),
+                          icon: Icon(
                             Icons.logout_outlined,
                             color: Colors.white,
                             size: 30.0,
                           ),
                           onPressed: () async {
-                            context.goNamed('Login');
+                            context.goNamed(LoginWidget.routeName);
                           },
                         ),
                       ),
@@ -226,14 +247,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.0),
                     child: Container(
                       width: 350.0,
                       height: 300.0,
@@ -243,7 +264,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -267,10 +288,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'NewReading',
+                                              NewReadingWidget.routeName,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType
@@ -279,7 +300,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               },
                                             );
                                           },
-                                          child: const Icon(
+                                          child: Icon(
                                             FFIcons.krFIDIcon,
                                             color: Color(0xFF0000A0),
                                             size: 100.0,
@@ -287,18 +308,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
                                             'Scan',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: const Color(0xFF393939),
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF393939),
                                                   fontSize: 24.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -314,10 +348,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'Alarms',
+                                              AlarmsWidget.routeName,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType
@@ -329,7 +363,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             FFAppState().Hide = true;
                                             safeSetState(() {});
                                           },
-                                          child: const Icon(
+                                          child: Icon(
                                             Icons.error_outline,
                                             color: Color(0xFF0000A0),
                                             size: 100.0,
@@ -340,18 +374,81 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
-                                                color: const Color(0xFF393939),
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF393939),
                                                 fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
                                               ),
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(width: 20.0)),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        if (FFAppState().Autherized)
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                  UpdateBinStatusWidget
+                                                      .routeName);
+                                            },
+                                            child: Icon(
+                                              Icons.verified_outlined,
+                                              color: Color(0xFF0000A0),
+                                              size: 100.0,
+                                            ),
+                                          ),
+                                        Text(
+                                          'Status',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF393939),
+                                                fontSize: 24.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ].divide(SizedBox(width: 20.0)),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 320.0,
                                   child: Divider(
                                     thickness: 2.0,
@@ -359,18 +456,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Text(
                                     'Alarms Summary',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: const Color(0xFF393939),
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: Color(0xFF393939),
                                           fontSize: 24.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
                                         ),
                                   ),
                                 ),
@@ -383,7 +490,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     borderRadius: BorderRadius.circular(10.0),
                                     shape: BoxShape.rectangle,
                                     border: Border.all(
-                                      color: const Color(0xFF393939),
+                                      color: Color(0xFF393939),
                                     ),
                                   ),
                                   child: Column(
@@ -397,8 +504,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF0000A0),
-                                                borderRadius: const BorderRadius.only(
+                                                color: Color(0xFF0000A0),
+                                                borderRadius: BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
                                                   bottomRight:
@@ -409,11 +516,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       Radius.circular(0.0),
                                                 ),
                                                 border: Border.all(
-                                                  color: const Color(0xFF393939),
+                                                  color: Color(0xFF393939),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Twix',
@@ -421,13 +528,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -436,13 +564,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF0000A0),
+                                                color: Color(0xFF0000A0),
                                                 border: Border.all(
-                                                  color: const Color(0xFF393939),
+                                                  color: Color(0xFF393939),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'FLutes',
@@ -450,13 +578,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -465,13 +614,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF0000A0),
+                                                color: Color(0xFF0000A0),
                                                 border: Border.all(
-                                                  color: const Color(0xFF393939),
+                                                  color: Color(0xFF393939),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Jewels',
@@ -479,13 +628,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -494,8 +664,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF0000A0),
-                                                borderRadius: const BorderRadius.only(
+                                                color: Color(0xFF0000A0),
+                                                borderRadius: BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),
                                                   bottomRight:
@@ -505,11 +675,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       Radius.circular(10.0),
                                                 ),
                                                 border: Border.all(
-                                                  color: const Color(0xFF393939),
+                                                  color: Color(0xFF393939),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Molding',
@@ -517,13 +687,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -541,7 +732,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      const BorderRadius.only(
+                                                      BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(10.0),
                                                     bottomRight:
@@ -552,7 +743,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Radius.circular(0.0),
                                                   ),
                                                   border: Border.all(
-                                                    color: const Color(0xFF393939),
+                                                    color: Color(0xFF393939),
                                                   ),
                                                 ),
                                                 child: Column(
@@ -563,7 +754,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   30.0,
@@ -576,10 +767,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
                                                                 ),
                                                       ),
                                                     ),
@@ -591,7 +799,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xFF393939),
+                                                    color: Color(0xFF393939),
                                                   ),
                                                 ),
                                                 child: Column(
@@ -600,7 +808,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   30.0,
@@ -613,10 +821,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
                                                                 ),
                                                       ),
                                                     ),
@@ -628,7 +853,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xFF393939),
+                                                    color: Color(0xFF393939),
                                                   ),
                                                 ),
                                                 child: Column(
@@ -637,7 +862,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   30.0,
@@ -650,10 +875,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
                                                                 ),
                                                       ),
                                                     ),
@@ -665,7 +907,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      const BorderRadius.only(
+                                                      BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(0.0),
                                                     bottomRight:
@@ -676,7 +918,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Radius.circular(0.0),
                                                   ),
                                                   border: Border.all(
-                                                    color: const Color(0xFF393939),
+                                                    color: Color(0xFF393939),
                                                   ),
                                                 ),
                                                 child: Column(
@@ -685,7 +927,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   30.0,
@@ -698,10 +940,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
                                                                 ),
                                                       ),
                                                     ),

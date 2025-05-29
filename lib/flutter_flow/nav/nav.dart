@@ -5,13 +5,16 @@ import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -31,6 +34,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => appStateNotifier.showSplashImage
           ? Builder(
               builder: (context) => Container(
@@ -44,7 +48,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const LoginWidget(),
+          : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,32 +66,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const LoginWidget(),
+              : LoginWidget(),
         ),
         FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) => const LoginWidget(),
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: 'NewReading',
-          path: '/newReading',
-          builder: (context, params) => const NewReadingWidget(),
+          name: NewReadingWidget.routeName,
+          path: NewReadingWidget.routePath,
+          builder: (context, params) => NewReadingWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
+          name: HomePageWidget.routeName,
+          path: HomePageWidget.routePath,
+          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
-          name: 'Alarms',
-          path: '/alarms',
-          builder: (context, params) => const AlarmsWidget(),
+          name: AlarmsWidget.routeName,
+          path: AlarmsWidget.routePath,
+          builder: (context, params) => AlarmsWidget(),
         ),
         FFRoute(
-          name: 'EditTags',
-          path: '/editTags',
-          builder: (context, params) => const EditTagsWidget(),
+          name: EditTagsWidget.routeName,
+          path: EditTagsWidget.routePath,
+          builder: (context, params) => EditTagsWidget(),
+        ),
+        FFRoute(
+          name: UpdateBinStatusWidget.routeName,
+          path: UpdateBinStatusWidget.routePath,
+          builder: (context, params) => UpdateBinStatusWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -253,7 +262,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

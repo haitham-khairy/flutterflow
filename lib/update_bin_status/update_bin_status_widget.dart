@@ -1,41 +1,42 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/tag_content_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'new_reading_model.dart';
-export 'new_reading_model.dart';
+import 'update_bin_status_model.dart';
+export 'update_bin_status_model.dart';
 
-class NewReadingWidget extends StatefulWidget {
-  const NewReadingWidget({super.key});
+class UpdateBinStatusWidget extends StatefulWidget {
+  const UpdateBinStatusWidget({super.key});
 
-  static String routeName = 'NewReading';
-  static String routePath = '/newReading';
+  static String routeName = 'UpdateBinStatus';
+  static String routePath = '/updateBinStatus';
 
   @override
-  State<NewReadingWidget> createState() => _NewReadingWidgetState();
+  State<UpdateBinStatusWidget> createState() => _UpdateBinStatusWidgetState();
 }
 
-class _NewReadingWidgetState extends State<NewReadingWidget> {
-  late NewReadingModel _model;
+class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
+  late UpdateBinStatusModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NewReadingModel());
+    _model = createModel(context, () => UpdateBinStatusModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -43,8 +44,8 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
       FFAppState().RFIDTagsList = [];
       FFAppState().RFIDTagsList2 = [];
       safeSetState(() {});
-      _model.rfidstatus = 'na';
       _model.listsize = 0;
+      _model.rfidstatus = 'na';
       safeSetState(() {});
       _model.instantTimer2 = InstantTimer.periodic(
         duration: Duration(milliseconds: 1000),
@@ -55,7 +56,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
           if (_model.rfidstatus == 'Connected') {
             _model.rfidtagdata = await actions.readtagcount(
               false,
-              _model.sliderValue!,
+              1.0,
             );
             FFAppState().RFIDTagsList =
                 _model.rfidtagdata!.toList().cast<RFIDTagsdataStruct>();
@@ -134,8 +135,6 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
         startImmediately: true,
       );
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -220,9 +219,9 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              65.0, 5.0, 0.0, 5.0),
+                              45.0, 5.0, 0.0, 5.0),
                           child: Text(
-                            'Scanning',
+                            'Update Bin Status',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -264,147 +263,6 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Opacity(
-                      opacity: 0.0,
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Filter by distance:',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF393939),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Opacity(
-                        opacity: 0.0,
-                        child: Slider(
-                          activeColor: Color(0xFF0000A0),
-                          inactiveColor: FlutterFlowTheme.of(context).alternate,
-                          min: 0.0,
-                          max: 75.0,
-                          value: _model.sliderValue ??= 1.0,
-                          onChanged: (newValue) {
-                            safeSetState(() => _model.sliderValue = newValue);
-                            EasyDebounce.debounce(
-                              '_model.sliderValue',
-                              Duration(milliseconds: 1000),
-                              () async {
-                                _model.readTagCountResponse =
-                                    await actions.readtagcount(
-                                  false,
-                                  _model.sliderValue!,
-                                );
-                                FFAppState().RFIDTagsList = _model
-                                    .readTagCountResponse!
-                                    .where((e) => functions.isNull(
-                                            _model.sliderValue?.toString())
-                                        ? true
-                                        : functions.greaterOrEqual(
-                                            _model.sliderValue!,
-                                            e.peakRSSI.toString()))
-                                    .toList()
-                                    .cast<RFIDTagsdataStruct>();
-                                safeSetState(() {});
-                                _model.getTagsDataRsponse1 =
-                                    await GetTagsDataCall.call(
-                                  tagsListList: functions.tgagsListToList(
-                                      FFAppState().RFIDTagsList.toList()),
-                                );
-
-                                FFAppState().QueriedTagDataList = functions
-                                    .buildTagsDataList(
-                                        GetTagsDataCall.id(
-                                          (_model.getTagsDataRsponse1
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.printDate(
-                                          (_model.getTagsDataRsponse1
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.washingCount(
-                                          (_model.getTagsDataRsponse1
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.lastTimeWashed(
-                                          (_model.getTagsDataRsponse1
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.line(
-                                          (_model.getTagsDataRsponse1
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.lifetime(
-                                          (_model.getTagsDataRsponse1
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.color(
-                                          (_model.getTagsDataRsponse1
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )
-                                            ?.map((e) => e.toString())
-                                            .toList()
-                                            .toList(),
-                                        _model.sku.toList(),
-                                        _model.maxwashcount.toList(),
-                                        _model.washoverdue.toList(),
-                                        GetTagsDataCall.status(
-                                          (_model.getTagsDataResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.daysRemaining(
-                                          (_model.getTagsDataResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.alarms(
-                                          (_model.getTagsDataResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList(),
-                                        GetTagsDataCall.remainingDaysInService(
-                                          (_model.getTagsDataResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                        )?.toList())!
-                                    .toList()
-                                    .cast<QueriedTagDataStruct>();
-                                safeSetState(() {});
-
-                                safeSetState(() {});
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
@@ -419,7 +277,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                           safeSetState(() {});
                           await actions.readtagcount(
                             true,
-                            _model.sliderValue!,
+                            1.0,
                           );
                         },
                         text: 'Clear list',
@@ -484,6 +342,52 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                   .fontStyle,
                             ),
                       ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Count :',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFF393939),
+                                    fontSize: 24.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          FFAppState().QueriedTagDataList.length.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFF393939),
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -495,7 +399,7 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         padding: EdgeInsets.all(5.0),
                         child: Container(
                           width: 100.0,
-                          height: 280.0,
+                          height: 200.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -819,6 +723,153 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                           ),
                         ),
                       ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FFButtonWidget(
+                      onPressed: () async {
+                        _model.updateWorkingBinsResponse =
+                            await UpdateWorkingBinsCall.call(
+                          tagsList: functions.tgagsListToList(
+                              FFAppState().RFIDTagsList.toList()),
+                          state: _model.dropDownValue,
+                        );
+
+                        if ((_model.updateWorkingBinsResponse?.succeeded ??
+                            true)) {
+                          if (UpdateWorkingBinsCall.response(
+                                (_model.updateWorkingBinsResponse?.jsonBody ??
+                                    ''),
+                              ) ==
+                              'Success') {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Updated Successfully',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 2000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Faild To Update',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).error,
+                              ),
+                            );
+                          }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Server Error, Check Wifi Connection',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).error,
+                            ),
+                          );
+                        }
+
+                        safeSetState(() {});
+                      },
+                      text: 'Update Status',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Color(0xFF0000A0),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    FlutterFlowDropDown<String>(
+                      controller: _model.dropDownValueController ??=
+                          FormFieldController<String>(null),
+                      options: ['Working', 'Not Working'],
+                      onChanged: (val) =>
+                          safeSetState(() => _model.dropDownValue = val),
+                      width: 200.0,
+                      height: 40.0,
+                      textStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                      hintText: 'Select Status...',
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 24.0,
+                      ),
+                      fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 2.0,
+                      borderColor: Colors.transparent,
+                      borderWidth: 0.0,
+                      borderRadius: 8.0,
+                      margin:
+                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                      hidesUnderline: true,
+                      isOverButton: false,
+                      isSearchable: false,
+                      isMultiSelect: false,
                     ),
                   ],
                 ),

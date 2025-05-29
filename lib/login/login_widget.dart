@@ -3,13 +3,18 @@ import '/components/setting_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
+
+  static String routeName = 'Login';
+  static String routePath = '/login';
 
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
@@ -42,7 +47,10 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
@@ -50,38 +58,50 @@ class _LoginWidgetState extends State<LoginWidget> {
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           title: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: SvgPicture.asset(
                       'assets/images/logo-main.svg',
                       fit: BoxFit.scaleDown,
-                      alignment: const Alignment(0.0, -1.0),
+                      alignment: Alignment(0.0, -1.0),
                     ),
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Text(
                     'Rework Bins Traceability',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: const Color(0xFF393939),
+                          font: GoogleFonts.readexPro(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
+                          color: Color(0xFF393939),
                           fontSize: 24.0,
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 5.0)),
+              ].divide(SizedBox(height: 5.0)),
             ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           toolbarHeight: 100.0,
           elevation: 2.0,
@@ -94,7 +114,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 30.0),
+                      EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 30.0),
                   child: Container(
                     height: 300.0,
                     decoration: BoxDecoration(
@@ -114,7 +134,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     40.0, 0.0, 40.0, 20.0),
                                 child: TextFormField(
                                   controller: _model.usernameTextController,
@@ -126,15 +146,49 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: const Color(0xFF393939),
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: Color(0xFF393939),
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -169,15 +223,30 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     filled: true,
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.person,
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                   validator: _model
                                       .usernameTextControllerValidator
@@ -192,9 +261,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                           children: [
                             Expanded(
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       40.0, 0.0, 40.0, 20.0),
                                   child: TextFormField(
                                     controller: _model.passwordTextController,
@@ -206,15 +275,49 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: const Color(0xFF393939),
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: Color(0xFF393939),
                                             letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
                                             letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
                                           ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -253,7 +356,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      prefixIcon: const Icon(
+                                      prefixIcon: Icon(
                                         Icons.password_sharp,
                                       ),
                                       suffixIcon: InkWell(
@@ -274,8 +377,25 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
                                         ),
                                     validator: _model
                                         .passwordTextControllerValidator
@@ -292,7 +412,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                var shouldSetState = false;
+                                var _shouldSetState = false;
                                 if ((_model.usernameTextController.text !=
                                             '') &&
                                     (_model.passwordTextController.text !=
@@ -305,7 +425,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         _model.passwordTextController.text,
                                   );
 
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   _model.loginstatus =
                                       LogInRequestCall.logInStatus(
                                     (_model.logInRequestresponse?.jsonBody ??
@@ -320,9 +440,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   safeSetState(() {});
                                   if (_model.loginstatus == true) {
                                     context.goNamed(
-                                      'HomePage',
+                                      HomePageWidget.routeName,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.bottomToTop,
@@ -335,14 +455,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: const Text('Faild to login'),
-                                          content: const Text(
+                                          title: Text('Faild to login'),
+                                          content: Text(
                                               'Invalid username or Password'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: const Text('Ok'),
+                                              child: Text('Ok'),
                                             ),
                                           ],
                                         );
@@ -354,47 +474,60 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: const Text('Filed To Login'),
+                                        title: Text('Filed To Login'),
                                         content:
-                                            const Text('Empty username or password'),
+                                            Text('Empty username or password'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('Ok'),
+                                            child: Text('Ok'),
                                           ),
                                         ],
                                       );
                                     },
                                   );
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                               text: 'Login',
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.lock_person_sharp,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 width: 195.0,
                                 height: 54.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFFFD6400),
+                                color: Color(0xFFFD6400),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
                                       color: Colors.white,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -404,9 +537,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ],
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(1.0, 1.0),
+                          alignment: AlignmentDirectional(1.0, 1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -422,12 +555,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   context: context,
                                   builder: (context) {
                                     return GestureDetector(
-                                      onTap: () =>
-                                          FocusScope.of(context).unfocus(),
+                                      onTap: () {
+                                        FocusScope.of(context).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
+                                        child: Container(
                                           height: 300.0,
                                           child: SettingWidget(),
                                         ),
@@ -444,14 +580,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ),
                           ),
                         ),
-                      ].addToStart(const SizedBox(height: 40.0)),
+                      ].addToStart(SizedBox(height: 40.0)),
                     ),
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
+                  alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -460,9 +596,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                           'Developed by ManEx Systems ',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFF393939),
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFF393939),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                         ),
                       ],
@@ -470,7 +619,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
+                  alignment: AlignmentDirectional(0.0, 1.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -482,13 +631,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                           'assets/images/manexlogo-1.png',
                           height: 50.0,
                           fit: BoxFit.scaleDown,
-                          alignment: const Alignment(0.0, -1.0),
+                          alignment: Alignment(0.0, -1.0),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ].divide(const SizedBox(height: 5.0)),
+              ].divide(SizedBox(height: 5.0)),
             ),
           ),
         ),
