@@ -62,7 +62,7 @@ class FlutterFlowDataTableController<T> extends DataTableSource {
     this.data = data?.toList() ?? this.data;
     _numRows = numRows ?? _numRows;
     if (!paginated) {
-      paginatorController.setRowsPerPage(_numRows!);
+      paginatorController.setRowsPerPage(_numRows ?? this.data.length);
     }
     if (notify) {
       notifyListeners();
@@ -356,6 +356,12 @@ class _FlutterFlowDataTableState<T> extends State<FlutterFlowDataTable<T>> {
             child: PaginatedDataTable2(
               source: controller,
               controller: controller.paginatorController,
+              // Pass 1 if there are no rows because PaginatedDataTable2 always
+              // expects rowsPerPage to be at least 1. If an emptyBuilder is
+              // passed, the emptyBuilder will still be shown.
+              rowsPerPage: ((widget.numRows ?? widget.data.length) == 0)
+                  ? 1
+                  : (widget.numRows ?? widget.data.length),
               columnSpacing: widget.columnSpacing,
               onRowsPerPageChanged: null,
               columns: columns,
