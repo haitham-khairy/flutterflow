@@ -84,8 +84,7 @@ class GetTagsDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
-      apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/GetTagsData/GetTagsData',
+      apiUrl: 'https://b3bc950958be.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -217,6 +216,15 @@ class GetTagsDataCall {
       (getJsonField(
         response,
         r'''$[:].RemainingDaysInService''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? workingStatus(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].Working''',
         true,
       ) as List?)
           ?.withoutNulls
@@ -626,7 +634,7 @@ class UpdateWorkingBinsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateWorkingBins',
       apiUrl:
-          'https://61b8-154-183-244-222.ngrok-free.app/v1/ChangeWorkingBinsStatus/ChangeWorkingBins',
+          'https://b3bc950958be.ngrok-free.app/v1/ChangeWorkingBinsStatus/ChangeWorkingBins',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

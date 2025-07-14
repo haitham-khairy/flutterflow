@@ -52,6 +52,7 @@ List<QueriedTagDataStruct>? buildTagsDataList(
   List<String>? daysRemaining,
   List<String>? alarms,
   List<String>? remainingDaysInServeice,
+  List<String>? workingStatus,
 ) {
   List<QueriedTagDataStruct> result = [];
   if (id == null ||
@@ -67,7 +68,8 @@ List<QueriedTagDataStruct>? buildTagsDataList(
       status == null ||
       daysRemaining == null ||
       alarms == null ||
-      remainingDaysInServeice == null) {
+      remainingDaysInServeice == null ||
+      workingStatus == null) {
   } else {
     for (int i = 0; i < id.length; i++) {
       QueriedTagDataStruct element = QueriedTagDataStruct(
@@ -84,7 +86,8 @@ List<QueriedTagDataStruct>? buildTagsDataList(
           status: status[i],
           daysRemaining: daysRemaining[i],
           alarms: alarms[i],
-          remainingDaysInServeic: remainingDaysInServeice[i]);
+          remainingDaysInServeic: remainingDaysInServeice[i],
+          workingStatus: workingStatus[i]);
       result.add(element);
     }
   }
@@ -204,5 +207,16 @@ String? daysinService(
     return difference.toString();
   } catch (e) {
     return null;
+  }
+}
+
+Color? getWorkingStatusColor(String status) {
+  switch (status) {
+    case '1':
+      return Colors.green;
+    case '0':
+      return Colors.red;
+    default:
+      return null;
   }
 }

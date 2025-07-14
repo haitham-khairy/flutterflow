@@ -119,7 +119,10 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                         GetTagsDataCall.alarms(
                           (_model.getTagsDataResponse?.jsonBody ?? ''),
                         )?.toList(),
-                        GetTagsDataCall.remainingDaysInService(
+                        GetTagsDataCall.daysRemaining(
+                          (_model.getTagsDataResponse?.jsonBody ?? ''),
+                        )?.toList(),
+                        GetTagsDataCall.workingStatus(
                           (_model.getTagsDataResponse?.jsonBody ?? ''),
                         )?.toList())!
                     .toList()
@@ -386,6 +389,11 @@ class _NewReadingWidgetState extends State<NewReadingWidget> {
                                               ''),
                                         )?.toList(),
                                         GetTagsDataCall.remainingDaysInService(
+                                          (_model.getTagsDataResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList(),
+                                        GetTagsDataCall.workingStatus(
                                           (_model.getTagsDataResponse
                                                   ?.jsonBody ??
                                               ''),
