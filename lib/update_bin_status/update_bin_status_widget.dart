@@ -426,7 +426,7 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          90.0, 0.0, 0.0, 0.0),
+                                          80.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'TagID',
                                         style: FlutterFlowTheme.of(context)
@@ -450,7 +450,7 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          100.0, 0.0, 0.0, 0.0),
+                                          110.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Line',
                                         style: FlutterFlowTheme.of(context)
