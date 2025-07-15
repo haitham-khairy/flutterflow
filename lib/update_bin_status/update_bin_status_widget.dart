@@ -270,7 +270,7 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 85.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 70.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           FFAppState().RFIDTagsList = [];
@@ -426,7 +426,7 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          80.0, 0.0, 0.0, 0.0),
+                                          50.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'TagID',
                                         style: FlutterFlowTheme.of(context)
