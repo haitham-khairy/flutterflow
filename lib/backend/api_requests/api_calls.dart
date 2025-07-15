@@ -84,7 +84,8 @@ class GetTagsDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
-      apiUrl: 'https://b3bc950958be.ngrok-free.app/v1/GetTagsData/GetTagsData',
+      apiUrl:
+          'http://\${FFAppState().IPConfig}:8001/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -634,7 +635,7 @@ class UpdateWorkingBinsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateWorkingBins',
       apiUrl:
-          'https://b3bc950958be.ngrok-free.app/v1/ChangeWorkingBinsStatus/ChangeWorkingBins',
+          'http://\${FFAppState().IPConfig}:8001/v1/ChangeWorkingBinsStatus/ChangeWorkingBins',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

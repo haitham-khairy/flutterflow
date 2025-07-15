@@ -373,7 +373,7 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                             EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
-                            FFAppState().QueriedTagDataList.length.toString(),
+                            _model.tagid.length.toString(),
                             '0',
                           ),
                           style:
@@ -419,10 +419,31 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                             children: [
                               Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     'TagID',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                  Text(
+                                    'Line',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -577,23 +598,73 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                  FlutterFlowIconButton(
-                                                    borderRadius: 20.0,
-                                                    buttonSize: 40.0,
-                                                    icon: Icon(
-                                                      Icons.delete,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .info,
-                                                      size: 30.0,
+                                                  Expanded(
+                                                    child: Container(
+                                                      width: 100.0,
+                                                      height: 20.0,
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Text(
+                                                          queriedTagsListItem
+                                                              .line,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .readexPro(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                    onPressed: () async {
-                                                      FFAppState()
-                                                          .removeFromQueriedTagDataList(
-                                                              queriedTagsListItem);
-                                                      safeSetState(() {});
-                                                    },
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 3.0),
+                                                    child:
+                                                        FlutterFlowIconButton(
+                                                      borderRadius: 20.0,
+                                                      buttonSize: 40.0,
+                                                      icon: Icon(
+                                                        Icons.delete,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                        size: 30.0,
+                                                      ),
+                                                      onPressed: () async {
+                                                        FFAppState()
+                                                            .removeFromQueriedTagDataList(
+                                                                queriedTagsListItem);
+                                                        safeSetState(() {});
+                                                      },
+                                                    ),
                                                   ),
                                                 ]
                                                     .divide(
