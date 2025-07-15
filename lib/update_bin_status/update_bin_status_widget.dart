@@ -270,7 +270,7 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 90.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 85.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           FFAppState().RFIDTagsList = [];
