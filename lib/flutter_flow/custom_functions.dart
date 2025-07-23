@@ -220,3 +220,12 @@ Color? getWorkingStatusColor(String status) {
       return null;
   }
 }
+
+List<String>? queriedTagsListToStringList(
+    List<QueriedTagDataStruct>? queriedTagsList) {
+  List<String> result = [];
+  for (int i = 0; i <= queriedTagsList!.length; i++) {
+    result.add(queriedTagsList[i].tagID);
+  }
+  return result;
+}

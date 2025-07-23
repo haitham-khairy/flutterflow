@@ -624,9 +624,10 @@ class UpdateWorkingBinsCall {
   static Future<ApiCallResponse> call({
     List<String>? tagsList,
     String? state = '',
+    dynamic newTagsJson,
   }) async {
     final tags = _serializeList(tagsList);
-
+    final newTags = _serializeJson(newTagsJson, true);
     final ffApiRequestBody = '''
 {
   "Tags": ${tags},

@@ -663,8 +663,8 @@ class _UpdateBinStatusWidgetState extends State<UpdateBinStatusWidget> {
                       onPressed: () async {
                         _model.updateWorkingBinsResponse =
                             await UpdateWorkingBinsCall.call(
-                          tagsList: functions.tgagsListToList(
-                              FFAppState().RFIDTagsList.toList()),
+                          tagsList: functions.queriedTagsListToStringList(
+                              FFAppState().QueriedTagDataList.toList()),
                           state: _model.dropDownValue,
                         );
 
