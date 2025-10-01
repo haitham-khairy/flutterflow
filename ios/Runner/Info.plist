@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Manex-RFID Traceability</string>
+	<string>MARS-ReworkBins Traceability MobileClient</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Manex-RFID Traceability</string>
+	<string>MARS-ReworkBins Traceability MobileClient</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -26,10 +26,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>manexrfidtraceability.com</string>
+        <string>marsreworkbinstraceabilitymobileclient.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>manexrfidtraceability</string>
+        <string>marsreworkbinstraceabilitymobileclient</string>
         </array>
         </dict>
     </array>

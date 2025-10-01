@@ -22,7 +22,7 @@ class LogInRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/LoginAction/LogInRequest',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/LoginAction/LogInRequest',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -55,7 +55,7 @@ class LoginDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/loginData/UserDataFromApp',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -85,7 +85,7 @@ class GetTagsDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/GetTagsData/GetTagsData',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -247,7 +247,7 @@ class SendTagsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/StoreTagsInGlobal/StoreTagsInGlobal',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/StoreTagsInGlobal/StoreTagsInGlobal',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -276,7 +276,7 @@ class RejectPinRequestCall {
     return ApiManager.instance.makeApiCall(
       callName: 'RejectPinRequest',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/RejectBinRequest/RejectBinRequest',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/RejectBinRequest/RejectBinRequest',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -302,7 +302,7 @@ class GetFilterParamatersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetFilterParamaters',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/Get_Filter_Parameters/GetFilterParameters',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/Get_Filter_Parameters/GetFilterParameters',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -346,7 +346,7 @@ class GetAlarmsListCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsList',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/GetAlarmsList/GetTagsAlarms',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/GetAlarmsList/GetTagsAlarms',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -413,7 +413,7 @@ class GetAlarmsSummaryCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsSummary',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/AlarmsSummary/GetAlarmsSummary',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/AlarmsSummary/GetAlarmsSummary',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -460,7 +460,7 @@ class UpdateLifeTimeCall {
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateLifeTime',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/UpdateLifeTime/LifetimeUpdater',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/UpdateLifeTime/LifetimeUpdater',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -492,7 +492,7 @@ class GetSKUsFilterCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetSKUsFilter',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/GetSKUsFilter/GetSKUsFilter',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/GetSKUsFilter/GetSKUsFilter',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -539,7 +539,7 @@ class BinsDataUpdaterCall {
     return ApiManager.instance.makeApiCall(
       callName: 'BinsDataUpdater',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/UpdateLifeTime/BinsDataUpdater',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/UpdateLifeTime/BinsDataUpdater',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -564,7 +564,7 @@ class GetAlarmsTypesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetAlarmsTypes',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/Get_Filter_Parameters/GetAlarmsTypes',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/Get_Filter_Parameters/GetAlarmsTypes',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -595,7 +595,7 @@ class GetStatusTypesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetStatusTypes',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/Get_Filter_Parameters/getStatusTypes',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/Get_Filter_Parameters/getStatusTypes',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -636,7 +636,7 @@ class UpdateWorkingBinsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'UpdateWorkingBins',
       apiUrl:
-          'http://\${FFAppState().IPConfig}:8001/v1/ChangeWorkingBinsStatus/ChangeWorkingBins',
+          'http://\${FFAppState().IPConfig}:\${FFAppState().Port}/v1/ChangeWorkingBinsStatus/ChangeWorkingBins',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

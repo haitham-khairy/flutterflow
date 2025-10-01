@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:manex_r_f_i_d_traceability/main.dart';
+import 'package:m_a_r_s_rework_bins_traceability_mobile_client/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

@@ -20,6 +20,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _IPConfig = prefs.getString('ff_IPConfig') ?? _IPConfig;
     });
+    _safeInit(() {
+      _Port = prefs.getString('ff_Port') ?? _Port;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -315,6 +318,13 @@ class FFAppState extends ChangeNotifier {
   bool get Autherized => _Autherized;
   set Autherized(bool value) {
     _Autherized = value;
+  }
+
+  String _Port = '';
+  String get Port => _Port;
+  set Port(String value) {
+    _Port = value;
+    prefs.setString('ff_Port', value);
   }
 }
 

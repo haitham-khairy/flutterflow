@@ -1,4 +1,4 @@
-# Manex-RFID Traceability
+# MARS-ReworkBins Traceability MobileClient
 
 A new Flutter project.
 

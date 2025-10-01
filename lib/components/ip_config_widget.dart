@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'ip_config_model.dart';
 export 'ip_config_model.dart';
 
@@ -27,8 +28,12 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
     super.initState();
     _model = createModel(context, () => IpConfigModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.textController1 ??=
+        TextEditingController(text: FFAppState().IPConfig);
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController2 ??= TextEditingController(text: FFAppState().Port);
+    _model.textFieldFocusNode2 ??= FocusNode();
   }
 
   @override
@@ -40,6 +45,8 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -50,8 +57,8 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
                 child: TextFormField(
-                  controller: _model.textController,
-                  focusNode: _model.textFieldFocusNode,
+                  controller: _model.textController1,
+                  focusNode: _model.textFieldFocusNode1,
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -136,17 +143,102 @@ class _IpConfigWidgetState extends State<IpConfigWidget> {
                             FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                   validator:
-                      _model.textControllerValidator.asValidator(context),
+                      _model.textController1Validator.asValidator(context),
                 ),
               ),
             ),
           ],
         ),
         Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
+          child: TextFormField(
+            controller: _model.textController2,
+            focusNode: _model.textFieldFocusNode2,
+            autofocus: false,
+            obscureText: false,
+            decoration: InputDecoration(
+              isDense: true,
+              labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                    font: GoogleFonts.readexPro(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                    ),
+                    letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                  ),
+              hintText: 'Enter Server Port',
+              hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                    font: GoogleFonts.readexPro(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                    ),
+                    letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                  ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Color(0x00000000),
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Color(0x00000000),
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: FlutterFlowTheme.of(context).error,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: FlutterFlowTheme.of(context).error,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              filled: true,
+              fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  font: GoogleFonts.readexPro(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                  ),
+                  letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                ),
+            cursorColor: FlutterFlowTheme.of(context).primaryText,
+            enableInteractiveSelection: true,
+            validator: _model.textController2Validator.asValidator(context),
+          ),
+        ),
+        Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
-              FFAppState().IPConfig = _model.textController.text;
+              FFAppState().IPConfig = _model.textController1.text;
+              FFAppState().Port = _model.textController2.text;
               safeSetState(() {});
               await showDialog(
                 context: context,
