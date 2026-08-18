@@ -292,7 +292,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               context.pushNamed(
                                                 NewReadingWidget.routeName,
                                                 extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
+                                                  '__transition_info__':
                                                       TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
@@ -357,7 +357,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               context.pushNamed(
                                                 AlarmsWidget.routeName,
                                                 extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
+                                                  '__transition_info__':
                                                       TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
@@ -523,14 +523,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               decoration: BoxDecoration(
                                                 color: Color(0xFF0000A0),
                                                 borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0.0),
-                                                  bottomRight:
-                                                      Radius.circular(0.0),
                                                   topLeft:
                                                       Radius.circular(10.0),
-                                                  topRight:
-                                                      Radius.circular(0.0),
                                                 ),
                                                 border: Border.all(
                                                   color: Color(0xFF393939),
@@ -683,11 +677,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               decoration: BoxDecoration(
                                                 color: Color(0xFF0000A0),
                                                 borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0.0),
-                                                  bottomRight:
-                                                      Radius.circular(0.0),
-                                                  topLeft: Radius.circular(0.0),
                                                   topRight:
                                                       Radius.circular(10.0),
                                                 ),
@@ -752,12 +741,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(10.0),
-                                                    bottomRight:
-                                                        Radius.circular(0.0),
-                                                    topLeft:
-                                                        Radius.circular(0.0),
-                                                    topRight:
-                                                        Radius.circular(0.0),
                                                   ),
                                                   border: Border.all(
                                                     color: Color(0xFF393939),
@@ -925,14 +908,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(0.0),
                                                     bottomRight:
                                                         Radius.circular(10.0),
-                                                    topLeft:
-                                                        Radius.circular(0.0),
-                                                    topRight:
-                                                        Radius.circular(0.0),
                                                   ),
                                                   border: Border.all(
                                                     color: Color(0xFF393939),

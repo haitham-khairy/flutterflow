@@ -122,10 +122,10 @@ class _SettingWidgetState extends State<SettingWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     suffixIcon: InkWell(
-                      onTap: () => safeSetState(
-                        () => _model.passwordVisibility =
-                            !_model.passwordVisibility,
-                      ),
+                      onTap: () async {
+                        safeSetState(() => _model.passwordVisibility =
+                            !_model.passwordVisibility);
+                      },
                       focusNode: FocusNode(skipTraversal: true),
                       child: Icon(
                         _model.passwordVisibility

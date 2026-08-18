@@ -1128,7 +1128,9 @@ class _EditTagsWidgetState extends State<EditTagsWidget> {
                               });
                               safeSetState(() {
                                 _model.selectSKUValueController?.reset();
+                                _model.selectSKUValue = null;
                                 _model.selectLineValueController?.reset();
+                                _model.selectLineValue = null;
                               });
                             },
                             text: 'Clear',
